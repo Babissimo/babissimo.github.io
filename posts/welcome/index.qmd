@@ -1,0 +1,12 @@
+---
+title: "Hello World"
+date: "2025-11-04"
+categories: [misc]
+image: "thumbnail.jpg"
+subtitle: "Just getting the hang of things. :)"
+draft: false
+---
+
+![](thumbnail.jpg)
+
+He then proceeds to order an Aristotle of the most ping-pong tiddly in the Nuclear sub.

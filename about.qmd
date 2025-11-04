@@ -1,0 +1,15 @@
+---
+title: "Alexander Charters"
+image: profile.jpg
+about:
+  template: trestles
+  links:
+    - icon: linkedin
+      text: LinkedIn
+      href: https://linkedin.com/in/alexandercharters
+    - icon: github
+      text: Github
+      href: https://github.com/Babissimo
+
+---
+Here lay dragons.
