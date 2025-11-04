@@ -6,14 +6,14 @@
       version="2.0">
 <channel>
 <title>Babissimo</title>
-<link>https://your-website-url.example.com/</link>
-<atom:link href="https://your-website-url.example.com/index.xml" rel="self" type="application/rss+xml"/>
+<link>https://babissimo.github.io/</link>
+<atom:link href="https://babissimo.github.io/index.xml" rel="self" type="application/rss+xml"/>
 <description>A blog built with Quarto</description>
 <generator>quarto-1.8.25</generator>
 <lastBuildDate>Tue, 04 Nov 2025 00:00:00 GMT</lastBuildDate>
 <item>
   <title>Hello World</title>
-  <link>https://your-website-url.example.com/posts/welcome/</link>
+  <link>https://babissimo.github.io/posts/welcome/</link>
   <description><![CDATA[ 
 
 
@@ -21,16 +21,16 @@
 
 
 
-<p><img src="https://your-website-url.example.com/posts/welcome/thumbnail.jpg" class="img-fluid"></p>
+<p><img src="https://babissimo.github.io/posts/welcome/thumbnail.jpg" class="img-fluid"></p>
 <p>He then proceeds to order an Aristotle of the most ping-pong tiddly in the Nuclear sub.</p>
 
 
 
  ]]></description>
   <category>misc</category>
-  <guid>https://your-website-url.example.com/posts/welcome/</guid>
+  <guid>https://babissimo.github.io/posts/welcome/</guid>
   <pubDate>Tue, 04 Nov 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://your-website-url.example.com/posts/welcome/thumbnail.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="https://babissimo.github.io/posts/welcome/thumbnail.jpg" medium="image" type="image/jpeg"/>
 </item>
 </channel>
 </rss>
