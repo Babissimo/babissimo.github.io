@@ -33,6 +33,8 @@ in the abstract.
 | About page | Portrait left, circular, split-name masthead | Least disruptive to what exists, while adopting the new type |
 | 404 | Poster numeral with the cartographic line | Reuses the landing treatment; pays off the tagline |
 | Favicon | Anchor | The only piratical option that survives 16px |
+| Anchor motif | Section breaks, end mark, footer, 404 watermark | Carries the favicon through the site |
+| Math engine | MathJax, unchanged | Sanely version-pinned; best coverage and accessibility |
 
 ## Scope
 
@@ -234,28 +236,73 @@ using the dark accent.
 considered and the most generic — it is nautical rather than piratical, and
 widely used.
 
-## 10. Code and math
+## 10. Anchor motif
+
+The favicon's anchor recurs in four places. **Hierarchy is carried by colour,
+not size:** the end mark is the only accent-coloured anchor and the only one not
+sitting on a rule, so it reads as terminal against the grey structural marks
+above and below it.
+
+| Use | Size | Colour | Treatment |
+|---|---|---|---|
+| Section break (`---`/`<hr>`) | 14px | foreground, 34% | Centred on a hairline rule, gap either side |
+| End of post | 19px | accent, 45% | Floating, centred, no rule, generous space above |
+| Page footer | 10px | foreground, 30% | Right-aligned in the footer bar |
+| 404 watermark | ~150px | foreground, 6% | Behind the numeral; reads as texture |
+
+Dark mode substitutes the dark foreground and accent tokens at the same
+opacities.
+
+One shared inline SVG (32×32 viewBox, round caps and joins), sized and coloured
+by CSS. The end mark and footer mark are inserted by CSS pseudo-elements rather
+than authored per page.
+
+**Rejected:** the anchor on heading links, and at the foot of the contents rail.
+The heading-link version was the neatest pun available — Quarto already loads
+AnchorJS and calls them anchor links — but four uses is already the ceiling for
+a motif, and the rail is the one piece of custom code in the design, so it stays
+uncomplicated.
+
+## 11. Code and math
 
 - Paired `.theme` files for light and dark highlighting, tuned to the palette:
   warm, low-contrast, no neon.
 - Code blocks on `surface` with a 2px accent left border.
-- **Switch `html-math-method` from MathJax to KaTeX.** Faster, ships Computer
-  Modern-derived faces that sit well beside Fraunces, and is far easier to style
-  — the main lever on "beautiful mathematical character."
+- **Math stays on MathJax.** No change to `html-math-method`.
 
-**Risk:** KaTeX supports a narrower slice of LaTeX than MathJax; macro-heavy
-markup can fail to render. `blog/posts/` holds a single post today, so exposure
-is near zero, but this constrains what can be written later. Reverting is a
-one-line change in `_quarto.yml`.
+An earlier draft of this spec proposed switching to KaTeX for speed and for
+faces that sit better beside Fraunces. Testing both engines against a rendered
+probe page withdrew that recommendation:
 
-## 11. File manifest
+```
+mathjax → <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js">
+katex   → <script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js">
+```
+
+Two findings. First, **neither engine is self-hosted** — both load from
+jsdelivr, and KaTeX fetches its fonts from there too, so the switch would not
+have helped the no-external-requests goal as implied. Second, Quarto pins
+MathJax to a major version (`@4`) but pins KaTeX to **`@latest`**, meaning the
+site would silently track whatever KaTeX ships next.
+
+MathJax also has materially better accessibility (speech text, subexpression
+exploration) and broader LaTeX coverage, including autoloaded extension
+packages. The visual gain from KaTeX did not justify the exposure.
+
+**Known limitation, accepted:** math therefore depends on a CDN at page load. If
+that becomes unacceptable, `html-math-method` accepts an object form —
+`{method: mathjax, url: "/lib/mathjax"}` (schema confirmed in
+`document-options.yml`) — allowing a pinned copy to be vendored into the repo.
+Not planned now.
+
+## 12. File manifest
 
 | File | Action | Contents |
 |---|---|---|
 | `_brand.yml` | new | Light palette, typography |
 | `_brand-dark.yml` | new | Dark palette |
-| `_quarto.yml` | edit | `brand:`, layout, `favicon:`, `html-math-method: katex` |
-| `custom.scss` | new | Rail, navbar, listings, title blocks, landing, about, 404 |
+| `_quarto.yml` | edit | `brand:`, layout, `favicon:`, page-footer |
+| `custom.scss` | new | Rail, navbar, listings, title blocks, landing, about, 404, anchor motif |
 | `custom-dark.scss` | new | Dark-only overrides |
 | `theme-light.theme` | new | Code highlighting, light |
 | `theme-dark.theme` | new | Code highlighting, dark |
@@ -265,10 +312,10 @@ one-line change in `_quarto.yml`.
 | `about/index.qmd` | edit | Portrait-left layout |
 | `blog/posts/_metadata.yml` | edit | Remove `title-block-banner` |
 | `404.qmd` | new | Poster numeral, cartographic line |
-| `assets/anchor.svg` + PNGs | new | Favicon set |
+| `assets/anchor.svg` + PNGs | new | Favicon set; same path reused by the motif |
 | `styles.css` | delete | Empty; folded into SCSS |
 
-## 12. Risks and unknowns
+## 13. Risks and unknowns
 
 Four items are designed but not proven. Verify these early rather than at the
 end:
@@ -287,26 +334,30 @@ end:
    public structure, but a future release could change it. Being CSS-only, the
    failure mode is cosmetic, not broken.
 
-## 13. Verification
+## 14. Verification
 
 The theme is done when, on a rendered site:
 
 - Both palettes render correctly and the toggle switches cleanly between them.
-- No network requests leave the origin for fonts.
+- No network requests leave the origin for fonts. (Math is the documented
+  exception — MathJax loads from jsdelivr; see §11.)
 - The rail shows marks, tracks the active section on scroll, reveals frosted
   labels on hover, and hands off to the collapsible TOC below 900px.
 - At 620px viewport width, rail labels never sit unbacked on body text.
 - Landing wordmark holds its line from 1600px down to 380px.
-- A post containing display and inline math renders under KaTeX with no console
-  errors.
+- A post containing display and inline math renders under MathJax with no
+  console errors, in both palettes.
 - Blog and projects listings render through their own templates, and the RSS
   feed still validates.
 - The favicon is identifiable at 16px against both light and dark browser
   chrome.
+- On a post containing two `---` breaks, all four anchor uses are visible at
+  once and the end mark still reads as terminal — it is the only accent-coloured
+  anchor and the only one off a rule.
 - `tools/clean-urls.py` still runs and its output is unaffected by the new
   pages.
 
-## 14. Non-goals, restated
+## 15. Non-goals, restated
 
 The owner's mathematical accents and animation are out of scope. The rail's
 reveal establishes a motion vocabulary — roughly 260ms, soft easing — worth
