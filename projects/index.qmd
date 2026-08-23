@@ -2,8 +2,9 @@
 title: "Projects"
 listing:
   contents: projects.yml
-  type: grid
   sort: false
+  type: default
+  template: ../_listing-projects.ejs
   fields: [title, description]
-page-layout: full
+toc: false
 ---

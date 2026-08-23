@@ -511,3 +511,182 @@ body.landing {
     h1.wordmark { white-space: normal; }
   }
 }
+
+// ---------------------------------------------------------------------------
+// Blog index — one line per post: date, title, categories. An archive rather
+// than a feed. Posts carry a `subtitle` this layout deliberately drops.
+// ---------------------------------------------------------------------------
+.index-row {
+  display: flex;
+  align-items: baseline;
+  gap: 1.1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid $rule;
+}
+
+.index-date {
+  flex: none;
+  width: 6.4rem;
+  color: $muted;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.index-title {
+  flex: 1;
+  font-family: $serif;
+  font-variation-settings: "SOFT" 45, "WONK" 1;
+  font-weight: 600;
+  font-size: 1.08rem;
+  line-height: 1.3;
+  letter-spacing: -0.012em;
+  color: $ink;
+  border-bottom: none;
+
+  &:hover { color: $oxblood; }
+}
+
+.index-cats { flex: none; }
+
+.index-cat {
+  color: $oxblood;
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  margin-left: 0.5rem;
+}
+
+// The date column has nowhere to go on a phone; stack instead.
+@media (max-width: 34rem) {
+  .index-row { flex-direction: column; gap: 0.2rem; align-items: stretch; }
+  .index-date { width: auto; }
+  .index-cat { margin: 0 0.6rem 0 0; }
+}
+
+// ---------------------------------------------------------------------------
+// Projects — stacked entries. No dates and no images, so the index row's left
+// column would sit empty; the description gets its own line instead.
+// ---------------------------------------------------------------------------
+.stack-row {
+  padding: 1rem 0;
+  border-bottom: 1px solid $rule;
+}
+
+.stack-title {
+  font-family: $serif;
+  font-variation-settings: "SOFT" 45, "WONK" 1;
+  font-weight: 600;
+  font-size: 1.2rem;
+  letter-spacing: -0.012em;
+  color: $ink;
+  border-bottom: none;
+
+  &:hover { color: $oxblood; }
+}
+
+.stack-ext {
+  color: $oxblood;
+  font-size: 0.78em;
+  margin-left: 0.34em;
+  vertical-align: 0.08em;
+}
+
+.stack-desc {
+  color: $muted;
+  font-size: 0.95rem;
+  margin-top: 0.12rem;
+}
+
+// ---------------------------------------------------------------------------
+// About — Quarto's `trestles` template emits the right pieces but nests the
+// title inside the left column under the portrait. `display: contents` on
+// .about-entity promotes its children into the outer grid so each can be
+// placed: portrait and links left, name heading the text column.
+//
+// Quarto's own rules here are `div.quarto-about-trestles .about-entity .x`,
+// so these selectors match that depth rather than reaching for !important.
+// The two exceptions are `display`, which Quarto itself marks !important.
+// ---------------------------------------------------------------------------
+div.quarto-about-trestles {
+  display: grid !important;
+  grid-template-columns: 158px minmax(0, 1fr);
+  column-gap: 2.4rem;
+  row-gap: 0;
+  align-items: start;
+  // Without this the grid stretches its rows to fill the container height,
+  // opening a ~200px gap between the portrait and the links below it.
+  align-content: start;
+  padding-top: 1.5em !important;
+
+  .about-entity { display: contents !important; }
+
+  .about-entity .about-image {
+    grid-column: 1;
+    grid-row: 1;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0;
+  }
+
+  #title-block-header {
+    grid-column: 2;
+    grid-row: 1;
+    margin: 0;
+    padding: 0;
+    border-bottom: none;
+
+    h1.title { font-size: clamp(1.7rem, 4vw, 2.1rem); margin: 0; }
+  }
+
+  .about-entity .about-links {
+    grid-column: 1;
+    grid-row: 2;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    row-gap: 0.45em;
+    width: auto;
+    margin-top: 1.1rem;
+    padding-bottom: 0;
+  }
+
+  .about-entity .about-link {
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    text-align: left;
+    color: $oxblood;
+    font-size: 0.86em;
+    letter-spacing: 0.03em;
+
+    &::before { content: "\2192\00a0"; opacity: 0.5; }
+    i.bi { display: none; }
+  }
+
+  .about-contents {
+    grid-column: 2;
+    grid-row: 2;
+    padding: 0;
+    border-left: none;
+  }
+
+  .about-contents main.content { max-width: none; padding: 0; margin: 0; }
+
+  // One column on a phone; the portrait leads.
+  @media (max-width: 34rem) {
+    grid-template-columns: minmax(0, 1fr);
+
+    .about-entity .about-image { grid-column: 1; grid-row: 1; }
+    #title-block-header        { grid-column: 1; grid-row: 2; margin-top: 1.1rem; }
+    .about-contents            { grid-column: 1; grid-row: 3; }
+    .about-entity .about-links { grid-column: 1; grid-row: 4; }
+  }
+}
+
+// The surname, set like the landing wordmark's tail.
+.nm-tail {
+  font-style: italic;
+  font-weight: 400;
+  color: $oxblood;
+  font-variation-settings: "SOFT" 80, "WONK" 1;
+}

@@ -5,8 +5,11 @@ listing:
   feed: true
   sort: "date desc"
   type: default
-  categories: true
+  template: ../_listing-blog.ejs
+  date-format: "D MMM YYYY"
+  categories: false
   sort-ui: false
   filter-ui: false
-page-layout: full
+  fields: [date, title, categories]
+toc: false
 ---
