@@ -4,3 +4,5 @@
 [ ] post
 [ ] access to projects in other subdomains
 [ ] populate landing page
+[ ] verify quarto self-hosts brand fonts - render and confirm zero googleapis/gstatic requests (unverified; fonts load on every page so this matters more than mathjax)
+[ ] decide whether to vendor mathjax locally instead of jsdelivr - visitor IPs go to a third party (cf. the 2022 Munich google fonts GDPR ruling), and quarto emits no SRI integrity hash on the script tag. escape hatch is html-math-method: {method: mathjax, url: /lib/mathjax}

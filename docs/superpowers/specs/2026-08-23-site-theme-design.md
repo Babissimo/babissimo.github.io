@@ -24,7 +24,8 @@ in the abstract.
 | Decision | Choice | Rationale |
 |---|---|---|
 | Typographic direction | Fraunces headings over Source Sans 3 body | Personality in the headings; reading text stays quiet |
-| Dark mode | Keep, rebuilt warm | Ink-brown dark reads as the same site at night, not a stock inversion |
+| Accent | Oxblood `#8A3446` | Warm without the sunburnt orange of the earlier rust |
+| Dark mode | Keep; warm ink ground | Same temperature as the paper, so it reads as the same site at night |
 | Post layout | Single centred 640px column, no margin gutter | Essays, not documents |
 | Table of contents | Ambient right-edge rail, frosted panel on hover | Keeps the centred column intact while the section list stays reachable |
 | Landing page | Baseline poster wordmark, bottom-left | All the air sits above the name, where a future animation wants to live |
@@ -46,10 +47,20 @@ writing beyond the tagline.
 
 ## 1. Foundations — `_brand.yml`
 
-Quarto 1.10's `brand` key accepts separate light and dark definitions
-(confirmed in `document-options.yml`: *"an object with light and dark brand
-paths or definitions"*). Branding is declared once in `_quarto.yml`, pointing at
-`_brand.yml` and `_brand-dark.yml`.
+**One** `_brand.yml` at the project root, with light and dark nested per
+property. Quarto's own brand-extension template uses this shape:
+
+```yaml
+color:
+  background: {light: "#fff", dark: "#000"}
+  foreground: {light: "#000", dark: "#fff"}
+```
+
+An earlier draft of this spec called for two files (`_brand.yml` plus
+`_brand-dark.yml`). Quarto does accept that — `brand` takes "an object with
+light and dark brand paths or definitions" per `document-options.yml` — but
+nesting is the idiomatic form and keeps the two palettes side by side, where
+divergence is easiest to spot.
 
 ### Typography
 
@@ -71,10 +82,26 @@ built site must make **no external font requests at runtime**.
 | rule | `#EAE3D8` | `#332D28` |
 | foreground | `#1F1D1A` | `#EDE7DC` |
 | muted | `#6B6459` | `#A69C8D` |
-| accent | `#B4553A` | `#E08A63` |
+| accent (oxblood) | `#8A3446` | `#C9697C` |
 
-Dark is warm ink-brown rather than grey-black. The accent lightens in dark mode
-to hold contrast.
+Dark is warm ink-brown rather than grey-black — the same temperature as the
+paper, so the site reads as itself at night rather than as an inversion.
+
+The dark accent is re-derived from the light one rather than reused: `#8A3446`
+scores 2.28:1 on the dark ground, which is unreadable. Measured contrast:
+
+| Pair | Ratio | |
+|---|---|---|
+| accent on paper | 7.64:1 | AAA |
+| accent on dark ground | 4.97:1 | AA |
+| accent on dark surface (code) | 4.56:1 | AA |
+| foreground on paper | 16.27:1 | AAA |
+| muted on paper | 5.66:1 | AA |
+| foreground on dark ground | 14.63:1 | AAA |
+| muted on dark ground | 6.66:1 | AA |
+
+If `#C9697C` reads dim in practice, `#D4798A` is the fallback at 5.92:1, at the
+cost of drifting toward pink.
 
 ## 2. Page furniture
 
@@ -299,8 +326,7 @@ Not planned now.
 
 | File | Action | Contents |
 |---|---|---|
-| `_brand.yml` | new | Light palette, typography |
-| `_brand-dark.yml` | new | Dark palette |
+| `_brand.yml` | new | Both palettes (light/dark nested), typography |
 | `_quarto.yml` | edit | `brand:`, layout, `favicon:`, page-footer |
 | `custom.scss` | new | Rail, navbar, listings, title blocks, landing, about, 404, anchor motif |
 | `custom-dark.scss` | new | Dark-only overrides |

@@ -1,6 +1,8 @@
 project:
   type: website
   post-render: python3 tools/clean-urls.py
+  resources:
+    - assets/
 
 website:
   description: "A blog built with Quarto"
@@ -24,9 +26,8 @@ website:
 format:
   html:
     theme:
-      light: flatly
-      dark: darkly
-    css: styles.css
+      light: [brand, custom.scss]
+      dark: [brand, custom.scss, custom-dark.scss]
 open-graph: true
 
 

@@ -1,0 +1,47 @@
+meta:
+  name: Babissimo
+
+color:
+  palette:
+    paper: "#FDFBF7"
+    paper-dark: "#191614"
+    surface: "#F5F1E8"
+    surface-dark: "#221E1B"
+    rule: "#EAE3D8"
+    rule-dark: "#332D28"
+    ink: "#1F1D1A"
+    ink-dark: "#EDE7DC"
+    muted: "#6B6459"
+    muted-dark: "#A69C8D"
+    oxblood: "#8A3446"
+    oxblood-dark: "#C9697C"
+
+  background:
+    light: paper
+    dark: paper-dark
+  foreground:
+    light: ink
+    dark: ink-dark
+  primary:
+    light: oxblood
+    dark: oxblood-dark
+  secondary:
+    light: muted
+    dark: muted-dark
+
+typography:
+  # No `fonts:` block on purpose. `source: google` would @import from
+  # fonts.googleapis.com (every visitor's IP, every page load), and
+  # `source: file` emits `font-weight: normal`, which pins these variable
+  # fonts to a single weight and leaves the browser to fake the rest.
+  # The @font-face rules are declared in custom.scss instead, with real
+  # weight ranges and a unicode-range. Files live in assets/fonts/.
+  base:
+    family: Source Sans 3
+    size: 17px
+    line-height: 1.65
+  headings:
+    family: Fraunces
+    weight: 600
+  monospace:
+    family: JetBrains Mono
