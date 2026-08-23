@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://babissimo.github.io/index.html</loc>
-    <lastmod>2026-08-23T20:42:08.771Z</lastmod>
+    <loc>https://babissimo.github.io/blog/</loc>
+    <lastmod>2026-08-23T21:28:12.779Z</lastmod>
   </url>
   <url>
-    <loc>https://babissimo.github.io/posts/welcome/index.html</loc>
-    <lastmod>2026-08-23T20:42:08.772Z</lastmod>
+    <loc>https://babissimo.github.io/about/</loc>
+    <lastmod>2026-08-23T21:28:12.779Z</lastmod>
   </url>
   <url>
-    <loc>https://babissimo.github.io/about.html</loc>
-    <lastmod>2026-08-23T20:42:08.771Z</lastmod>
+    <loc>https://babissimo.github.io/</loc>
+    <lastmod>2026-08-23T21:28:12.780Z</lastmod>
+  </url>
+  <url>
+    <loc>https://babissimo.github.io/projects/</loc>
+    <lastmod>2026-08-23T21:28:12.780Z</lastmod>
+  </url>
+  <url>
+    <loc>https://babissimo.github.io/blog/posts/welcome/</loc>
+    <lastmod>2026-08-23T21:28:12.780Z</lastmod>
   </url>
 </urlset>

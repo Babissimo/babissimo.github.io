@@ -1,8 +1,12 @@
 [
   {
-    "listing": "/index.html",
+    "listing": "/blog/index.html",
     "items": [
-      "/posts/welcome/index.html"
+      "/blog/posts/welcome/index.html"
     ]
+  },
+  {
+    "listing": "/projects/index.html",
+    "items": []
   }
 ]

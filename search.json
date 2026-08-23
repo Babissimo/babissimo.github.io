@@ -1,23 +1,30 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Home",
+    "objectID": "blog/index.html",
+    "href": "blog/index.html",
+    "title": "Blog",
     "section": "",
     "text": "Hello World\n\n\nJust getting the hang of things. :)\n\n\n\nmisc\n\n\n\n\n\n\n\n\n\nNov 4, 2025\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "posts/welcome/index.html",
-    "href": "posts/welcome/index.html",
-    "title": "Hello World",
-    "section": "",
-    "text": "He then proceeds to order an Aristotle of the most ping-pong tiddly in the Nuclear sub."
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
+    "objectID": "about/index.html",
+    "href": "about/index.html",
     "title": "Alexander Charters",
     "section": "",
     "text": "Here lay dragons."
+  },
+  {
+    "objectID": "projects/index.html",
+    "href": "projects/index.html",
+    "title": "Projects",
+    "section": "",
+    "text": "Trials Trophies\n\n\nThe results of some vintage car trials\n\n\n\n\n\n\n\n\n\nTorus Chess\n\n\nChess on a doughnut\n\n\n\n\n\n\n\n\n\nWorld Happiness Visualisation\n\n\nAn interactive visualisation of World Happiness Report.\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "blog/posts/welcome/index.html",
+    "href": "blog/posts/welcome/index.html",
+    "title": "Hello World",
+    "section": "",
+    "text": "He then proceeds to order an Aristotle of the most ping-pong tiddly in the Nuclear sub."
   }
 ]
