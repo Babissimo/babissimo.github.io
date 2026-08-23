@@ -17,6 +17,10 @@ website:
   favicon: assets/anchor.svg
   navbar:
     href: /
+    # Default is lg (992px), which shows a burger on most laptop windows.
+    # sm keeps the links horizontal down to 576px; below that they genuinely
+    # do not fit alongside the four icons.
+    collapse-below: sm
     right:
       - text: "Blog"
         href: /blog/

@@ -118,6 +118,15 @@ h1, h2, h3, h4, h5, h6,
 .navbar {
   // Colour comes from $navbar-bg / $navbar-fg / $navbar-hl in defaults.
   border-bottom: 1px solid $rule;
+
+  // Quarto uses container-fluid here, which pins the brand to the viewport
+  // edge while the body sits in a 640px column. Match the measure so the
+  // wordmark lines up with the text beneath it.
+  .navbar-container {
+    max-width: calc(#{$measure} + 2.4rem);
+    margin-inline: auto;
+    padding-inline: 1.2rem;
+  }
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 
