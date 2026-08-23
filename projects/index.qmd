@@ -1,0 +1,10 @@
+---
+title: "Projects"
+listing:
+  contents: projects.yml
+  type: grid
+  sort: false
+  fields: [title, description]
+page-layout: full
+title-block-banner: true
+---

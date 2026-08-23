@@ -1,0 +1,14 @@
+# Projects listed on projects.qmd. Add an entry here to add a card.
+# `path` is the destination URL; external links are fine.
+
+- title: "Trials Trophies"
+  description: "The results of some vintage car trials"
+  path: "https://trialstrophies.netlify.app/"
+
+- title: "Torus Chess"
+  description: "Chess on a doughnut"
+  path: "https://babissimo.github.io/torus-chess"
+
+- title: "World Happiness Visualisation"
+  description: "An interactive visualisation of World Happiness Report."
+  path: "https://babissimo.github.io/world_happiness_visualisation"

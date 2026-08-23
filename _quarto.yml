@@ -1,19 +1,26 @@
 project:
   type: website
+  post-render: python3 tools/clean-urls.py
 
 website:
   description: "A blog built with Quarto"
   site-url: https://babissimo.github.io
   title: "Babissimo"
   navbar:
+    href: /
     right:
-      - about.qmd
+      - text: "Blog"
+        href: /blog/
+      - text: "Projects"
+        href: /projects/
+      - text: "About Me"
+        href: /about/
       - icon: github
         href: https://github.com/Babissimo
       - icon: linkedin
         href: https://linkedin.com/in/alexandercharters
       - icon: rss
-        href: index.xml
+        href: /blog/index.xml
 format:
   html:
     theme:
