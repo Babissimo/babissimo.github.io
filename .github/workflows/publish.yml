@@ -25,7 +25,8 @@ jobs:
           version: 1.10.18
 
       - name: Set up uv
-        uses: astral-sh/setup-uv@v10
+        # setup-uv publishes no floating major tag past v7.x, so pin exactly.
+        uses: astral-sh/setup-uv@v10.0.1
         with:
           enable-cache: true
 
