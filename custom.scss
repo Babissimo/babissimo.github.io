@@ -374,8 +374,11 @@ $anchor-svg: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewB
 // Background images cannot take currentColor, so bake the stroke colour into
 // the data URI. Opacity is mixed against the paper rather than applied
 // separately, which keeps it opaque and lets both palettes drive it.
+// `mix()` returns rgb(...) with fractional channels, not a hex string, so
+// interpolating it directly yielded `%23gb(177.52, ...)`. ie-hex-str always
+// gives #AARRGGBB; drop the leading "#FF" to get the six hex digits.
 @function anchor-url($colour) {
-  $hex: str-slice("#{$colour}", 2);
+  $hex: str-slice(ie-hex-str($colour), 4);
   @return url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg fill='none' stroke='%23#{$hex}' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='16' cy='6' r='2.9'/%3E%3Cpath d='M16 9 L16 27'/%3E%3Cpath d='M9.5 13 L22.5 13'/%3E%3Cpath d='M6 19 Q6 27.5 16 27.5 Q26 27.5 26 19'/%3E%3C/g%3E%3C/svg%3E");
 }
 

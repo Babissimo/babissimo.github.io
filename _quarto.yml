@@ -3,6 +3,12 @@ project:
   post-render: python3 tools/clean-urls.py
   resources:
     - assets/
+  render:
+    - "*.qmd"
+    - "blog/**"
+    - "projects/**"
+    - "about/**"
+    - "!docs/**"
 
 website:
   description: "A blog built with Quarto"
