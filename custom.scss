@@ -1,0 +1,695 @@
+/*-- scss:functions --*/
+
+// Latin subset only. Matches the ranges Google Fonts serves for `latin`,
+// so the browser skips these files entirely for text outside the range.
+$latin-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+  U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+  U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+
+/*-- scss:defaults --*/
+
+// Palette — mirrors _brand.yml so SCSS can reach the roles brand does not expose.
+$paper:    #FDFBF7 !default;
+$surface:  #F5F1E8 !default;
+$rule:     #EAE3D8 !default;
+$ink:      #1F1D1A !default;
+$muted:    #6B6459 !default;
+$oxblood:  #8A3446 !default;
+
+$serif: "Fraunces", Georgia, "Times New Roman", serif;
+$sans:  "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+$mono:  "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+// Measure. See spec §2 — the margin column collapses so body text is
+// genuinely centred rather than centred-minus-a-gutter.
+$measure: 640px;
+
+$body-bg:    $paper;
+$body-color: $ink;
+$link-color: $oxblood;
+$link-hover-color: darken($oxblood, 8%);
+$border-color: $rule;
+
+$font-family-sans-serif: $sans;
+$font-family-monospace:  $mono;
+$headings-font-family:   $serif;
+$headings-font-weight:   600;
+
+$navbar-bg: $paper;
+$navbar-fg: $ink;
+$navbar-hl: $oxblood;
+
+$code-block-bg: $surface;
+$code-color: $ink;
+
+$toc-color: $ink;
+$toc-active-border: $oxblood;
+
+/*-- scss:rules --*/
+
+// ---------------------------------------------------------------------------
+// Fonts — declared here rather than via brand `fonts:` so the variable weight
+// axis survives. Quarto's `source: file` hard-codes `font-weight: normal`,
+// which would leave every heading faux-bolded.
+// ---------------------------------------------------------------------------
+@font-face {
+  font-family: "Fraunces";
+  src: url("/assets/fonts/Fraunces-normal-latin.woff2") format("woff2");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: $latin-range;
+}
+@font-face {
+  font-family: "Fraunces";
+  src: url("/assets/fonts/Fraunces-italic-latin.woff2") format("woff2");
+  font-weight: 300 900;
+  font-style: italic;
+  font-display: swap;
+  unicode-range: $latin-range;
+}
+@font-face {
+  font-family: "Source Sans 3";
+  src: url("/assets/fonts/SourceSans3-normal-latin.woff2") format("woff2");
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: $latin-range;
+}
+@font-face {
+  font-family: "Source Sans 3";
+  src: url("/assets/fonts/SourceSans3-italic-latin.woff2") format("woff2");
+  font-weight: 300 700;
+  font-style: italic;
+  font-display: swap;
+  unicode-range: $latin-range;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/JetBrainsMono-normal-latin.woff2") format("woff2");
+  font-weight: 400 600;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: $latin-range;
+}
+
+// ---------------------------------------------------------------------------
+// Type
+// ---------------------------------------------------------------------------
+body {
+  font-family: $sans;
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6,
+.quarto-title h1.title {
+  font-family: $serif;
+  font-variation-settings: "SOFT" 50, "WONK" 1;
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  line-height: 1.16;
+}
+
+// ---------------------------------------------------------------------------
+// Navbar — paper-coloured with a single hairline, no Bootstrap slab.
+// ---------------------------------------------------------------------------
+.navbar {
+  // Colour comes from $navbar-bg / $navbar-fg / $navbar-hl in defaults.
+  border-bottom: 1px solid $rule;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+
+  .navbar-brand {
+    font-family: $serif;
+    font-variation-settings: "SOFT" 40, "WONK" 1;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+  }
+
+}
+
+// ---------------------------------------------------------------------------
+// Title blocks — banner replaced with date / title / hairline.
+// ---------------------------------------------------------------------------
+// `title-block-banner` is removed at source (blog/posts/_metadata.yml and both
+// listing pages) rather than hidden here — in banner mode the title itself
+// lives inside the banner, so hiding it hides the title too.
+
+#title-block-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid $rule;
+
+  // Date above the title, in letterspaced small caps.
+  display: flex;
+  flex-direction: column;
+
+  .quarto-title-meta {
+    order: -1;
+    margin: 0 0 0.55rem;
+    color: $muted;
+    font-size: 0.72rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    border: none;
+    padding: 0;
+
+    .quarto-title-meta-heading { display: none; }
+    .quarto-title-meta-contents { display: inline; }
+    > div { display: inline; }
+  }
+
+  .quarto-title h1.title {
+    font-size: clamp(1.9rem, 4.2vw, 2.35rem);
+    margin: 0 0 0.3rem;
+  }
+
+  .quarto-categories {
+    margin-top: 0.6rem;
+    gap: 0.55rem;
+
+    .quarto-category {
+      background: none;
+      border: none;
+      padding: 0;
+      opacity: 1;
+      color: $oxblood;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      text-transform: none;
+    }
+  }
+}
+
+// Bootstrap underlines h2 by default; the design uses space, not rules.
+h2 {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-top: 2.2rem;
+}
+
+.subtitle, p.subtitle {
+  font-family: $sans;
+  color: $muted;
+  font-size: 1.02rem;
+}
+
+// ---------------------------------------------------------------------------
+// Links, code, rules
+// ---------------------------------------------------------------------------
+a {
+  color: $oxblood;
+  text-decoration: none;
+  border-bottom: 1px solid rgba($oxblood, 0.32);
+  transition: border-color 0.18s ease;
+  &:hover { border-bottom-color: $oxblood; }
+}
+
+.navbar a, .nav-link, a.quarto-grid-link, #TOC a, .anchorjs-link,
+.no-rule, h1 a, h2 a, h3 a { border-bottom: none; }
+
+code:not(.sourceCode) {
+  color: $oxblood;
+  background: $surface;
+  padding: 0.1em 0.34em;
+  border-radius: 3px;
+  font-size: 0.88em;
+}
+
+div.sourceCode, pre.sourceCode {
+  background: $surface;
+  border: none;
+  border-left: 2px solid $oxblood;
+  border-radius: 0 3px 3px 0;
+}
+
+blockquote {
+  border-left: 2px solid $rule;
+  padding-left: 1.1rem;
+  color: $muted;
+  font-style: italic;
+}
+
+// ---------------------------------------------------------------------------
+// Measure — `grid: margin-width: 0px` alone does not reclaim the track, so the
+// body still sits left of centre. Span the full page and centre explicitly.
+// ---------------------------------------------------------------------------
+// Measure is Quarto's job: `grid: body-width` in _quarto.yml sets the
+// body-content track, and the symmetric 5fr gutters either side centre it.
+// Nothing needed here.
+
+// ---------------------------------------------------------------------------
+// Contents rail — pure CSS over Quarto's own TOC markup. Quarto's scroll-spy
+// toggles `.active`; nothing here needs JavaScript.
+// ---------------------------------------------------------------------------
+// Quarto's stylesheet rules here are class-level (`.sidebar.margin-sidebar`),
+// so an ID selector outranks them. The !important on top/max-height is not
+// specificity: Quarto's JS writes `style="top: 66px; max-height: ..."` inline
+// at runtime to clear the fixed navbar, and inline styles beat any selector.
+#quarto-margin-sidebar {
+  position: fixed;
+  top: 50% !important;
+  max-height: none !important;
+  bottom: auto;
+  right: 0;
+  left: auto;
+  transform: translateY(-50%);
+  width: auto;
+  max-width: 15rem;
+  height: auto;
+  z-index: 20;
+  padding: 1.1rem 1.25rem 1.1rem 1rem;
+  overflow: visible;
+
+  // Frosted backing, so labels never sit unbacked on prose.
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba($paper, 0.72);
+    -webkit-backdrop-filter: blur(7px);
+    backdrop-filter: blur(7px);
+    border-left: 1px solid rgba($rule, 0.7);
+    opacity: 0;
+    transition: opacity 0.26s ease;
+    pointer-events: none;
+  }
+  &:hover::before { opacity: 1; }
+
+  // Without backdrop-filter a translucent panel is no panel at all.
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    &::before { background: $paper; }
+  }
+}
+
+nav#TOC {
+  position: relative;
+  z-index: 1;
+
+  #toc-title {
+    position: absolute;
+    width: 1px; height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.62rem;
+  }
+  ul ul { margin-top: 0.62rem; }
+
+  a.nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.62rem;
+    padding: 0;
+    border: none;
+    font-size: 0.8rem;
+    line-height: 1.3;
+    white-space: nowrap;
+    // Label invisible but still occupying width, so nothing reflows on reveal.
+    color: transparent;
+    transition: color 0.26s ease;
+
+    &::after {
+      content: "";
+      display: block;
+      flex: none;
+      width: 0.95rem;
+      height: 2px;
+      border-radius: 2px;
+      background: rgba($ink, 0.28);
+      transition: width 0.26s ease, background-color 0.26s ease;
+    }
+
+    // Quarto colours the active TOC link; it must stay hidden until hover
+    // like every other label, or one label floats unbacked over the prose.
+    &.active {
+      color: transparent !important;
+      &::after {
+        width: 1.65rem;
+        background: $oxblood;
+      }
+    }
+  }
+
+  // h3 and below: shorter marks
+  ul ul a.nav-link::after { width: 0.55rem; }
+  ul ul a.nav-link.active::after { width: 1.1rem; }
+}
+
+#quarto-margin-sidebar:hover nav#TOC {
+  a.nav-link { color: rgba($ink, 0.68) !important; }
+  a.nav-link:hover { color: $ink !important; }
+  a.nav-link.active { color: $oxblood !important; }
+}
+
+// Above 1200px the rail sits in empty margin, so it needs no backing.
+@media (min-width: 1200px) {
+  #quarto-margin-sidebar::before { display: none; }
+}
+
+// Quarto already hides #quarto-margin-sidebar below 900px, which is exactly
+// the breakpoint the design wants — no rule needed here.
+
+// ---------------------------------------------------------------------------
+// Anchor motif — the favicon carried through the site. Hierarchy is by colour,
+// not size: the end mark is the only accent-coloured anchor and the only one
+// not sitting on a rule, so it reads as terminal against the grey structural
+// marks above and below it. Drawn with mask-image so one shape serves all
+// four uses and each can take its own colour.
+// ---------------------------------------------------------------------------
+$anchor-svg: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg fill='none' stroke='%23000' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='16' cy='6' r='2.9'/%3E%3Cpath d='M16 9 L16 27'/%3E%3Cpath d='M9.5 13 L22.5 13'/%3E%3Cpath d='M6 19 Q6 27.5 16 27.5 Q26 27.5 26 19'/%3E%3C/g%3E%3C/svg%3E";
+
+// Background images cannot take currentColor, so bake the stroke colour into
+// the data URI. Opacity is mixed against the paper rather than applied
+// separately, which keeps it opaque and lets both palettes drive it.
+// `mix()` returns rgb(...) with fractional channels, not a hex string, so
+// interpolating it directly yielded `%23gb(177.52, ...)`. ie-hex-str always
+// gives #AARRGGBB; drop the leading "#FF" to get the six hex digits.
+@function anchor-url($colour) {
+  $hex: str-slice(ie-hex-str($colour), 4);
+  @return url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg fill='none' stroke='%23#{$hex}' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='16' cy='6' r='2.9'/%3E%3Cpath d='M16 9 L16 27'/%3E%3Cpath d='M9.5 13 L22.5 13'/%3E%3Cpath d='M6 19 Q6 27.5 16 27.5 Q26 27.5 26 19'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+@mixin anchor-mark($size, $colour, $alpha) {
+  content: "";
+  display: block;
+  flex: none;
+  width: $size;
+  height: $size;
+  background-color: $colour;
+  opacity: $alpha;
+  -webkit-mask: url($anchor-svg) no-repeat center / contain;
+  mask: url($anchor-svg) no-repeat center / contain;
+}
+
+// 1 — section break. Grey, on a rule. The two ::before/::after segments are
+// the rule; the anchor is a centred background showing through the gap.
+main.content hr {
+  border: none;
+  height: 1.1rem;
+  opacity: 1;
+  margin: 2.3rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  background: anchor-url(mix($ink, $paper, 34%)) no-repeat center / 0.88rem 0.88rem;
+
+  &::before,
+  &::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: $rule;
+  }
+}
+
+// 2 — end of post. Accent, floating, no rule. Scoped by `body-classes: post`
+// in blog/posts/_metadata.yml, so listings and standalone pages never get it.
+body.post main.content::after {
+  @include anchor-mark(1.2rem, $oxblood, 0.45);
+  margin: 2.6rem auto 0.5rem;
+}
+
+// 3 — page footer. Grey, small, at the end of the footer rule.
+.nav-footer::after {
+  @include anchor-mark(0.62rem, $ink, 0.3);
+}
+
+// 4 — 404 watermark. Set on the page itself; see 404.qmd.
+.error-watermark {
+  @include anchor-mark(9.5rem, $ink, 0.06);
+  position: absolute;
+  right: 4vw;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+// ---------------------------------------------------------------------------
+// Landing page and 404 — baseline poster. The wordmark sits on the baseline
+// bottom-left; all the air above it is `.landing-stage`, reserved for the
+// animation that comes later.
+// ---------------------------------------------------------------------------
+body.landing {
+  main.content { max-width: none; padding-inline: clamp(1.2rem, 5vw, 4rem); }
+
+  #title-block-header,
+  #quarto-margin-sidebar { display: none; }
+
+  .landing {
+    position: relative;
+    min-height: calc(100vh - 11rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .landing-stage {
+    display: block;
+    flex: 1 1 auto;
+    min-height: 2rem;
+  }
+
+  h1.wordmark {
+    font-family: $serif;
+    font-optical-sizing: none;
+    font-variation-settings: "opsz" 144, "SOFT" 30, "WONK" 1;
+    font-weight: 700;
+    font-size: clamp(2.8rem, 13vw, 9rem);
+    line-height: 0.94;
+    letter-spacing: -0.042em;
+    margin: 0;
+    white-space: nowrap;
+    border: none;
+
+    .wm-tail {
+      font-style: italic;
+      font-weight: 400;
+      color: $oxblood;
+      font-variation-settings: "opsz" 144, "SOFT" 80, "WONK" 1;
+    }
+  }
+
+  .tagline {
+    display: block;
+    margin-top: 1rem;
+    color: $muted;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .error-home {
+    display: inline-block;
+    margin-top: 1.1rem;
+    font-size: 0.92rem;
+  }
+
+  // Fraunces' figures at opsz 144 are so high-contrast that the 4's thin
+  // diagonal all but disappears and the glyph reads as broken. Drop the
+  // optical size and soften the terminals; WONK is a lettering axis and does
+  // the numerals no favours either.
+  &.error h1.wordmark {
+    font-variation-settings: "opsz" 40, "SOFT" 60, "WONK" 0;
+    font-variant-numeric: lining-nums;
+    letter-spacing: -0.02em;
+
+    .wm-tail { font-variation-settings: "opsz" 40, "SOFT" 90, "WONK" 0; }
+  }
+
+  // Below this the wordmark would overflow its line.
+  @media (max-width: 26rem) {
+    h1.wordmark { white-space: normal; }
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Blog index — one line per post: date, title, categories. An archive rather
+// than a feed. Posts carry a `subtitle` this layout deliberately drops.
+// ---------------------------------------------------------------------------
+.index-row {
+  display: flex;
+  align-items: baseline;
+  gap: 1.1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid $rule;
+}
+
+.index-date {
+  flex: none;
+  width: 6.4rem;
+  color: $muted;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.index-title {
+  flex: 1;
+  font-family: $serif;
+  font-variation-settings: "SOFT" 45, "WONK" 1;
+  font-weight: 600;
+  font-size: 1.08rem;
+  line-height: 1.3;
+  letter-spacing: -0.012em;
+  color: $ink;
+  border-bottom: none;
+
+  &:hover { color: $oxblood; }
+}
+
+.index-cats { flex: none; }
+
+.index-cat {
+  color: $oxblood;
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  margin-left: 0.5rem;
+}
+
+// The date column has nowhere to go on a phone; stack instead.
+@media (max-width: 34rem) {
+  .index-row { flex-direction: column; gap: 0.2rem; align-items: stretch; }
+  .index-date { width: auto; }
+  .index-cat { margin: 0 0.6rem 0 0; }
+}
+
+// ---------------------------------------------------------------------------
+// Projects — stacked entries. No dates and no images, so the index row's left
+// column would sit empty; the description gets its own line instead.
+// ---------------------------------------------------------------------------
+.stack-row {
+  padding: 1rem 0;
+  border-bottom: 1px solid $rule;
+}
+
+.stack-title {
+  font-family: $serif;
+  font-variation-settings: "SOFT" 45, "WONK" 1;
+  font-weight: 600;
+  font-size: 1.2rem;
+  letter-spacing: -0.012em;
+  color: $ink;
+  border-bottom: none;
+
+  &:hover { color: $oxblood; }
+}
+
+.stack-ext {
+  color: $oxblood;
+  font-size: 0.78em;
+  margin-left: 0.34em;
+  vertical-align: 0.08em;
+}
+
+.stack-desc {
+  color: $muted;
+  font-size: 0.95rem;
+  margin-top: 0.12rem;
+}
+
+// ---------------------------------------------------------------------------
+// About — Quarto's `trestles` template emits the right pieces but nests the
+// title inside the left column under the portrait. `display: contents` on
+// .about-entity promotes its children into the outer grid so each can be
+// placed: portrait and links left, name heading the text column.
+//
+// Quarto's own rules here are `div.quarto-about-trestles .about-entity .x`,
+// so these selectors match that depth rather than reaching for !important.
+// The two exceptions are `display`, which Quarto itself marks !important.
+// ---------------------------------------------------------------------------
+div.quarto-about-trestles {
+  display: grid !important;
+  grid-template-columns: 158px minmax(0, 1fr);
+  column-gap: 2.4rem;
+  row-gap: 0;
+  align-items: start;
+  // Without this the grid stretches its rows to fill the container height,
+  // opening a ~200px gap between the portrait and the links below it.
+  align-content: start;
+  padding-top: 1.5em !important;
+
+  .about-entity { display: contents !important; }
+
+  .about-entity .about-image {
+    grid-column: 1;
+    grid-row: 1;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0;
+  }
+
+  #title-block-header {
+    grid-column: 2;
+    grid-row: 1;
+    margin: 0;
+    padding: 0;
+    border-bottom: none;
+
+    h1.title { font-size: clamp(1.7rem, 4vw, 2.1rem); margin: 0; }
+  }
+
+  .about-entity .about-links {
+    grid-column: 1;
+    grid-row: 2;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    row-gap: 0.45em;
+    width: auto;
+    margin-top: 1.1rem;
+    padding-bottom: 0;
+  }
+
+  .about-entity .about-link {
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    text-align: left;
+    color: $oxblood;
+    font-size: 0.86em;
+    letter-spacing: 0.03em;
+
+    &::before { content: "\2192\00a0"; opacity: 0.5; }
+    i.bi { display: none; }
+  }
+
+  .about-contents {
+    grid-column: 2;
+    grid-row: 2;
+    padding: 0;
+    border-left: none;
+  }
+
+  .about-contents main.content { max-width: none; padding: 0; margin: 0; }
+
+  // One column on a phone; the portrait leads.
+  @media (max-width: 34rem) {
+    grid-template-columns: minmax(0, 1fr);
+
+    .about-entity .about-image { grid-column: 1; grid-row: 1; }
+    #title-block-header        { grid-column: 1; grid-row: 2; margin-top: 1.1rem; }
+    .about-contents            { grid-column: 1; grid-row: 3; }
+    .about-entity .about-links { grid-column: 1; grid-row: 4; }
+  }
+}
+
+// The surname, set like the landing wordmark's tail.
+.nm-tail {
+  font-style: italic;
+  font-weight: 400;
+  color: $oxblood;
+  font-variation-settings: "SOFT" 80, "WONK" 1;
+}

@@ -1,0 +1,26 @@
+/*-- scss:defaults --*/
+
+// Warm ink ground — the same temperature as the paper, so the site reads as
+// itself at night rather than as an inversion.
+//
+// These deliberately carry no !default. Quarto layers scss:defaults in reverse
+// file order, so this file's declarations land ahead of custom.scss's
+// `!default` ones and win. Everything derived from them in custom.scss
+// (navbar, frost, code surface) then picks up the dark values for free.
+$paper:   #191614;
+$surface: #221E1B;
+$rule:    #332D28;
+$ink:     #EDE7DC;
+$muted:   #A69C8D;
+
+// Oxblood re-derived, not reused: #8A3446 scores 2.28:1 on this ground.
+// #C9697C gives 4.97:1 on the background and 4.56:1 on the code surface.
+$oxblood: #C9697C;
+
+/*-- scss:rules --*/
+
+// Bootstrap's own dark-mode table and border tints are cool; warm them.
+.table { --bs-table-border-color: #{$rule}; }
+
+img.profile-portrait,
+.landing-stage img { filter: brightness(0.92) contrast(1.02); }

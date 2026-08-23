@@ -1,0 +1,5 @@
+<div class="stack-list">
+<% for (const item of items) { %>
+<div class="stack-row"><a class="stack-title" href="<%- item.path %>"><%= item.title %><span class="stack-ext" aria-hidden="true">&#8599;</span></a><div class="stack-desc"><%= item.description %></div></div>
+<% } %>
+</div>

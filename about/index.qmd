@@ -1,8 +1,11 @@
 ---
-title: "Alexander Charters"
+title: "Alexander [Charters]{.nm-tail}"
 image: profile.jpg
+toc: false
 about:
   template: trestles
+  image-shape: round
+  image-width: 158px
   links:
     - icon: linkedin
       text: LinkedIn
@@ -10,6 +13,6 @@ about:
     - icon: github
       text: Github
       href: https://github.com/Babissimo
-
 ---
+
 Here lay dragons.

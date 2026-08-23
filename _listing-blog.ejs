@@ -1,0 +1,5 @@
+<div class="index-list">
+<% for (const item of items) { %>
+<div class="index-row"><span class="index-date"><%= item.date %></span><a class="index-title" href="<%- item.path %>"><%= item.title %></a><span class="index-cats"><% for (const c of (item.categories || [])) { %><span class="index-cat"><%= c %></span><% } %></span></div>
+<% } %>
+</div>

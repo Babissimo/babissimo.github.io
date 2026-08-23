@@ -1,9 +1,21 @@
 ---
 pagetitle: "Babissimo"
 page-layout: full
+toc: false
+body-classes: landing
 format:
   html:
     include-in-header:
       text: |
         <link rel="alternate" type="application/rss+xml" title="Babissimo" href="https://babissimo.github.io/blog/index.xml">
 ---
+
+::: {.landing}
+
+[]{.landing-stage}
+
+# Bab[issimo]{.wm-tail} {.wordmark}
+
+[Here lay dragons.]{.tagline}
+
+:::

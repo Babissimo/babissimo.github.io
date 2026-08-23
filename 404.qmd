@@ -1,0 +1,20 @@
+---
+pagetitle: "Not found — Babissimo"
+page-layout: full
+toc: false
+body-classes: landing error
+---
+
+::: {.landing}
+
+[]{.landing-stage}
+
+[]{.error-watermark}
+
+# 4[0]{.wm-tail}4 {.wordmark}
+
+[You have sailed off the edge of the map.]{.tagline}
+
+[Back to charted water](/){.error-home}
+
+:::

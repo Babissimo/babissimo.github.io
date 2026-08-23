@@ -1,11 +1,20 @@
 project:
   type: website
   post-render: python3 tools/clean-urls.py
+  resources:
+    - assets/
+  render:
+    - "*.qmd"
+    - "blog/**"
+    - "projects/**"
+    - "about/**"
+    - "!docs/**"
 
 website:
   description: "A blog built with Quarto"
   site-url: https://babissimo.github.io
   title: "Babissimo"
+  favicon: assets/anchor.svg
   navbar:
     href: /
     right:
@@ -21,12 +30,23 @@ website:
         href: https://linkedin.com/in/alexandercharters
       - icon: rss
         href: /blog/index.xml
+  page-footer:
+    left: "&copy; 2026 Babissimo"
+    right: "Built with [Quarto](https://quarto.org)"
 format:
   html:
+    grid:
+      # 640px measure, centred. margin-width is not a real margin here (the
+      # contents rail is a fixed overlay) — it counterweights Quarto's
+      # body-start-outset tracks, which have no right-hand counterpart. At 82px
+      # the two sides balance to within 1px, and the fr gutters either side keep
+      # that constant across viewports.
+      body-width: 640px
+      margin-width: 82px
+    toc: true
     theme:
-      light: flatly
-      dark: darkly
-    css: styles.css
+      light: [brand, custom.scss]
+      dark: [brand, custom.scss, custom-dark.scss]
 open-graph: true
 
 
