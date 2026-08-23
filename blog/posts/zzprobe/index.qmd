@@ -1,0 +1,16 @@
+---
+title: "Layout probe"
+date: "2026-08-24"
+categories: [probe]
+---
+## Alpha
+Text one. A [link](/) and some `inline code`.
+
+## Beta
+Text two.
+
+### Beta sub
+Text three.
+
+## Gamma
+Text four.

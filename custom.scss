@@ -116,7 +116,7 @@ h1, h2, h3, h4, h5, h6,
 // Navbar — paper-coloured with a single hairline, no Bootstrap slab.
 // ---------------------------------------------------------------------------
 .navbar {
-  background: $paper !important;
+  // Colour comes from $navbar-bg / $navbar-fg / $navbar-hl in defaults.
   border-bottom: 1px solid $rule;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -128,34 +128,66 @@ h1, h2, h3, h4, h5, h6,
     letter-spacing: -0.005em;
   }
 
-  .navbar-nav .nav-link {
-    color: rgba($ink, 0.72) !important;
-    &:hover, &.active { color: $oxblood !important; }
-  }
 }
 
 // ---------------------------------------------------------------------------
 // Title blocks — banner replaced with date / title / hairline.
 // ---------------------------------------------------------------------------
-.quarto-title-block .quarto-title-banner { display: none; }
+// `title-block-banner` is removed at source (blog/posts/_metadata.yml and both
+// listing pages) rather than hidden here — in banner mode the title itself
+// lives inside the banner, so hiding it hides the title too.
 
 #title-block-header {
-  margin-bottom: 1.6rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid $rule;
 
-  .quarto-title h1.title {
-    font-size: clamp(1.9rem, 4.2vw, 2.3rem);
-    margin-bottom: 0.35rem;
-  }
+  // Date above the title, in letterspaced small caps.
+  display: flex;
+  flex-direction: column;
 
   .quarto-title-meta {
-    border-top: 1px solid $rule;
-    padding-top: 0.7rem;
-    margin-top: 1rem;
+    order: -1;
+    margin: 0 0 0.55rem;
     color: $muted;
-    font-size: 0.78rem;
-    letter-spacing: 0.1em;
+    font-size: 0.72rem;
+    letter-spacing: 0.13em;
     text-transform: uppercase;
+    border: none;
+    padding: 0;
+
+    .quarto-title-meta-heading { display: none; }
+    .quarto-title-meta-contents { display: inline; }
+    > div { display: inline; }
   }
+
+  .quarto-title h1.title {
+    font-size: clamp(1.9rem, 4.2vw, 2.35rem);
+    margin: 0 0 0.3rem;
+  }
+
+  .quarto-categories {
+    margin-top: 0.6rem;
+    gap: 0.55rem;
+
+    .quarto-category {
+      background: none;
+      border: none;
+      padding: 0;
+      opacity: 1;
+      color: $oxblood;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      text-transform: none;
+    }
+  }
+}
+
+// Bootstrap underlines h2 by default; the design uses space, not rules.
+h2 {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-top: 2.2rem;
 }
 
 .subtitle, p.subtitle {
@@ -199,3 +231,133 @@ blockquote {
   color: $muted;
   font-style: italic;
 }
+
+// ---------------------------------------------------------------------------
+// Measure — `grid: margin-width: 0px` alone does not reclaim the track, so the
+// body still sits left of centre. Span the full page and centre explicitly.
+// ---------------------------------------------------------------------------
+// Measure is Quarto's job: `grid: body-width` in _quarto.yml sets the
+// body-content track, and the symmetric 5fr gutters either side centre it.
+// Nothing needed here.
+
+// ---------------------------------------------------------------------------
+// Contents rail — pure CSS over Quarto's own TOC markup. Quarto's scroll-spy
+// toggles `.active`; nothing here needs JavaScript.
+// ---------------------------------------------------------------------------
+// Quarto's stylesheet rules here are class-level (`.sidebar.margin-sidebar`),
+// so an ID selector outranks them. The !important on top/max-height is not
+// specificity: Quarto's JS writes `style="top: 66px; max-height: ..."` inline
+// at runtime to clear the fixed navbar, and inline styles beat any selector.
+#quarto-margin-sidebar {
+  position: fixed;
+  top: 50% !important;
+  max-height: none !important;
+  bottom: auto;
+  right: 0;
+  left: auto;
+  transform: translateY(-50%);
+  width: auto;
+  max-width: 15rem;
+  height: auto;
+  z-index: 20;
+  padding: 1.1rem 1.25rem 1.1rem 1rem;
+  overflow: visible;
+
+  // Frosted backing, so labels never sit unbacked on prose.
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba($paper, 0.72);
+    -webkit-backdrop-filter: blur(7px);
+    backdrop-filter: blur(7px);
+    border-left: 1px solid rgba($rule, 0.7);
+    opacity: 0;
+    transition: opacity 0.26s ease;
+    pointer-events: none;
+  }
+  &:hover::before { opacity: 1; }
+
+  // Without backdrop-filter a translucent panel is no panel at all.
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    &::before { background: $paper; }
+  }
+}
+
+nav#TOC {
+  position: relative;
+  z-index: 1;
+
+  #toc-title {
+    position: absolute;
+    width: 1px; height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.62rem;
+  }
+  ul ul { margin-top: 0.62rem; }
+
+  a.nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.62rem;
+    padding: 0;
+    border: none;
+    font-size: 0.8rem;
+    line-height: 1.3;
+    white-space: nowrap;
+    // Label invisible but still occupying width, so nothing reflows on reveal.
+    color: transparent;
+    transition: color 0.26s ease;
+
+    &::after {
+      content: "";
+      display: block;
+      flex: none;
+      width: 0.95rem;
+      height: 2px;
+      border-radius: 2px;
+      background: rgba($ink, 0.28);
+      transition: width 0.26s ease, background-color 0.26s ease;
+    }
+
+    // Quarto colours the active TOC link; it must stay hidden until hover
+    // like every other label, or one label floats unbacked over the prose.
+    &.active {
+      color: transparent !important;
+      &::after {
+        width: 1.65rem;
+        background: $oxblood;
+      }
+    }
+  }
+
+  // h3 and below: shorter marks
+  ul ul a.nav-link::after { width: 0.55rem; }
+  ul ul a.nav-link.active::after { width: 1.1rem; }
+}
+
+#quarto-margin-sidebar:hover nav#TOC {
+  a.nav-link { color: rgba($ink, 0.68) !important; }
+  a.nav-link:hover { color: $ink !important; }
+  a.nav-link.active { color: $oxblood !important; }
+}
+
+// Above 1200px the rail sits in empty margin, so it needs no backing.
+@media (min-width: 1200px) {
+  #quarto-margin-sidebar::before { display: none; }
+}
+
+// Quarto already hides #quarto-margin-sidebar below 900px, which is exactly
+// the breakpoint the design wants — no rule needed here.
