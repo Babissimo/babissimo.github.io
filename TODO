@@ -1,9 +1,9 @@
-[ ] favicon
+[x] favicon - assets/anchor.svg
 [x] theme
-[ ] 404 page
+[x] 404 page
 [ ] post
 [ ] access to projects in other subdomains
-[ ] populate landing page
+[ ] populate landing page - wordmark + tagline are in; .landing-stage div is reserved and empty, ready for the animation
 [x] fonts: quarto does NOT self-host with source:google (it @imports fonts.googleapis.com inside the compiled css). now self-hosted from assets/fonts via @font-face in custom.scss - verified 0 googleapis/gstatic refs on the live site
 [ ] decide whether to vendor mathjax locally instead of jsdelivr - visitor IPs go to a third party (cf. the 2022 Munich google fonts GDPR ruling), and quarto emits no SRI integrity hash on the script tag. escape hatch is html-math-method: {method: mathjax, url: /lib/mathjax}
 [ ] write code-highlight .theme files (light+dark) tuned to the palette - spec'd but never done; code blocks currently use quarto's default syntax colours on the warm surface + oxblood border
