@@ -361,3 +361,153 @@ nav#TOC {
 
 // Quarto already hides #quarto-margin-sidebar below 900px, which is exactly
 // the breakpoint the design wants — no rule needed here.
+
+// ---------------------------------------------------------------------------
+// Anchor motif — the favicon carried through the site. Hierarchy is by colour,
+// not size: the end mark is the only accent-coloured anchor and the only one
+// not sitting on a rule, so it reads as terminal against the grey structural
+// marks above and below it. Drawn with mask-image so one shape serves all
+// four uses and each can take its own colour.
+// ---------------------------------------------------------------------------
+$anchor-svg: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg fill='none' stroke='%23000' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='16' cy='6' r='2.9'/%3E%3Cpath d='M16 9 L16 27'/%3E%3Cpath d='M9.5 13 L22.5 13'/%3E%3Cpath d='M6 19 Q6 27.5 16 27.5 Q26 27.5 26 19'/%3E%3C/g%3E%3C/svg%3E";
+
+// Background images cannot take currentColor, so bake the stroke colour into
+// the data URI. Opacity is mixed against the paper rather than applied
+// separately, which keeps it opaque and lets both palettes drive it.
+@function anchor-url($colour) {
+  $hex: str-slice("#{$colour}", 2);
+  @return url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg fill='none' stroke='%23#{$hex}' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='16' cy='6' r='2.9'/%3E%3Cpath d='M16 9 L16 27'/%3E%3Cpath d='M9.5 13 L22.5 13'/%3E%3Cpath d='M6 19 Q6 27.5 16 27.5 Q26 27.5 26 19'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+@mixin anchor-mark($size, $colour, $alpha) {
+  content: "";
+  display: block;
+  flex: none;
+  width: $size;
+  height: $size;
+  background-color: $colour;
+  opacity: $alpha;
+  -webkit-mask: url($anchor-svg) no-repeat center / contain;
+  mask: url($anchor-svg) no-repeat center / contain;
+}
+
+// 1 — section break. Grey, on a rule. The two ::before/::after segments are
+// the rule; the anchor is a centred background showing through the gap.
+main.content hr {
+  border: none;
+  height: 1.1rem;
+  opacity: 1;
+  margin: 2.3rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  background: anchor-url(mix($ink, $paper, 34%)) no-repeat center / 0.88rem 0.88rem;
+
+  &::before,
+  &::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: $rule;
+  }
+}
+
+// 2 — end of post. Accent, floating, no rule. Scoped by `body-classes: post`
+// in blog/posts/_metadata.yml, so listings and standalone pages never get it.
+body.post main.content::after {
+  @include anchor-mark(1.2rem, $oxblood, 0.45);
+  margin: 2.6rem auto 0.5rem;
+}
+
+// 3 — page footer. Grey, small, at the end of the footer rule.
+.nav-footer::after {
+  @include anchor-mark(0.62rem, $ink, 0.3);
+}
+
+// 4 — 404 watermark. Set on the page itself; see 404.qmd.
+.error-watermark {
+  @include anchor-mark(9.5rem, $ink, 0.06);
+  position: absolute;
+  right: 4vw;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+// ---------------------------------------------------------------------------
+// Landing page and 404 — baseline poster. The wordmark sits on the baseline
+// bottom-left; all the air above it is `.landing-stage`, reserved for the
+// animation that comes later.
+// ---------------------------------------------------------------------------
+body.landing {
+  main.content { max-width: none; padding-inline: clamp(1.2rem, 5vw, 4rem); }
+
+  #title-block-header,
+  #quarto-margin-sidebar { display: none; }
+
+  .landing {
+    position: relative;
+    min-height: calc(100vh - 11rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .landing-stage {
+    display: block;
+    flex: 1 1 auto;
+    min-height: 2rem;
+  }
+
+  h1.wordmark {
+    font-family: $serif;
+    font-optical-sizing: none;
+    font-variation-settings: "opsz" 144, "SOFT" 30, "WONK" 1;
+    font-weight: 700;
+    font-size: clamp(2.8rem, 13vw, 9rem);
+    line-height: 0.94;
+    letter-spacing: -0.042em;
+    margin: 0;
+    white-space: nowrap;
+    border: none;
+
+    .wm-tail {
+      font-style: italic;
+      font-weight: 400;
+      color: $oxblood;
+      font-variation-settings: "opsz" 144, "SOFT" 80, "WONK" 1;
+    }
+  }
+
+  .tagline {
+    display: block;
+    margin-top: 1rem;
+    color: $muted;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .error-home {
+    display: inline-block;
+    margin-top: 1.1rem;
+    font-size: 0.92rem;
+  }
+
+  // Fraunces' figures at opsz 144 are so high-contrast that the 4's thin
+  // diagonal all but disappears and the glyph reads as broken. Drop the
+  // optical size and soften the terminals; WONK is a lettering axis and does
+  // the numerals no favours either.
+  &.error h1.wordmark {
+    font-variation-settings: "opsz" 40, "SOFT" 60, "WONK" 0;
+    font-variant-numeric: lining-nums;
+    letter-spacing: -0.02em;
+
+    .wm-tail { font-variation-settings: "opsz" 40, "SOFT" 90, "WONK" 0; }
+  }
+
+  // Below this the wordmark would overflow its line.
+  @media (max-width: 26rem) {
+    h1.wordmark { white-space: normal; }
+  }
+}

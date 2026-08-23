@@ -8,6 +8,7 @@ website:
   description: "A blog built with Quarto"
   site-url: https://babissimo.github.io
   title: "Babissimo"
+  favicon: assets/anchor.svg
   navbar:
     href: /
     right:
@@ -23,6 +24,9 @@ website:
         href: https://linkedin.com/in/alexandercharters
       - icon: rss
         href: /blog/index.xml
+  page-footer:
+    left: "&copy; 2026 Babissimo"
+    right: "Built with [Quarto](https://quarto.org)"
 format:
   html:
     grid:

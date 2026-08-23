@@ -4,3 +4,5 @@
 # (see https://quarto.org/docs/projects/code-execution.html#freeze)
 freeze: true
 
+# Scopes the end-of-post anchor to posts only (see custom.scss)
+body-classes: post
