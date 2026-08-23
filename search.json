@@ -1,10 +1,17 @@
 [
   {
-    "objectID": "blog/index.html",
-    "href": "blog/index.html",
-    "title": "Blog",
+    "objectID": "projects/index.html",
+    "href": "projects/index.html",
+    "title": "Projects",
     "section": "",
-    "text": "Hello World\n\n\nJust getting the hang of things. :)\n\n\n\nmisc\n\n\n\n\n\n\n\n\n\nNov 4, 2025\n\n\n\n\n\nNo matching items"
+    "text": "Trials Trophies↗\n\nThe results of some vintage car trials\n\n\n\nTorus Chess↗\n\nChess on a doughnut\n\n\n\nWorld Happiness Visualisation↗\n\nAn interactive visualisation of World Happiness Report.\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "blog/posts/welcome/index.html",
+    "href": "blog/posts/welcome/index.html",
+    "title": "Hello World",
+    "section": "",
+    "text": "He then proceeds to order an Aristotle of the most ping-pong tiddly in the Nuclear sub."
   },
   {
     "objectID": "about/index.html",
@@ -14,17 +21,17 @@
     "text": "Here lay dragons."
   },
   {
-    "objectID": "projects/index.html",
-    "href": "projects/index.html",
-    "title": "Projects",
+    "objectID": "blog/index.html",
+    "href": "blog/index.html",
+    "title": "Blog",
     "section": "",
-    "text": "Trials Trophies\n\n\nThe results of some vintage car trials\n\n\n\n\n\n\n\n\n\nTorus Chess\n\n\nChess on a doughnut\n\n\n\n\n\n\n\n\n\nWorld Happiness Visualisation\n\n\nAn interactive visualisation of World Happiness Report.\n\n\n\n\n\nNo matching items"
+    "text": "4 Nov 2025Hello Worldmisc\n\n\nNo matching items"
   },
   {
-    "objectID": "blog/posts/welcome/index.html",
-    "href": "blog/posts/welcome/index.html",
-    "title": "Hello World",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Babissimo",
     "section": "",
-    "text": "He then proceeds to order an Aristotle of the most ping-pong tiddly in the Nuclear sub."
+    "text": "Babissimo\nHere lay dragons."
   }
 ]
