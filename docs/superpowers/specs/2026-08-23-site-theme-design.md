@@ -5,11 +5,12 @@
 
 ## Context
 
-The site is a Quarto 1.10.18 website with four surfaces: an empty landing page,
-a blog listing over `blog/posts/`, a projects listing, and an about page. It
-currently uses the stock Bootswatch pair `flatly`/`darkly` with an empty
-`styles.css`. A `post-render` hook (`tools/clean-urls.py`) rewrites output to
-clean URLs.
+The site is a Quarto 1.10.18 website with five surfaces: an empty landing page,
+a blog listing over `blog/posts/`, a projects listing driven by
+`projects/projects.yml`, an about page using Quarto's `trestles` template, and
+individual posts. It currently uses the stock Bootswatch pair `flatly`/`darkly`
+with an empty `styles.css`. A `post-render` hook (`tools/clean-urls.py`)
+rewrites output to clean URLs.
 
 The goal is a theme that reads as **warm, simple, and beautiful**, with room for
 quirky accents — mathematical character and small animations — that the site
@@ -17,32 +18,36 @@ owner will add later.
 
 ## Decisions
 
-Each was chosen from rendered alternatives rather than described in the
-abstract.
+Every choice below was made against rendered alternatives rather than described
+in the abstract.
 
 | Decision | Choice | Rationale |
 |---|---|---|
-| Typographic direction | Fraunces headings over Source Sans 3 body | Personality lives in the headings; reading text stays quiet |
-| Dark mode | Keep, rebuilt warm | An ink-brown dark palette reads as the same site at night, not a stock inversion |
+| Typographic direction | Fraunces headings over Source Sans 3 body | Personality in the headings; reading text stays quiet |
+| Dark mode | Keep, rebuilt warm | Ink-brown dark reads as the same site at night, not a stock inversion |
 | Post layout | Single centred 640px column, no margin gutter | Essays, not documents |
 | Table of contents | Ambient right-edge rail, frosted panel on hover | Keeps the centred column intact while the section list stays reachable |
-| Landing page | Baseline poster wordmark, bottom-left | All the air sits above the name, which is where a future animation wants to live |
+| Landing page | Baseline poster wordmark, bottom-left | All the air sits above the name, where a future animation wants to live |
+| Blog listing | One-line index, no post count | Reads as an archive; scales to many posts |
+| Projects listing | Stacked entries | No dates or images to fill an index row |
+| About page | Portrait left, circular, split-name masthead | Least disruptive to what exists, while adopting the new type |
+| 404 | Poster numeral with the cartographic line | Reuses the landing treatment; pays off the tagline |
+| Favicon | Anchor | The only piratical option that survives 16px |
 
 ## Scope
 
-**In:** theme layer (brand, SCSS, code highlighting) across every page; blog and
-projects listings; landing page; 404 page.
+**In:** theme layer (brand, SCSS, code highlighting) across every page; blog
+listing; projects listing; about page; landing page; 404 page; favicon.
 
-**Out:** favicon; the owner's later mathematical accents and animation; any
-content writing beyond placeholder tagline text.
+**Out:** the owner's later mathematical accents and animation; any content
+writing beyond the tagline.
 
 ## 1. Foundations — `_brand.yml`
 
 Quarto 1.10's `brand` key accepts separate light and dark definitions
 (confirmed in `document-options.yml`: *"an object with light and dark brand
-paths or definitions"*). Branding is therefore declared once in `_quarto.yml`,
-pointing at `_brand.yml` and `_brand-dark.yml`, rather than being scattered
-through per-format theme options.
+paths or definitions"*). Branding is declared once in `_quarto.yml`, pointing at
+`_brand.yml` and `_brand-dark.yml`.
 
 ### Typography
 
@@ -67,22 +72,21 @@ built site must make **no external font requests at runtime**.
 | accent | `#B4553A` | `#E08A63` |
 
 Dark is warm ink-brown rather than grey-black. The accent lightens in dark mode
-to hold contrast against it.
+to hold contrast.
 
 ## 2. Page furniture
 
 - Posts render at a **640px measure, centred**. The margin column collapses to
-  zero width so the text is genuinely centred, rather than Quarto's default
-  centred-minus-a-gutter.
+  zero width so the text is genuinely centred rather than centred-minus-a-gutter.
 - **Navbar** loses Bootstrap's slab background: paper-coloured, one hairline
-  rule beneath, Fraunces wordmark on the left, existing links and icons right.
-- **Title blocks** drop `title-block-banner` on the blog listing. Date in
-  letterspaced small caps above, Fraunces title, hairline below.
+  rule beneath, Fraunces wordmark left, existing links and icons right.
+- **Title blocks** drop `title-block-banner`, which is currently set both in
+  `blog/posts/_metadata.yml` and on the two listing pages. Date in letterspaced
+  small caps above, Fraunces title, hairline below.
 
 **Trade-off, accepted:** collapsing the margin column forecloses sidenotes and
-`.column-margin` figures. This follows directly from choosing the plain essay
-layout. Reversing it is a one-line change, at the cost of shifting body text
-left of centre.
+`.column-margin` figures, following from the plain essay layout. Reversing it is
+a one-line change, at the cost of shifting body text left of centre.
 
 ## 3. The contents rail
 
@@ -116,7 +120,7 @@ existing markup — no JavaScript**:
 
 | Viewport | Behaviour |
 |---|---|
-| ≥ 1200px | Rail sits in empty margin; frost stays off, marks bare |
+| ≥ 1200px | Rail sits in empty margin; frost off, marks bare |
 | 900–1200px | Frost fades in with the labels, so they never sit on prose |
 | < 900px | Rail hidden; Quarto's built-in collapsible "On this page" takes over |
 
@@ -130,95 +134,160 @@ clash returns.
 
 `index.qmd` becomes a full-viewport stage. Wordmark **Babissimo** in Fraunces,
 sat on the baseline at bottom-left: weight 700, `opsz 144`, low `SOFT` for
-sharper terminals, `WONK 1`; the `-issimo` tail set in Fraunces italic at light
+sharper terminals, `WONK 1`; the `-issimo` tail in Fraunces italic at light
 weight and high `SOFT`, in the accent — the Italian superlative set the way a
 musical dynamic is.
 
-Directly beneath, left-aligned to the wordmark: the tagline **"Here lay
-dragons."** in letterspaced Source Sans small caps, muted tone.
+Beneath it, left-aligned to the wordmark: the tagline **"Here lay dragons."** in
+letterspaced Source Sans small caps, muted tone.
 
-Sizing via `clamp()` so it scales without breaking; `white-space: nowrap` on the
-wordmark with a documented minimum viewport below which it may wrap.
+Sizing via `clamp()`; `white-space: nowrap` on the wordmark with a documented
+minimum viewport below which it may wrap.
 
 An empty `<div class="landing-stage">` occupies the air above the wordmark,
-reserved for the owner's later animation, so nothing needs restructuring when it
-arrives.
+reserved for the owner's later animation.
 
 The existing `include-in-header` RSS `<link>` in `index.qmd` is preserved.
 
 *Open alternative:* the tagline could instead sit at the right end of the same
-baseline, spanning the bottom edge. One-line change; decide once it is live.
+baseline, spanning the bottom edge. One-line change; decide once live.
 
-## 5. Listings
+## 5. Blog listing
 
-Blog and projects share one custom EJS template. Quarto's default cards are
-replaced by a plain reading list:
+A one-line index, not a feed:
 
-- date in letterspaced small caps
-- Fraunces title
-- one-line excerpt in muted tone
-- categories as small text-only tags in the accent, not pills
+- date, letterspaced small caps, fixed ~96px column
+- Fraunces title, flexible column
+- categories trailing, in the accent, text-only — no pills
+- hairline rule between rows
+- **no post count** beneath the page title
+
+`feed: true`, `sort: "date desc"` and `categories: true` are retained.
+
+**Trade-off, accepted:** an index tells a new reader nothing about any post; the
+categories are the only signal. Posts carry a `subtitle` that this layout
+discards. If it reads too bare in practice, the subtitle can fade in on hover
+above 1200px without altering the layout — deferred, not designed in.
+
+## 6. Projects listing
+
+Projects carry only `title`, `description`, and an external `path` — no date, no
+image — so they cannot reuse the blog index row, whose left column would be
+empty. Instead, stacked entries:
+
+- Fraunces title on its own line, followed by a small `↗` marking the external
+  destination
+- description beneath in the muted tone
 - hairline rule between entries
 
-Projects uses the same template, with the description carrying more weight than
-the date.
+**This means two listing templates, not one.** An earlier draft of this spec
+assumed a single shared template; the differing field sets make that a false
+economy.
 
-`feed: true`, `sort: "date desc"`, and `categories: true` are retained on the
-blog listing.
+## 7. About page
 
-## 6. 404 page
+Keeps the existing `profile.jpg` and the LinkedIn/GitHub links. Portrait left,
+text right:
 
-`404.qmd`, same chrome as any page: Fraunces heading, one short line, a link
-home. Deliberately unclever.
+- **Portrait:** circular, 158px, left column
+- **Links:** stacked vertically beneath the portrait, accent-coloured, each
+  prefixed with a small `→`
+- **Name:** "Alexander *Charters*" heading the text column — upright, with the
+  surname in Fraunces italic in the accent, echoing the landing wordmark's split
+- **Body:** flows in the right column at reading size
 
-## 7. Code and math
+This is closest in bones to the current `trestles` template, so it may be
+achievable by restyling `about: template: trestles` rather than replacing it.
+Determine during implementation; a hand-built layout is the fallback.
+
+**Trade-off, accepted:** the portrait leads the eye before the name does.
+
+## 8. 404 page
+
+The landing page's baseline-poster treatment, reused wholesale: `404` set large
+in Fraunces bottom-left, with the middle `0` in italic and the accent, mirroring
+the `Bab`/`issimo` split.
+
+Beneath it: *"You have sailed off the edge of the map."* and a link reading
+**Back to charted water**.
+
+The parenthetical "(404)" from the earlier mockup is dropped — the numeral is
+already set 100px tall immediately above the line.
+
+## 9. Favicon
+
+An anchor: rust `#B4553A`, 2.6–4px stroke on a 32×32 viewBox, transparent
+background, `stroke-linecap`/`linejoin: round`. Ring, stem, crossbar, and a
+curved fluke sweep. Stroke weight increases as size decreases; at 16px the ring
+radius is reduced so it does not fill in.
+
+Delivered as an SVG (`website: favicon:`), with a 32×32 PNG fallback and a
+180×180 `apple-touch-icon` on the paper background, both via
+`include-in-header`.
+
+A single rust mark on a transparent ground reads acceptably against both light
+and dark browser chrome, so no `prefers-color-scheme` variant is planned. If it
+proves weak against dark chrome, add a second `<link rel="icon" media="(prefers-color-scheme: dark)">`
+using the dark accent.
+
+**Trade-off, accepted:** the anchor is the most legible of the options
+considered and the most generic — it is nautical rather than piratical, and
+widely used.
+
+## 10. Code and math
 
 - Paired `.theme` files for light and dark highlighting, tuned to the palette:
   warm, low-contrast, no neon.
 - Code blocks on `surface` with a 2px accent left border.
-- **Switch `html-math-method` from MathJax to KaTeX.** It renders faster, ships
-  Computer Modern-derived faces that sit well beside Fraunces, and is far easier
-  to style — the main lever on "beautiful mathematical character."
+- **Switch `html-math-method` from MathJax to KaTeX.** Faster, ships Computer
+  Modern-derived faces that sit well beside Fraunces, and is far easier to style
+  — the main lever on "beautiful mathematical character."
 
 **Risk:** KaTeX supports a narrower slice of LaTeX than MathJax; macro-heavy
-markup can fail to render. `blog/posts/` currently holds a single post
-(`welcome`), so exposure today is near zero, but this constrains what can be
-written later. Reverting is a one-line change in `_quarto.yml`.
+markup can fail to render. `blog/posts/` holds a single post today, so exposure
+is near zero, but this constrains what can be written later. Reverting is a
+one-line change in `_quarto.yml`.
 
-## 8. File manifest
+## 11. File manifest
 
 | File | Action | Contents |
 |---|---|---|
 | `_brand.yml` | new | Light palette, typography |
 | `_brand-dark.yml` | new | Dark palette |
-| `_quarto.yml` | edit | `brand:`, layout, `html-math-method: katex`, 404 |
-| `custom.scss` | new | Rail, navbar, listings, title blocks, landing |
+| `_quarto.yml` | edit | `brand:`, layout, `favicon:`, `html-math-method: katex` |
+| `custom.scss` | new | Rail, navbar, listings, title blocks, landing, about, 404 |
 | `custom-dark.scss` | new | Dark-only overrides |
 | `theme-light.theme` | new | Code highlighting, light |
 | `theme-dark.theme` | new | Code highlighting, dark |
-| `_listing.ejs` | new | Shared blog/projects template |
+| `_listing-blog.ejs` | new | Blog index template |
+| `_listing-projects.ejs` | new | Projects stacked-entry template |
 | `index.qmd` | edit | Landing wordmark and tagline |
-| `404.qmd` | new | Themed not-found page |
+| `about/index.qmd` | edit | Portrait-left layout |
+| `blog/posts/_metadata.yml` | edit | Remove `title-block-banner` |
+| `404.qmd` | new | Poster numeral, cartographic line |
+| `assets/anchor.svg` + PNGs | new | Favicon set |
 | `styles.css` | delete | Empty; folded into SCSS |
 
-## 9. Risks and unknowns
+## 12. Risks and unknowns
 
-Three items are designed but not yet proven, and should be verified early in
-implementation rather than at the end:
+Four items are designed but not proven. Verify these early rather than at the
+end:
 
 1. **Zero-width margin column.** The mechanism for a genuinely centred 640px
    body — `grid: margin-width: 0px` under `page-layout: article`, versus
    `page-layout: full` with an explicit `max-width` on `main.content` — has not
    been tested against Quarto's grid. Settle this first; the rail's positioning
    depends on it.
-2. **EJS listing template.** Field availability for the projects listing needs
-   checking against actual project front-matter.
-3. **Rail across Quarto upgrades.** The CSS depends on Quarto's TOC markup
+2. **About page mechanism.** Whether `about: template: trestles` can be restyled
+   into the portrait-left layout, or whether it must be hand-built.
+3. **EJS templates.** Field availability for both listings needs checking
+   against actual front-matter and `projects.yml`.
+4. **Rail across Quarto upgrades.** The CSS depends on Quarto's TOC markup
    (`#quarto-margin-sidebar`, `nav#TOC`, `a.nav-link.active`). This is stable
-   public structure, but a future Quarto release could change it. Being
-   CSS-only, the failure mode is cosmetic, not broken.
+   public structure, but a future release could change it. Being CSS-only, the
+   failure mode is cosmetic, not broken.
 
-## 10. Verification
+## 13. Verification
 
 The theme is done when, on a rendered site:
 
@@ -228,13 +297,17 @@ The theme is done when, on a rendered site:
   labels on hover, and hands off to the collapsible TOC below 900px.
 - At 620px viewport width, rail labels never sit unbacked on body text.
 - Landing wordmark holds its line from 1600px down to 380px.
-- A post containing display and inline math renders under KaTeX without errors
-  in the console.
-- Blog and projects listings both render through the shared template, and the
-  RSS feed still validates.
+- A post containing display and inline math renders under KaTeX with no console
+  errors.
+- Blog and projects listings render through their own templates, and the RSS
+  feed still validates.
+- The favicon is identifiable at 16px against both light and dark browser
+  chrome.
+- `tools/clean-urls.py` still runs and its output is unaffected by the new
+  pages.
 
-## Non-goals, restated
+## 14. Non-goals, restated
 
-Favicon, landing-page copy beyond the tagline, and the owner's mathematical
-accents and animation are out of scope. The rail's reveal establishes a motion
-vocabulary — roughly 260ms, soft easing — worth reusing when those arrive.
+The owner's mathematical accents and animation are out of scope. The rail's
+reveal establishes a motion vocabulary — roughly 260ms, soft easing — worth
+reusing when those arrive.
