@@ -7,7 +7,7 @@ format:
   html:
     include-in-header:
       text: |
-        <link rel="alternate" type="application/rss+xml" title="Babissimo" href="https://babissimo.github.io/blog/index.xml">
+        <link rel="alternate" type="application/rss+xml" title="Babissimo" href="https://babissimo.net/blog/index.xml">
 ---
 
 ::: {.landing}
