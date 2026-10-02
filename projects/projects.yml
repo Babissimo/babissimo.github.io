@@ -1,14 +1,18 @@
 # Projects listed on projects.qmd. Add an entry here to add a card.
 # `path` is the destination URL; external links are fine.
 
+- title: "Therapy Search"
+  description: "An unofficial, simpler front end for the UKCP therapist directory"
+  path: "https://therapysearch.babissimo.net/"
+
 - title: "Trials Trophies"
   description: "The results of some vintage car trials"
-  path: "https://trialstrophies.netlify.app/"
+  path: "https://trialstrophies.babissimo.net/"
 
 - title: "Torus Chess"
   description: "Chess on a doughnut"
-  path: "https://babissimo.net/torus-chess"
+  path: "https://toruschess.babissimo.net/"
 
 - title: "World Happiness Visualisation"
   description: "An interactive visualisation of World Happiness Report."
-  path: "https://babissimo.net/world_happiness_visualisation"
+  path: "https://worldhappiness.babissimo.net/"
