@@ -3,6 +3,9 @@ project:
   post-render: python3 tools/clean-urls.py
   resources:
     - assets/
+    # Publishing replaces the whole gh-pages branch, so GitHub Pages only keeps
+    # the custom domain if CNAME ships with every render.
+    - CNAME
   render:
     - "*.qmd"
     - "blog/**"
@@ -12,7 +15,7 @@ project:
 
 website:
   description: "A blog built with Quarto"
-  site-url: https://babissimo.github.io
+  site-url: https://babissimo.net
   title: "Babissimo"
   favicon: assets/anchor.svg
   navbar:
