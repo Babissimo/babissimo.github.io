@@ -1,6 +1,8 @@
 project:
   type: website
-  post-render: python3 tools/clean-urls.py
+  post-render:
+    - python3 tools/clean-urls.py
+    - python3 tools/unlink-blog.py
   resources:
     - assets/
     # Publishing replaces the whole gh-pages branch, so GitHub Pages only keeps

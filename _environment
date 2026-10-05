@@ -1,0 +1,4 @@
+# Feature flags. Quarto exports these to the post-render scripts in tools/.
+
+# false: the blog is still published at /blog/, but nothing else links to it.
+BLOG_LINKS=false
