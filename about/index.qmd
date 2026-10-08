@@ -15,4 +15,4 @@ about:
       href: https://github.com/Babissimo
 ---
 
-Here lay dragons.
+{{< include _voyage.qmd >}}

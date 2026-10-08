@@ -21,6 +21,9 @@ $buoy-green: #3D6B54 !default;
 $buoy-ochre: #C1902E !default;
 $buoy-blue:  #3B5F86 !default;
 
+// The about map's scorched edges and stains.
+$scorch: #6E4F24 !default;
+
 $serif: "Fraunces", Georgia, "Times New Roman", serif;
 $sans:  "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 $mono:  "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -86,6 +89,32 @@ $toc-active-border: $oxblood;
   src: url("/assets/fonts/SourceSans3-italic-latin.woff2") format("woff2");
   font-weight: 300 700;
   font-style: italic;
+  font-display: swap;
+  unicode-range: $latin-range;
+}
+// IM Fell English is the about map's lettering; nothing else asks for it, so
+// no other page downloads it.
+@font-face {
+  font-family: "IM Fell English";
+  src: url("/assets/fonts/IMFellEnglish-normal-latin.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: $latin-range;
+}
+@font-face {
+  font-family: "IM Fell English";
+  src: url("/assets/fonts/IMFellEnglish-italic-latin.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+  unicode-range: $latin-range;
+}
+@font-face {
+  font-family: "IM Fell English SC";
+  src: url("/assets/fonts/IMFellEnglishSC-normal-latin.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
   font-display: swap;
   unicode-range: $latin-range;
 }
@@ -732,9 +761,11 @@ div.quarto-about-trestles {
     i.bi { display: none; }
   }
 
+  // The voyage map needs the full measure, so the contents take their own row
+  // beneath the portrait and links rather than the text column.
   .about-contents {
-    grid-column: 2;
-    grid-row: 2;
+    grid-column: 1 / -1;
+    grid-row: 3;
     padding: 0;
     border-left: none;
   }
@@ -747,8 +778,8 @@ div.quarto-about-trestles {
 
     .about-entity .about-image { grid-column: 1; grid-row: 1; }
     #title-block-header        { grid-column: 1; grid-row: 2; margin-top: 1.1rem; }
-    .about-contents            { grid-column: 1; grid-row: 3; }
-    .about-entity .about-links { grid-column: 1; grid-row: 4; }
+    .about-entity .about-links { grid-column: 1; grid-row: 3; }
+    .about-contents            { grid-column: 1; grid-row: 4; }
   }
 }
 
@@ -758,4 +789,222 @@ div.quarto-about-trestles {
   font-weight: 400;
   color: $oxblood;
   font-variation-settings: "SOFT" 80, "WONK" 1;
+}
+
+// ---------------------------------------------------------------------------
+// About — the voyage. The CV as a treasure map, newest at the top: a trail
+// from the ship to the X. The SVG is the drawing and scales with the
+// measure; the stops are an HTML list laid over it at the waypoints' heights,
+// so the labels stay legible on a phone. Each `--y` is its waypoint's height
+// as a share of the viewBox, which runs from y = -30: (y + 30) / 1380.
+// ---------------------------------------------------------------------------
+$fell:    "IM Fell English", Georgia, "Times New Roman", serif;
+$fell-sc: "IM Fell English SC", $fell;
+
+$vy-water: mix($buoy-blue, $surface, 32%);
+$vy-leaf:  mix($buoy-green, $surface, 38%);
+$vy-skin:  mix($buoy-green, $surface, 58%);
+$vy-glow:  mix($buoy-ochre, $surface, 34%);
+$vy-bark:  mix($buoy-ochre, $surface, 22%);
+$vy-wood:  mix($buoy-ochre, $surface, 48%);
+
+.voyage {
+  position: relative;
+  margin: 2.2rem 0 0;
+  container-type: inline-size;
+}
+
+.voyage-map {
+  display: block;
+  width: 100%;
+  height: auto;
+
+  .vy-sheet { fill: $surface; stroke: $rule; stroke-width: 1; }
+  .vy-frame { fill: none; stroke: rgba($ink, 0.42); stroke-width: 1.3; }
+  .vy-frame-in { stroke-width: 0.6; }
+
+  .vy-ink {
+    fill: none;
+    stroke: $ink;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .vy-thin { stroke-width: 1.05; }
+  .vy-hull { stroke-width: 2.6; }
+  .vy-tail { stroke-width: 3.2; }
+  .vy-dash { stroke-dasharray: 3 3; }
+
+  .vy-paper, .vy-solid-edge, .vy-leaf, .vy-scale {
+    stroke: $ink;
+    stroke-width: 1.3;
+    stroke-linejoin: round;
+  }
+  .vy-paper      { fill: $surface; }
+  .vy-solid      { fill: $ink; }
+  .vy-solid-edge { fill: $ink; }
+  .vy-leaf       { fill: $vy-leaf; }
+  .vy-scale      { fill: $vy-skin; }
+  .vy-far        { fill: $vy-leaf; }
+  .vy-light      { fill: $buoy-ochre; }
+  .vy-wood       { fill: $vy-wood; stroke: $ink; stroke-width: 1.3; stroke-linejoin: round; }
+  .vy-jolly      { fill: $surface; }
+  .vy-jolly-bones { fill: none; stroke: $surface; stroke-width: 0.9; stroke-linecap: round; }
+  .vy-age        { stop-color: $scorch; }
+  .vy-stain      { fill: none; stroke: $scorch; stroke-width: 3.2; opacity: 0.16; }
+  .vy-stain-faint { stroke-width: 1.6; opacity: 0.12; }
+  .vy-drop       { fill: $scorch; opacity: 0.16; }
+  .vy-wine       { fill: none; stroke: $oxblood; stroke-width: 2.6; opacity: 0.2; }
+  .vy-wine-drip  { fill: $oxblood; opacity: 0.16; }
+  .vy-blot       { fill: $ink; opacity: 0.85; }
+  .vy-print      { fill: none; stroke: $ink; stroke-width: 0.9; stroke-linecap: round; opacity: 0.32; }
+  .vy-fox        { fill: $scorch; opacity: 0.2; }
+  .vy-tide       { fill: $scorch; fill-opacity: 0.05; stroke: $scorch; stroke-opacity: 0.24; stroke-width: 1.4; }
+  .vy-tide-in    { fill: none; stroke: $scorch; stroke-opacity: 0.12; stroke-width: 1; }
+  .vy-crease       { fill: none; stroke: $scorch; stroke-width: 0.9; opacity: 0.16; }
+  .vy-crease-shade { fill: none; stroke: $scorch; stroke-width: 8; opacity: 0.035; }
+  .vy-scuff      { fill: $paper; opacity: 0.6; }
+  .vy-tear, .vy-hole { fill: none; stroke: $scorch; stroke-width: 1.2; stroke-linejoin: round; opacity: 0.55; }
+  .vy-rust       { fill: none; stroke: $scorch; stroke-width: 2.2; opacity: 0.26; }
+  .vy-char       { fill: none; stroke: mix($scorch, #000, 45%); stroke-width: 5; opacity: 0.8; }
+  .vy-char-glow  { fill: none; stroke: $scorch; stroke-width: 24; opacity: 0.55; }
+  .vy-tape       { fill: $buoy-ochre; fill-opacity: 0.2; stroke: $buoy-ochre; stroke-opacity: 0.45; stroke-width: 0.7; }
+  .vy-blood      { fill: $oxblood; opacity: 0.45; }
+  .vy-hair       { fill: none; stroke: $ink; stroke-width: 0.6; stroke-linecap: round; stroke-linejoin: round; }
+  .vy-parrot, .vy-parrot-wing, .vy-parrot-tail {
+    stroke: $ink;
+    stroke-width: 0.9;
+    stroke-linejoin: round;
+  }
+  .vy-parrot      { fill: $oxblood; }
+  .vy-parrot-wing { fill: $buoy-ochre; }
+  .vy-parrot-tail { fill: $buoy-blue; }
+  .vy-beam       { fill: $vy-glow; }
+  .vy-flame      { fill: $vy-glow; stroke: $oxblood; stroke-width: 1.1; stroke-linejoin: round; }
+
+  // Outlined tubes: a wide ink stroke under a narrower coloured one.
+  .vy-tube-ink, .vy-tube-skin, .vy-tube-bark {
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .vy-tube-ink  { stroke: $ink; stroke-width: 8.6; }
+  .vy-tube-skin { stroke: $vy-skin; stroke-width: 5.8; }
+  .vy-tube-bark { stroke: $vy-bark; stroke-width: 5.8; }
+
+  .vy-water  { fill: $vy-water; }
+  .vy-banked { stroke: $ink; stroke-width: 1.6; stroke-linejoin: round; }
+  .vy-coast  { fill: none; stroke: $ink; stroke-width: 2; stroke-linecap: round; }
+  .vy-ripple { fill: none; stroke: rgba($ink, 0.5); stroke-width: 1.05; stroke-linecap: round; }
+
+  .vy-maths {
+    fill: $ink;
+    font-family: $fell;
+    font-style: italic;
+    font-weight: 400;
+  }
+  .vy-upright { font-style: normal; }
+  .vy-rose-n {
+    fill: $ink;
+    font-family: $fell;
+    font-size: 15px;
+    text-anchor: middle;
+  }
+
+  .vy-key { fill: rgba($ink, 0.55); }
+  .vy-lat {
+    fill: $ink;
+    font-family: $fell;
+    font-size: 12.5px;
+    text-anchor: middle;
+  }
+
+  .vy-fold { fill: mix($ink, $surface, 24%); stroke: $ink; stroke-width: 1.3; stroke-linejoin: round; }
+  .vy-ribbon-text {
+    fill: $ink;
+    font-family: $fell-sc;
+    font-size: 23px;
+    letter-spacing: 0.06em;
+  }
+
+  .vy-wax       { fill: $oxblood; }
+  .vy-wax-ring  { fill: none; stroke: mix($oxblood, #000, 70%); stroke-width: 1.4; }
+  .vy-wax-shine { fill: none; stroke: rgba(#fff, 0.35); stroke-width: 1.6; stroke-linecap: round; }
+  .vy-seal-text {
+    fill: mix($oxblood, #000, 62%);
+    font-family: $fell-sc;
+    font-size: 17px;
+    text-anchor: middle;
+    letter-spacing: -0.02em;
+  }
+
+  .vy-trail {
+    fill: none;
+    stroke: $oxblood;
+    stroke-width: 2.6;
+    stroke-dasharray: 8 7;
+    stroke-linecap: round;
+  }
+  .vy-stops circle { fill: $surface; stroke: $ink; stroke-width: 1.8; }
+  .vy-cloud { fill: $surface; stroke: $ink; stroke-width: 1.3; stroke-linejoin: round; }
+  .vy-x { fill: none; stroke: $oxblood; stroke-width: 5; stroke-linecap: round; }
+}
+
+.voyage-stops {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  // `--x` is the label's inset from its own side, 25 units clear of its
+  // waypoint, as a share of the 640-unit width. `--r` tilts it a touch, as
+  // hand lettering would be.
+  li {
+    position: absolute;
+    top: var(--y);
+    transform: translateY(-50%) rotate(var(--r, 0deg));
+    max-width: 46%;
+    margin: 0;
+    line-height: 1.15;
+  }
+  .is-left  { left: var(--x); }
+  .is-right { right: var(--x); text-align: right; }
+}
+
+.voyage-name,
+.voyage-when {
+  display: block;
+  // A cartographer's halo, so neither trail nor art runs through a label.
+  text-shadow: 0 0 1px $surface, 0 0 3px $surface, 0 0 5px $surface, 0 0 8px $surface;
+}
+
+.voyage-name {
+  font-family: $fell;
+  font-size: clamp(0.98rem, 3.5cqi, 1.36rem);
+  color: $ink;
+}
+
+.voyage-when {
+  margin-top: 0.15em;
+  font-family: $fell;
+  font-style: italic;
+  color: $muted;
+  font-size: clamp(0.8rem, 2.4cqi, 0.95rem);
+}
+
+.voyage-role { color: $ink; }
+
+// Not a stop but the sea itself, so it is lettered across the water like a
+// region, on one line between the dragons.
+.voyage-stops .is-sea {
+  left: 50%;
+  max-width: none;
+  white-space: nowrap;
+  transform: translate(-50%, -50%) rotate(var(--r, 0deg));
+}
+
+.voyage-stops .is-sea .voyage-name {
+  font-style: italic;
+  font-size: clamp(0.76rem, 2.5cqi, 0.98rem);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
 }
