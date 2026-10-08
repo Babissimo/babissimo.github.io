@@ -8,6 +8,7 @@
   const TAU = Math.PI * 2;
   const arc = document.getElementById("chart-arc");
   const name = document.getElementById("chart-name");
+  const lettering = name.querySelector("textPath");
   const anchorage = document.getElementById("chart-anchorage");
 
   const swell = (x, t) =>
@@ -35,8 +36,10 @@
 
   const draw = (t) => {
     const k = ease(t);
-    arc.setAttribute("d", pathThrough(40, 960, 40, (x) => arcBase(x) + k * swell(x, t)));
-    name.style.letterSpacing = `${(0.36 + k * 0.02 * Math.sin((TAU * t) / 9)).toFixed(4)}em`;
+    arc.setAttribute("d", pathThrough(40, 960, 40, (x) => arcBase(x) + k * 1.5 * swell(x, t)));
+    // The name also drifts a little way along the arc.
+    lettering.setAttribute("startOffset", `${(50 + k * 1.2 * Math.sin((TAU * t) / 13 + 0.8)).toFixed(2)}%`);
+    name.style.letterSpacing = `${(0.36 + k * 0.03 * Math.sin((TAU * t) / 9)).toFixed(4)}em`;
     // Pivot on the ring (16, 6 before the 0.95 scale), so the anchor swings rather than spins.
     const tilt = k * ((Math.atan(slope(900, t)) * 180) / Math.PI + 3 * Math.sin((TAU * t) / 6.3));
     const lift = k * 0.8 * swell(900, t - 0.6);

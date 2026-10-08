@@ -173,10 +173,11 @@ italic display lettering.
 
 `assets/swell.js` moves the chart on one wave field: the arc carrying the
 lettering and the anchor both sample it, so the letters rock one by one, the
-anchor swings from its ring and the letter spacing widens and narrows. Movement
-stays within a few pixels. The markup is the still chart; the swell eases in
-from it over three seconds, stops while the chart is off-screen, and does not
-run under `prefers-reduced-motion`.
+name drifts a little way along the arc, the anchor swings from its ring and the
+letter spacing widens and narrows. Movement stays within about a dozen pixels
+at full width. The markup is the still chart; the swell eases in from it over
+three seconds, stops while the chart is off-screen, and does not run under
+`prefers-reduced-motion`.
 
 An empty `<div class="landing-stage">` takes up the air above the chart.
 
