@@ -28,7 +28,7 @@ in the abstract.
 | Dark mode | Keep; warm ink ground | Same temperature as the paper, so it reads as the same site at night |
 | Post layout | Single centred 640px column, no margin gutter | Essays, not documents |
 | Table of contents | Ambient right-edge rail, frosted panel on hover | Keeps the centred column intact while the section list stays reachable |
-| Landing page | Baseline poster wordmark, bottom-left | All the air sits above the name, where a future animation wants to live |
+| Landing page | Name lettered like a sea on a chart, on a slow swell | Pays off the tagline and the anchor; keeps `-issimo` from reading as the Bravissimo brand |
 | Blog listing | One-line index, no post count | Reads as an archive; scales to many posts |
 | Projects listing | Stacked entries | No dates or images to fill an index row |
 | About page | Portrait left, circular, split-name masthead | Least disruptive to what exists, while adopting the new type |
@@ -161,25 +161,31 @@ clash returns.
 
 ## 4. Landing page
 
-`index.qmd` becomes a full-viewport stage. Wordmark **Babissimo** in Fraunces,
-sat on the baseline at bottom-left: weight 700, `opsz 144`, low `SOFT` for
-sharper terminals, `WONK 1`; the `-issimo` tail in Fraunces italic at light
-weight and high `SOFT`, in the accent — the Italian superlative set the way a
-musical dynamic is.
+`index.qmd` is a full-viewport stage with the name at its foot, lettered like
+a sea on an old chart: **BABISSIMO** in spaced Fraunces italic capitals
+(`opsz 144`, `SOFT 0`, `WONK 0`), in ink, bent along a shallow arc. Above it
+sit a dotted depth line, eight buoys in red (the accent), green, ochre and
+blue, and the favicon's anchor as the anchorage mark. The whole chart is one
+inline SVG, scaling with the page up to 68rem wide.
 
-Beneath it, left-aligned to the wordmark: the tagline **"Here lay dragons."** in
-letterspaced Source Sans small caps, muted tone.
+No part of the name is set apart. An accent-coloured italic `-issimo` tail
+reads as the Bravissimo lingerie brand, whose identity is a rose serif with
+italic display lettering.
 
-Sizing via `clamp()`; `white-space: nowrap` on the wordmark with a documented
-minimum viewport below which it may wrap.
+`assets/swell.js` moves the chart on one wave field: the arc carrying the
+lettering, the depth line, the buoys and the anchor all sample it, so the
+letters rock one by one, the buoys bob and breathe, the anchor swings from its
+ring and the letter spacing widens and narrows. Movement stays within a few
+pixels. The markup is the still chart; the swell eases in from it over three
+seconds, stops while the chart is off-screen, and does not run under
+`prefers-reduced-motion`.
 
-An empty `<div class="landing-stage">` occupies the air above the wordmark,
-reserved for the owner's later animation.
+Beneath, centred: the tagline **"Here lay dragons."** in letterspaced Source
+Sans small caps, muted tone.
+
+An empty `<div class="landing-stage">` takes up the air above the chart.
 
 The existing `include-in-header` RSS `<link>` in `index.qmd` is preserved.
-
-*Open alternative:* the tagline could instead sit at the right end of the same
-baseline, spanning the bottom edge. One-line change; decide once live.
 
 ## 5. Blog listing
 
@@ -222,7 +228,7 @@ text right:
 - **Links:** stacked vertically beneath the portrait, accent-coloured, each
   prefixed with a small `→`
 - **Name:** "Alexander *Charters*" heading the text column — upright, with the
-  surname in Fraunces italic in the accent, echoing the landing wordmark's split
+  surname in Fraunces italic in the accent
 - **Body:** flows in the right column at reading size
 
 This is closest in bones to the current `trestles` template, so it may be
@@ -233,9 +239,8 @@ Determine during implementation; a hand-built layout is the fallback.
 
 ## 8. 404 page
 
-The landing page's baseline-poster treatment, reused wholesale: `404` set large
-in Fraunces bottom-left, with the middle `0` in italic and the accent, mirroring
-the `Bab`/`issimo` split.
+The landing page's poster layout: `404` set large in Fraunces ink at the
+bottom-left, at a lower optical size so the 4's diagonal survives.
 
 Beneath it: *"You have sailed off the edge of the map."* and a link reading
 **Back to charted water**.
@@ -370,7 +375,7 @@ The theme is done when, on a rendered site:
 - The rail shows marks, tracks the active section on scroll, reveals frosted
   labels on hover, and hands off to the collapsible TOC below 900px.
 - At 620px viewport width, rail labels never sit unbacked on body text.
-- Landing wordmark holds its line from 1600px down to 380px.
+- The landing chart holds its lettering from 1600px down to 380px.
 - A post containing display and inline math renders under MathJax with no
   console errors, in both palettes.
 - Blog and projects listings render through their own templates, and the RSS

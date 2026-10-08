@@ -11,7 +11,7 @@ body-classes: landing error
 
 []{.error-watermark}
 
-# 4[0]{.wm-tail}4 {.wordmark}
+# 404 {.numeral}
 
 [You have sailed off the edge of the map.]{.tagline}
 
