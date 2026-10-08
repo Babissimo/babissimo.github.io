@@ -69,9 +69,11 @@ divergence is easiest to spot.
 | Headings | Fraunces | Variable; `SOFT 50`, `WONK 1`, weight 600 |
 | Body | Source Sans 3 | 17px, line-height 1.65 |
 | Code | JetBrains Mono | — |
+| About map lettering | IM Fell English, IM Fell English SC | Only the map uses it, so only that page downloads it |
 
-All three are `source: google`, so Quarto downloads and self-hosts them. The
-built site must make **no external font requests at runtime**.
+All are self-hosted from `assets/fonts/` as latin-subset woff2, declared by
+hand in `custom.scss`. The built site must make **no external font requests at
+runtime**.
 
 ### Palettes
 
@@ -240,7 +242,30 @@ text right:
   prefixed with a small `→`
 - **Name:** "Alexander *Charters*" heading the text column — upright, with the
   surname in Fraunces italic in the accent
-- **Body:** flows in the right column at reading size
+- **Body:** a full-width row beneath the portrait and links, holding the
+  voyage (below)
+
+The voyage is the CV as a treasure map, newest at the top: a dashed oxblood
+trail leaves a ship on a sea of dragons ("Here lay dragons", lettered across
+the water: the time before the CV), comes ashore, and winds up to an X at
+"???", the future, half lost in cloud. Each stop carries its name, role and
+years, and a vignette in ink on a surface-coloured sheet: maths symbols for
+Exeter, spires and rowing boats on the Isis for Oxford, jungle for travel (where
+the trail loops once), chatbots for Message Matrix, flying saucers for Offworld
+Labs. Waypoints, tilts and sizes are deliberately a little uneven, and the trail
+wobbles, as a hand-drawn chart would. The sheet is lettered in IM Fell English,
+titled on a ribbon, sealed in wax at the foot, and carries a year scale down its
+left border like a chart's latitudes: each year sits where the trail reaches it,
+so the recent years stretch apart. It is also well used: folded in sixths and
+worn through where two folds cross, foxed, ringed by mugs and a wine glass,
+inked and thumbprinted by the compass, tide-marked, pinned, torn and taped,
+burnt at one corner, and home to one squashed mosquito.
+
+The drawing is one SVG in `about/_voyage.qmd`, styled from `custom.scss` so
+both palettes apply. The trail's wobble is generated from a smooth route by
+`tools/voyage-trail.py`. The stop names and dates are an HTML list laid over it
+at each waypoint's height, so they stay legible on a phone while the drawing
+scales; on a phone the links move above it.
 
 This is closest in bones to the current `trestles` template, so it may be
 achievable by restyling `about: template: trestles` rather than replacing it.
@@ -353,6 +378,8 @@ Not planned now.
 | `index.qmd` | edit | Landing chart, sea film and tagline |
 | `assets/landing/` | new | Sea film and its poster frame |
 | `about/index.qmd` | edit | Portrait-left layout |
+| `about/_voyage.qmd` | new | The voyage map and its stops |
+| `tools/voyage-trail.py` | new | Draws the voyage trail's wobble from its route |
 | `blog/posts/_metadata.yml` | edit | Remove `title-block-banner` |
 | `404.qmd` | new | Poster numeral, cartographic line |
 | `assets/anchor.svg` + PNGs | new | Favicon set; same path reused by the motif |

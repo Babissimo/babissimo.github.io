@@ -22,6 +22,9 @@ $buoy-green: #78AB8E;
 $buoy-ochre: #DDB15A;
 $buoy-blue:  #7FA3CB;
 
+// On the dark ground, age shows as the sheet darkening, not browning.
+$scorch: #000000;
+
 /*-- scss:rules --*/
 
 // Bootstrap's own dark-mode table and border tints are cool; warm them.
