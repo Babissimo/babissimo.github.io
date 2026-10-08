@@ -166,24 +166,20 @@ clash returns.
 `index.qmd` is a full-viewport stage with the name at its foot, lettered like
 a sea on an old chart: **BABISSIMO** in spaced Fraunces italic capitals
 (`opsz 144`, `SOFT 0`, `WONK 0`), in ink, bent along a shallow arc. Above it
-sit a dotted depth line, eight buoys in red (the accent), green, ochre and
-blue, and the favicon's anchor as the anchorage mark. The whole chart is one
-inline SVG, scaling with the page up to 68rem wide.
+sits the favicon's anchor as the anchorage mark. The whole chart is one inline
+SVG, scaling with the page up to 68rem wide.
 
 No part of the name is set apart. An accent-coloured italic `-issimo` tail
 reads as the Bravissimo lingerie brand, whose identity is a rose serif with
 italic display lettering.
 
 `assets/swell.js` moves the chart on one wave field: the arc carrying the
-lettering, the depth line, the buoys and the anchor all sample it, so the
-letters rock one by one, the buoys bob and breathe, the anchor swings from its
-ring and the letter spacing widens and narrows. Movement stays within a few
-pixels. The markup is the still chart; the swell eases in from it over three
-seconds, stops while the chart is off-screen, and does not run under
+lettering and the anchor both sample it, so the letters rock one by one, the
+name drifts a little way along the arc, the anchor swings from its ring and the
+letter spacing widens and narrows. Movement stays within about a dozen pixels
+at full width. The markup is the still chart; the swell eases in from it over
+three seconds, stops while the chart is off-screen, and does not run under
 `prefers-reduced-motion`.
-
-Beneath, centred: the tagline **"Here lay dragons."** in letterspaced Source
-Sans small caps, muted tone.
 
 An empty `<div class="landing-stage">` takes up the air above the chart.
 
@@ -191,12 +187,11 @@ Behind everything, fixed to the viewport, a looping film of the sea
 (`assets/landing/sea.mp4`: 848×480 H.264, muted, about 0.8 MB) covers the page.
 A paper wash over it thickens from 35% at the top to 72% three-quarters down,
 where the chart sits, so the ink keeps its contrast; in dark mode the wash is
-the dark paper. The tagline darkens to midway between muted and ink, which
-holds 4.5:1 on the washed grass where muted alone falls to about 3.2:1. The
-navbar and footer frost over the film rather than banding it, with the same
-solid fallback as the rail (§3). Under `prefers-reduced-motion` an inline
-script drops the autoplay and preload before the clip starts loading, so it
-never downloads and the poster frame (`sea-poster.webp`) is the still.
+the dark paper. The navbar and footer frost over the film rather than banding
+it, with the same solid fallback as the rail (§3). Under
+`prefers-reduced-motion` an inline script drops the autoplay and preload before
+the clip starts loading, so it never downloads and the poster frame
+(`sea-poster.webp`) is the still.
 
 The existing `include-in-header` RSS `<link>` in `index.qmd` is preserved.
 
@@ -375,7 +370,7 @@ Not planned now.
 | `theme-dark.theme` | new | Code highlighting, dark |
 | `_listing-blog.ejs` | new | Blog index template |
 | `_listing-projects.ejs` | new | Projects stacked-entry template |
-| `index.qmd` | edit | Landing chart, sea film and tagline |
+| `index.qmd` | edit | Landing chart and sea film |
 | `assets/landing/` | new | Sea film and its poster frame |
 | `about/index.qmd` | edit | Portrait-left layout |
 | `about/_voyage.qmd` | new | The voyage map and its stops |
