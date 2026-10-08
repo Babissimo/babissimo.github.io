@@ -16,7 +16,7 @@ $ink:      #1F1D1A !default;
 $muted:    #6B6459 !default;
 $oxblood:  #8A3446 !default;
 
-// Landing-chart buoys; the red buoy is $oxblood.
+// Buoy colours for drawn charts; the red is $oxblood.
 $buoy-green: #3D6B54 !default;
 $buoy-ochre: #C1902E !default;
 $buoy-blue:  #3B5F86 !default;
@@ -496,9 +496,6 @@ body.landing {
         background-color: $paper;
       }
     }
-
-    // Muted alone drops to about 3.2:1 on the washed grass; this holds 4.5:1.
-    .tagline { color: mix($ink, $muted, 50%); }
   }
 
   .tagline {
@@ -522,8 +519,6 @@ body.landing {
     svg { display: block; width: 100%; height: auto; overflow: visible; }
   }
 
-  .landing-chart .tagline { text-align: center; }
-
   .chart-name {
     font-family: $serif;
     font-style: italic;
@@ -535,15 +530,6 @@ body.landing {
     fill: $ink;
   }
 
-  .chart-depth {
-    fill: none;
-    stroke: $muted;
-    stroke-width: 1;
-    stroke-dasharray: 1 7;
-    stroke-linecap: round;
-    opacity: 0.7;
-  }
-
   .chart-anchorage {
     fill: none;
     stroke: $oxblood;
@@ -551,11 +537,6 @@ body.landing {
     stroke-linecap: round;
     stroke-linejoin: round;
   }
-
-  .buoy-red   { fill: $oxblood; }
-  .buoy-green { fill: $buoy-green; }
-  .buoy-ochre { fill: $buoy-ochre; }
-  .buoy-blue  { fill: $buoy-blue; }
 
   // 404 numeral. Fraunces' figures at opsz 144 are so high-contrast that the
   // 4's thin diagonal all but disappears and the glyph reads as broken, so the
