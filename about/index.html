@@ -47,9 +47,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-243871d9e903a1c7f047df221c067f61.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-6400dbdf9fe42d93c598c5875e952a90.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-243871d9e903a1c7f047df221c067f61.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-2198e4c581281085e514e8acd167a8dc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-2f19c656927ed920d1f10a65301fa4bd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-2198e4c581281085e514e8acd167a8dc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -80,7 +80,6 @@ ul.task-list li input[type="checkbox"] {
 
 
 <meta property="og:title" content="Alexander Charters – Babissimo">
-<meta property="og:description" content="A blog built with Quarto">
 <meta property="og:image" content="https://babissimo.net/about/profile.jpg">
 <meta property="og:site_name" content="Babissimo">
 </head>
@@ -320,7 +319,468 @@ ul.task-list li input[type="checkbox"] {
   </div>
   <div class="about-contents"><main class="content" id="quarto-document-content">
 
-<p>Here lay dragons.</p>
+<figure class="voyage figure">
+<svg class="voyage-map" viewbox="0 -30 640 1380" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="voyage-rough" x="-2%" y="-2%" width="104%" height="104%">
+      <feturbulence type="fractalNoise" basefrequency="0.04" numoctaves="2" seed="7"></feturbulence>
+      <fedisplacementmap in="SourceGraphic" scale="2.2" xchannelselector="R" ychannelselector="G"></fedisplacementmap>
+    </filter>
+    <filter id="voyage-deckle" x="-2%" y="-2%" width="104%" height="104%">
+      <feturbulence type="fractalNoise" basefrequency="0.06" numoctaves="3" seed="3"></feturbulence>
+      <fedisplacementmap in="SourceGraphic" scale="7" xchannelselector="R" ychannelselector="G"></fedisplacementmap>
+    </filter>
+    <filter id="voyage-blob" x="-20%" y="-20%" width="140%" height="140%">
+      <feturbulence type="fractalNoise" basefrequency="0.09" numoctaves="2" seed="11"></feturbulence>
+      <fedisplacementmap in="SourceGraphic" scale="6" xchannelselector="R" ychannelselector="G"></fedisplacementmap>
+    </filter>
+    <clippath id="voyage-inside"><rect x="38" y="-12" width="582" height="1342"></rect></clippath>
+    <path id="voyage-ribbon-line" d="M 200 11 Q 320 -5 440 11"></path>
+    <filter id="voyage-burn" x="-10%" y="-10%" width="120%" height="120%">
+      <feturbulence type="fractalNoise" basefrequency="0.05" numoctaves="3" seed="9"></feturbulence>
+      <fedisplacementmap in="SourceGraphic" scale="12" xchannelselector="R" ychannelselector="G"></fedisplacementmap>
+    </filter>
+    <!-- The same ragged line as voyage-burn, softened into a singe -->
+    <filter id="voyage-singe" x="-20%" y="-20%" width="140%" height="140%">
+      <feturbulence type="fractalNoise" basefrequency="0.05" numoctaves="3" seed="9"></feturbulence>
+      <fedisplacementmap in="SourceGraphic" scale="12" xchannelselector="R" ychannelselector="G"></fedisplacementmap>
+      <fegaussianblur stddeviation="3"></fegaussianblur>
+    </filter>
+    <clippath id="voyage-sheet"><rect x="6" y="-24" width="628" height="1368"></rect></clippath>
+    <!-- Where the sheet is gone: a burnt corner, a tear, pin holes, and a hole
+         worn through where two folds cross -->
+    <mask id="voyage-wear" maskunits="userSpaceOnUse" x="-20" y="-50" width="680" height="1420">
+      <rect x="-20" y="-50" width="680" height="1420" fill="#fff"></rect>
+      <path filter="url(#voyage-burn)" d="M 538 -40 C 552 -26 560 -14 576 -8 C 592 -2 600 10 608 14 C 618 20 624 34 632 44 C 638 52 644 56 652 58 L 652 -40 Z"></path>
+      <path d="M 0 980 L 9 982 L 16 979 L 24 984 L 33 982 L 42 986 L 50 987.5 L 41 988 L 32 986 L 24 989 L 16 985.5 L 9 988 L 0 989 Z"></path>
+      <path d="M 316.5 428 L 318.5 427.2 L 319.6 425.8 L 321.4 427 L 323.8 426.6 L 323.4 429.2 L 324.8 431 L 322.6 432 L 321.8 434.2 L 319.6 432.8 L 317.2 433.8 L 317.4 431.4 L 315.4 430.2 Z"></path>
+      <circle cx="22" cy="-15" r="1.6"></circle>
+      <circle cx="22" cy="1333" r="1.6"></circle>
+      <circle cx="618" cy="1333" r="1.6"></circle>
+    </mask>
+    <!-- The sheet's age: clean in the middle, scorched towards the edges -->
+    <radialgradient id="voyage-age" cx="50%" cy="50%" r="72%">
+      <stop class="vy-age" offset="0.5" stop-opacity="0"></stop>
+      <stop class="vy-age" offset="0.82" stop-opacity="0.16"></stop>
+      <stop class="vy-age" offset="1" stop-opacity="0.5"></stop>
+    </radialgradient>
+  </defs>
+  <g mask="url(#voyage-wear)">
+  <g filter="url(#voyage-deckle)">
+    <rect class="vy-sheet" x="6" y="-24" width="628" height="1368" rx="3"></rect>
+    <rect x="6" y="-24" width="628" height="1368" rx="3" fill="url(#voyage-age)"></rect>
+  </g>
+  <g filter="url(#voyage-rough)">
+  <g clip-path="url(#voyage-inside)">
+    <!-- The Isis, running down into the sea of dragons. The sea covers the
+         river's mouth; the coast is broken where the river meets it. -->
+    <path class="vy-water vy-banked" d="M 14 740 C 70 736 140 742 188 762 C 226 778 222 812 182 826 C 140 840 100 852 84 880 C 70 902 62 940 68 975 C 72 1000 76 1020 74 1040 L 46 1040 C 48 1020 44 1000 40 975 C 36 940 48 896 64 868 C 82 832 124 818 162 806 C 192 796 188 782 160 772 C 120 758 70 758 14 762 Z"></path>
+    <path class="vy-ripple" d="M 60 750 h 8 M 150 768 h 7 M 196 790 l 3 6 M 118 834 l 6 -3 M 70 930 v 8 M 62 980 v 7"></path>
+    <path class="vy-water" d="M 14 1012 L 70 1014 C 120 1016 180 1022 230 1040 C 290 1062 330 1092 420 1096 C 500 1100 560 1104 640 1100 L 640 1340 L 14 1340 Z"></path>
+    <path class="vy-coast" d="M 14 1012 L 46 1013 M 70 1014 C 120 1016 180 1022 230 1040 C 290 1062 330 1092 420 1096 C 500 1100 560 1104 640 1100"></path>
+    <path class="vy-ripple" d="M 104 1052 q 6 -5 12 0 q 6 5 12 0 M 252 1112 q 6 -5 12 0 q 6 5 12 0 M 384 1146 q 6 -5 12 0 M 166 1168 q 7 -5 14 0 q 6 5 12 0 M 596 1138 q 6 -5 12 0 M 328 1192 q 6 -5 12 0 M 96 1214 q 6 -5 12 0 q 6 5 12 0 M 572 1222 q 5 -4 10 0 M 418 1324 q 6 -5 12 0 q 6 5 12 0 M 236 1322 q 6 -5 12 0"></path>
+    <!-- Compass rose, a few degrees off true -->
+    <g transform="translate(106 108) rotate(-7)">
+      <g transform="rotate(45)"><path class="vy-solid-edge" d="M 0 -30 L 5 -5 L 0 0 Z"></path><path class="vy-paper" d="M 0 -30 L -5 -5 L 0 0 Z"></path></g>
+      <g transform="rotate(135)"><path class="vy-solid-edge" d="M 0 -30 L 5 -5 L 0 0 Z"></path><path class="vy-paper" d="M 0 -30 L -5 -5 L 0 0 Z"></path></g>
+      <g transform="rotate(225)"><path class="vy-solid-edge" d="M 0 -30 L 5 -5 L 0 0 Z"></path><path class="vy-paper" d="M 0 -30 L -5 -5 L 0 0 Z"></path></g>
+      <g transform="rotate(315)"><path class="vy-solid-edge" d="M 0 -30 L 5 -5 L 0 0 Z"></path><path class="vy-paper" d="M 0 -30 L -5 -5 L 0 0 Z"></path></g>
+      <circle class="vy-ink vy-thin" r="21"></circle>
+      <circle class="vy-ink vy-thin" r="17"></circle>
+      <g><path class="vy-paper" d="M 0 -48 L 7 -7 L 0 0 Z"></path><path class="vy-solid-edge" d="M 0 -48 L -7 -7 L 0 0 Z"></path></g>
+      <g transform="rotate(90)"><path class="vy-paper" d="M 0 -48 L 7 -7 L 0 0 Z"></path><path class="vy-solid-edge" d="M 0 -48 L -7 -7 L 0 0 Z"></path></g>
+      <g transform="rotate(180)"><path class="vy-paper" d="M 0 -48 L 7 -7 L 0 0 Z"></path><path class="vy-solid-edge" d="M 0 -48 L -7 -7 L 0 0 Z"></path></g>
+      <g transform="rotate(270)"><path class="vy-paper" d="M 0 -48 L 7 -7 L 0 0 Z"></path><path class="vy-solid-edge" d="M 0 -48 L -7 -7 L 0 0 Z"></path></g>
+      <text class="vy-rose-n" y="-54">N</text>
+    </g>
+    <!-- Offworld Labs: saucers, one of them taking a cow, and a radar dish
+         keeping an eye on them both -->
+    <g transform="translate(458 238) rotate(-9) scale(1.42)">
+      <path class="vy-beam" d="M -9 5 L 9 5 L 30 66 L -30 66 Z"></path>
+      <path class="vy-ink vy-thin vy-dash" d="M -9 5 L -30 66 M 9 5 L 30 66"></path>
+      <g transform="translate(1 42) rotate(22) scale(0.9)">
+        <path class="vy-ink vy-thin" d="M -7 4 V 9 M -3 4 V 9 M 3 4 V 9 M 6 4 V 9 M -10 -3 Q -15 -3 -15 3"></path>
+        <rect class="vy-paper" x="-10" y="-6" width="18" height="10" rx="4"></rect>
+        <path class="vy-solid" d="M -6 -5 Q -2 -6 -2 -2 Q -4 1 -7 -1 Z M 1 -1 Q 4 -1 5 3 L 1 3 Z"></path>
+        <path class="vy-paper" d="M 7 -6 L 13 -7 Q 16 -4 13 0 L 7 -1 Z"></path>
+        <path class="vy-ink vy-thin" d="M 9 -6.5 L 9 -10"></path>
+      </g>
+      <path class="vy-paper" d="M -14 -3 C -14 -22 14 -22 14 -3 Z"></path>
+      <ellipse class="vy-paper" rx="31" ry="8"></ellipse>
+      <circle class="vy-light" cx="-19" cy="1.5" r="2"></circle>
+      <circle class="vy-light" cx="0" cy="3.5" r="2"></circle>
+      <circle class="vy-light" cx="19" cy="1.5" r="2"></circle>
+    </g>
+    <g transform="translate(582 258) rotate(16) scale(0.8)">
+      <path class="vy-paper" d="M -14 -3 C -14 -22 14 -22 14 -3 Z"></path>
+      <ellipse class="vy-paper" rx="31" ry="8"></ellipse>
+      <circle class="vy-light" cx="-19" cy="1.5" r="2"></circle>
+      <circle class="vy-light" cx="0" cy="3.5" r="2"></circle>
+      <circle class="vy-light" cx="19" cy="1.5" r="2"></circle>
+    </g>
+    <g transform="translate(590 352) rotate(4) scale(1.45)">
+      <path class="vy-ink" d="M -16 0 Q 0 -7 16 0 M 0 -4 L 0 -12"></path>
+      <g transform="translate(0 -12) rotate(-22)">
+        <path class="vy-paper" d="M -11 -6 Q 0 8 11 -6 Z"></path>
+        <path class="vy-ink vy-thin" d="M 0 1 L 0 -10"></path>
+        <circle class="vy-solid" cx="0" cy="-10.5" r="1.4"></circle>
+        <path class="vy-ink vy-thin" d="M -4 -15 Q 0 -18 4 -15 M -7 -19 Q 0 -24 7 -19"></path>
+      </g>
+    </g>
+    <path class="vy-ink vy-thin" d="M 398 204 v 10 m -5 -5 h 10 M 536 194 v 7 m -3.5 -3.5 h 7 M 608 216 v 8 m -4 -4 h 8 M 526 312 v 5 m -2.5 -2.5 h 5 M 390 300 v 7 m -3.5 -3.5 h 7"></path>
+    <!-- Message Matrix: chatbots -->
+    <g transform="translate(66 500) rotate(-5) scale(1.38)">
+      <path class="vy-ink" d="M -6 0 L -6 -8 M 6 0 L 6 -8 M -9 0 L -4 0 M 4 0 L 9 0"></path>
+      <path class="vy-ink" d="M -12 -25 L -19 -17 L -20 -10 M 12 -25 L 19 -32 L 21 -39"></path>
+      <circle class="vy-paper" cx="21.5" cy="-41.5" r="2.4"></circle>
+      <rect class="vy-paper" x="-12" y="-30" width="24" height="22" rx="3"></rect>
+      <circle class="vy-ink vy-thin" cx="0" cy="-19" r="3.5"></circle>
+      <path class="vy-ink" d="M 0 -30 L 0 -33 M 0 -49 L 0 -55"></path>
+      <rect class="vy-paper" x="-10" y="-49" width="20" height="16" rx="3"></rect>
+      <circle class="vy-solid" cx="-4" cy="-42" r="1.8"></circle>
+      <circle class="vy-solid" cx="4" cy="-42" r="1.8"></circle>
+      <path class="vy-ink vy-thin" d="M -4 -37 Q 0 -35 4 -37"></path>
+      <circle class="vy-light" cx="0" cy="-57" r="2.2"></circle>
+      <path class="vy-paper" d="M 12 -80 H 46 A 8 8 0 0 1 54 -72 V -68 A 8 8 0 0 1 46 -60 H 24 L 13 -52 L 16 -60 H 12 A 8 8 0 0 1 4 -68 V -72 A 8 8 0 0 1 12 -80 Z"></path>
+      <circle class="vy-solid" cx="21" cy="-70" r="1.6"></circle>
+      <circle class="vy-solid" cx="29" cy="-70" r="1.6"></circle>
+      <circle class="vy-solid" cx="37" cy="-70" r="1.6"></circle>
+    </g>
+    <g transform="translate(178 496) rotate(6) scale(1.3)">
+      <path class="vy-ink" d="M -10 -18 L -17 -13 M 10 -18 L 17 -13 M -5 -37 L -9 -45 M 5 -37 L 9 -45"></path>
+      <circle class="vy-solid" cx="-9" cy="-45.5" r="1.5"></circle>
+      <circle class="vy-solid" cx="9" cy="-45.5" r="1.5"></circle>
+      <path class="vy-paper" d="M -10 -9 L -10 -26 Q -10 -38 0 -38 Q 10 -38 10 -26 L 10 -9 Z"></path>
+      <rect class="vy-solid" x="-6.5" y="-30" width="13" height="3.6" rx="1.8"></rect>
+      <rect class="vy-paper" x="-14" y="-9" width="28" height="9" rx="4.5"></rect>
+      <circle class="vy-ink vy-thin" cx="-8" cy="-4.5" r="2.2"></circle>
+      <circle class="vy-ink vy-thin" cx="0" cy="-4.5" r="2.2"></circle>
+      <circle class="vy-ink vy-thin" cx="8" cy="-4.5" r="2.2"></circle>
+    </g>
+    <!-- Travel: jungle -->
+    <path class="vy-tube-ink" d="M 457 670 C 455 644 442 620 449 592"></path>
+    <path class="vy-tube-bark" d="M 457 670 C 455 644 442 620 449 592"></path>
+    <g transform="translate(449 590) rotate(-7) scale(1.18)">
+      <path class="vy-leaf" d="M 0 0 Q -14 -12 -32 2 Q -16 -4 0 0 Z"></path>
+      <path class="vy-leaf" d="M 0 0 Q 14 -12 32 2 Q 16 -4 0 0 Z"></path>
+      <path class="vy-leaf" d="M 0 0 Q -10 -18 -22 -18 Q -10 -10 0 0 Z"></path>
+      <path class="vy-leaf" d="M 0 0 Q 10 -18 24 -16 Q 10 -9 0 0 Z"></path>
+      <path class="vy-leaf" d="M 0 0 Q -18 -2 -26 14 Q -14 2 0 0 Z"></path>
+      <path class="vy-leaf" d="M 0 0 Q 18 -2 27 13 Q 14 2 0 0 Z"></path>
+      <circle class="vy-solid" cx="-2.5" cy="3" r="2.1"></circle>
+      <circle class="vy-solid" cx="2.5" cy="3.5" r="2.1"></circle>
+    </g>
+    <path class="vy-tube-ink" d="M 521 663 C 524 626 516 588 533 553"></path>
+    <path class="vy-tube-bark" d="M 521 663 C 524 626 516 588 533 553"></path>
+    <g transform="translate(533 551) rotate(5) scale(1.44)">
+      <path class="vy-leaf" d="M 0 0 Q -14 -12 -32 2 Q -16 -4 0 0 Z"></path>
+      <path class="vy-leaf" d="M 0 0 Q 14 -12 32 2 Q 16 -4 0 0 Z"></path>
+      <path class="vy-leaf" d="M 0 0 Q -10 -18 -22 -18 Q -10 -10 0 0 Z"></path>
+      <path class="vy-leaf" d="M 0 0 Q 10 -18 24 -16 Q 10 -9 0 0 Z"></path>
+      <path class="vy-leaf" d="M 0 0 Q -18 -2 -26 14 Q -14 2 0 0 Z"></path>
+      <path class="vy-leaf" d="M 0 0 Q 18 -2 27 13 Q 14 2 0 0 Z"></path>
+      <circle class="vy-solid" cx="-2.5" cy="3" r="2.1"></circle>
+      <circle class="vy-solid" cx="2.5" cy="3.5" r="2.1"></circle>
+    </g>
+    <path class="vy-tube-ink" d="M 595 673 C 598 652 595 628 585 608"></path>
+    <path class="vy-tube-bark" d="M 595 673 C 598 652 595 628 585 608"></path>
+    <g transform="translate(585 606) rotate(11) scale(0.9)">
+      <path class="vy-leaf" d="M 0 0 Q -14 -12 -32 2 Q -16 -4 0 0 Z"></path>
+      <path class="vy-leaf" d="M 0 0 Q 14 -12 32 2 Q 16 -4 0 0 Z"></path>
+      <path class="vy-leaf" d="M 0 0 Q -10 -18 -22 -18 Q -10 -10 0 0 Z"></path>
+      <path class="vy-leaf" d="M 0 0 Q 10 -18 24 -16 Q 10 -9 0 0 Z"></path>
+      <path class="vy-leaf" d="M 0 0 Q -18 -2 -26 14 Q -14 2 0 0 Z"></path>
+      <path class="vy-leaf" d="M 0 0 Q 18 -2 27 13 Q 14 2 0 0 Z"></path>
+      <circle class="vy-solid" cx="-2.5" cy="3" r="2.1"></circle>
+      <circle class="vy-solid" cx="2.5" cy="3.5" r="2.1"></circle>
+    </g>
+    <g transform="translate(486 672) rotate(4)">
+      <path class="vy-leaf" d="M 0 0 C -6 -18 -24 -34 -42 -30 C -32 -14 -14 -4 0 0 Z"></path>
+      <path class="vy-ink vy-thin" d="M 0 0 C -12 -12 -26 -24 -42 -30 M -14 -12 L -16 -4 M -22 -18 L -26 -10 M -30 -23 L -34 -17 M -12 -11 L -6 -18 M -20 -17 L -15 -26"></path>
+    </g>
+    <g transform="translate(557 675) rotate(-6) scale(-0.92 0.92)">
+      <path class="vy-leaf" d="M 0 0 C -6 -18 -24 -34 -42 -30 C -32 -14 -14 -4 0 0 Z"></path>
+      <path class="vy-ink vy-thin" d="M 0 0 C -12 -12 -26 -24 -42 -30 M -14 -12 L -16 -4 M -22 -18 L -26 -10 M -30 -23 L -34 -17 M -12 -11 L -6 -18 M -20 -17 L -15 -26"></path>
+    </g>
+    <g transform="translate(546 677) rotate(9) scale(0.72)">
+      <path class="vy-leaf" d="M 0 0 C -6 -18 -24 -34 -42 -30 C -32 -14 -14 -4 0 0 Z"></path>
+      <path class="vy-ink vy-thin" d="M 0 0 C -12 -12 -26 -24 -42 -30"></path>
+    </g>
+    <!-- A macaw on the tall palm -->
+    <g transform="translate(513 617) rotate(-6) scale(1.2)">
+      <path class="vy-parrot-tail" d="M 1 -2 L 4 13 L 7.5 12 L 4 -3 Z"></path>
+      <path class="vy-parrot" d="M -4 -14 C -8 -10 -6 -2 0 0 C 5 0 6 -6 4 -12 C 2 -16 -2 -17 -4 -14 Z"></path>
+      <path class="vy-parrot-wing" d="M 0 -11 C 5 -10 6 -4 3 0 C 1 -4 0 -7 0 -11 Z"></path>
+      <circle class="vy-parrot" cx="-3" cy="-16" r="4"></circle>
+      <path class="vy-paper" d="M -6.5 -18 Q -10.5 -17 -8.5 -12.5 L -6 -14.5 Z"></path>
+      <circle class="vy-solid" cx="-3.6" cy="-17" r="0.9"></circle>
+      <path class="vy-ink vy-thin" d="M -1 0 L -1 2.5 M 2 0 L 2 2.5 M -3 2.5 L 7 2.5"></path>
+    </g>
+    <path class="vy-ink vy-thin" d="M 430 672 Q 420 660 412 663 M 430 672 Q 427 655 433 649 M 430 672 Q 438 659 447 661 M 610 674 Q 604 663 595 662 M 610 674 Q 612 661 617 656"></path>
+    <!-- Oxford: spires on the bank, an eight and a dinghy on the Isis -->
+    <g transform="translate(34 724) rotate(-1.5) scale(1.3) translate(-160 -752)">
+      <path class="vy-ink vy-thin" d="M 160 752 L 244 752"></path>
+      <path class="vy-paper" d="M 166 728 C 166 708 200 708 200 728 Z"></path>
+      <rect class="vy-paper" x="168" y="728" width="30" height="24"></rect>
+      <path class="vy-ink vy-thin" d="M 174 731 V 752 M 180 731 V 752 M 186 731 V 752 M 192 731 V 752 M 183 712 V 704"></path>
+      <circle class="vy-solid" cx="183" cy="703" r="1.5"></circle>
+      <path class="vy-paper" d="M 205 722 L 212 684 L 219 722 Z"></path>
+      <rect class="vy-paper" x="206" y="722" width="12" height="30"></rect>
+      <path class="vy-ink vy-thin" d="M 205 722 L 205 715 M 219 722 L 219 715 M 210 740 V 734 Q 212 731 214 734 V 740"></path>
+      <path class="vy-paper" d="M 225 732 L 230.5 710 L 236 732 Z"></path>
+      <rect class="vy-paper" x="226" y="732" width="9" height="20"></rect>
+    </g>
+    <g transform="translate(42 753) rotate(2) scale(1.3) translate(-28 -769)">
+      <path class="vy-ink vy-hull" d="M 28 769 Q 64 772 102 768"></path>
+      <path class="vy-ink vy-thin" d="M 36 765 L 29 776 M 44 765 L 37 776 M 52 765 L 45 776 M 60 765 L 53 776 M 68 765 L 61 776 M 76 765 L 69 776 M 84 765 L 77 776 M 92 765 L 85 776 M 36 763 V 768 M 44 763 V 768 M 52 763 V 768 M 60 763 V 768 M 68 763 V 768 M 76 763 V 768 M 84 763 V 768 M 92 763 V 768 M 99 764 V 768"></path>
+      <circle class="vy-solid" cx="36" cy="761.5" r="1.6"></circle><circle class="vy-solid" cx="44" cy="761.5" r="1.6"></circle>
+      <circle class="vy-solid" cx="52" cy="761.5" r="1.6"></circle><circle class="vy-solid" cx="60" cy="761.5" r="1.6"></circle>
+      <circle class="vy-solid" cx="68" cy="761.5" r="1.6"></circle><circle class="vy-solid" cx="76" cy="761.5" r="1.6"></circle>
+      <circle class="vy-solid" cx="84" cy="761.5" r="1.6"></circle><circle class="vy-solid" cx="92" cy="761.5" r="1.6"></circle>
+      <circle class="vy-solid" cx="99" cy="762.5" r="1.4"></circle>
+    </g>
+    <g transform="translate(114 838) rotate(-24) scale(1.25) translate(-128 -772)">
+      <path class="vy-ink vy-thin" d="M 128 765 L 115 778"></path>
+      <path class="vy-paper" d="M 115 770 L 141 770 L 137 777 L 119 777 Z"></path>
+      <path class="vy-ink" d="M 128 763 L 128 770"></path>
+      <circle class="vy-solid" cx="128" cy="760.5" r="2.2"></circle>
+    </g>
+    <!-- Exeter Maths School -->
+    <text class="vy-maths" x="432" y="864" font-size="39" transform="rotate(-8 442 852)">π</text>
+    <text class="vy-maths vy-upright" x="528" y="876" font-size="38" transform="rotate(6 540 864)">∑</text>
+    <text class="vy-maths vy-upright" x="454" y="934" font-size="27" transform="rotate(-5 468 926)">√2</text>
+    <text class="vy-maths vy-upright" x="592" y="982" font-size="48" transform="rotate(11 598 966)">∫</text>
+    <text class="vy-maths vy-upright" x="414" y="970" font-size="33" transform="rotate(-7 428 962)">∞</text>
+    <text class="vy-maths" x="488" y="986" font-size="20" transform="rotate(3 516 980)">e<tspan dy="-8" font-size="13">iπ</tspan><tspan dy="8"> = −1</tspan></text>
+    <g transform="translate(587 902) rotate(13) scale(1.27)">
+      <circle class="vy-ink vy-thin" r="15"></circle>
+      <path class="vy-ink vy-thin" d="M 0 -15 L 13 7.5 L -13 7.5 Z"></path>
+      <circle class="vy-solid" r="1.3"></circle>
+    </g>
+    <!-- The ship, where the trail begins -->
+    <g transform="translate(500 1186) rotate(-3) scale(1.05)">
+      <path class="vy-ink" d="M 0 -13 V -66 M 20 -13 V -52 M -20 -20 V -52 M 34 -17 L 50 -27"></path>
+      <path class="vy-paper" d="M -28 -48 Q -20 -44 -12 -48 L -12 -30 Q -20 -26 -28 -30 Z"></path>
+      <path class="vy-paper" d="M -11 -60 Q 0 -55 11 -60 L 12 -42 Q 0 -36 -12 -42 Z"></path>
+      <path class="vy-paper" d="M -12 -38 Q 0 -32 12 -38 L 13 -21 Q 0 -15 -13 -21 Z"></path>
+      <path class="vy-paper" d="M 13 -48 Q 20 -44 27 -48 L 28 -34 Q 20 -29 12 -34 Z"></path>
+      <path class="vy-paper" d="M 21 -50 L 49 -27 L 30 -25 Z"></path>
+      <path class="vy-wood" d="M -36 -24 L -24 -24 L -24 -14 L 30 -14 L 40 -19 L 28 0 L -30 0 Z"></path>
+      <path class="vy-ink vy-thin" d="M -31 -7 L 33 -7"></path>
+      <path class="vy-solid" d="M -16 -12 h 3 v 3 h -3 Z M -6 -12 h 3 v 3 h -3 Z M 4 -12 h 3 v 3 h -3 Z M 14 -12 h 3 v 3 h -3 Z"></path>
+      <path class="vy-solid-edge" d="M 0 -66 L 16 -65 L 13 -60.5 L 16 -56 L 0 -57 Z"></path>
+      <circle class="vy-jolly" cx="6.5" cy="-62.5" r="1.7"></circle>
+      <path class="vy-jolly-bones" d="M 4 -60 L 9 -58 M 9 -60 L 4 -58"></path>
+      <path class="vy-ripple" d="M -42 1 q 5 -3 10 0 M 30 1 q 5 -3 10 0 q 5 3 10 0"></path>
+    </g>
+    <!-- Here lay dragons, in the deep beneath the ship. Each beast is drawn
+         whole; a strip of sea over its lower half leaves it swimming. -->
+    <g transform="translate(252 1302) scale(-1.15 1.15)">
+      <path class="vy-tube-ink" d="M -14 4 C -14 -6 -8 -12 -2 -10"></path>
+      <path class="vy-tube-skin" d="M -14 4 C -14 -6 -8 -12 -2 -10"></path>
+      <path class="vy-scale" d="M -3 -10 L 4 -17 L 5 -8 Z"></path>
+      <path class="vy-scale" d="M 62 -22 L 66 -31 L 70 -23 Z M 72 -23 L 76 -32 L 80 -23 Z M 82 -21 L 85 -29 L 89 -19 Z M 12 -16 L 16 -24 L 20 -16 Z"></path>
+      <path class="vy-tube-ink" d="M 2 10 C 6 -18 26 -20 32 4 C 35 14 44 14 48 4 C 54 -26 84 -28 90 4 C 93 14 102 14 106 4 C 110 -14 112 -34 124 -44"></path>
+      <path class="vy-tube-skin" d="M 2 10 C 6 -18 26 -20 32 4 C 35 14 44 14 48 4 C 54 -26 84 -28 90 4 C 93 14 102 14 106 4 C 110 -14 112 -34 124 -44"></path>
+      <rect class="vy-water" x="-24" y="3" width="160" height="16"></rect>
+      <path class="vy-ripple" d="M -4 4 q 4 -3 8 0 M 28 4 q 4 -3 8 0 M 44 4 q 4 -3 8 0 M 86 4 q 4 -3 8 0 M 102 4 q 4 -3 8 0"></path>
+      <path class="vy-scale" d="M 112 -36 L 106 -42 L 113 -42 Z M 116 -42 L 110 -49 L 118 -48 Z"></path>
+      <g transform="translate(124 -44) scale(1.4) translate(-124 44)">
+        <path class="vy-scale" d="M 118 -48 C 124 -54 136 -54 146 -50 L 152 -48 C 150 -45 144 -44 138 -44 L 148 -40 C 144 -36 134 -36 126 -38 C 120 -38 116 -42 118 -48 Z"></path>
+        <path class="vy-ink vy-thin" d="M 124 -52 L 115 -60 L 122 -51"></path>
+        <circle class="vy-solid" cx="133" cy="-48" r="1.3"></circle>
+      </g>
+    </g>
+    <g transform="translate(486 1300) rotate(-6) scale(1.22)">
+      <path class="vy-scale vy-far" d="M 18 -6 L 34 -36 Q 36 -28 42 -26 Q 38 -18 34 -6 Z"></path>
+      <path class="vy-ink vy-tail" d="M 40 0 C 56 4 70 2 82 -6 C 88 -10 94 -8 96 -4"></path>
+      <path class="vy-scale" d="M 96 -4 L 100 -10 L 103 -2 L 98 0 Z"></path>
+      <path class="vy-scale" d="M 0 -2 C 6 -10 30 -10 42 -2 C 34 6 8 6 0 -2 Z"></path>
+      <path class="vy-ink vy-tail" d="M 4 -4 C -2 -8 -8 -14 -12 -16"></path>
+      <path class="vy-scale" d="M -10 -18 C -14 -21 -22 -20 -28 -16 L -22 -14 L -28 -12 C -22 -10 -14 -11 -10 -12 Z"></path>
+      <path class="vy-ink vy-thin" d="M -13 -19 L -7 -25"></path>
+      <circle class="vy-solid" cx="-17" cy="-16.5" r="1.1"></circle>
+      <path class="vy-flame" d="M -29 -14 C -36 -20 -44 -16 -50 -20 C -46 -12 -52 -10 -56 -12 C -48 -4 -38 -8 -29 -12 Z"></path>
+      <path class="vy-scale" d="M 12 -6 L 18 -42 Q 24 -32 30 -30 Q 28 -22 36 -18 Q 30 -14 30 -6 Z"></path>
+      <path class="vy-ink vy-thin" d="M 18 -42 L 22 -8 M 18 -42 L 28 -10"></path>
+      <rect class="vy-water" x="-6" y="1" width="58" height="14"></rect>
+      <path class="vy-ripple" d="M -8 2 q 4 -3 8 0 M 40 2 q 4 -3 8 0 M 76 -1 q 4 -3 8 0"></path>
+    </g>
+    <!-- The trail: off the ship, ashore, and on to the X. It loops once
+         where the travelling was. Its wobble is drawn from data-route by
+         tools/voyage-trail.py; edit the route, then rerun that. -->
+    <path class="vy-trail" data-route="M 551 1155 C 552 1040 118 1034 106 912 C 102 800 522 868 528 752 C 534 636 122 716 116 596 C 112 540 196 532 262 530 C 294 528 320 518 324 500 C 328 480 310 472 300 480 C 288 490 292 512 310 519 C 336 529 420 534 476 522 C 522 512 540 486 536 438 C 540 322 98 398 104 276 C 108 160 516 240 522 118" d="M 551 1155 C 550.5 1152.8 549.4 1146.2 548.1 1142 C 546.7 1137.8 544.9 1133.5 542.9 1129.6 C 540.9 1125.8 538.8 1122 536 1118.7 C 533.3 1115.4 529.8 1112.5 526.5 1109.7 C 523.1 1106.8 519.5 1104.2 516 1101.6 C 512.5 1099 509.2 1095.8 505.4 1093.9 C 501.5 1092 497.5 1091 493.1 1090.2 C 488.7 1089.5 483.1 1090.5 478.9 1089.5 C 474.7 1088.5 471.3 1086.8 467.7 1084.4 C 464.1 1081.9 461 1077.5 457.6 1074.9 C 454.2 1072.3 451 1070.6 447.1 1068.8 C 443.2 1066.9 438.2 1065.7 434.2 1063.7 C 430.2 1061.8 427.1 1058.6 423.2 1056.9 C 419.2 1055.2 414.9 1053.6 410.6 1053.6 C 406.4 1053.7 401.9 1056.1 397.6 1057.1 C 393.3 1058 388.8 1059.8 384.9 1059.2 C 381 1058.7 378 1056.3 374.3 1053.9 C 370.6 1051.5 366.6 1047.2 362.8 1045 C 359 1042.9 355.5 1042.6 351.6 1040.8 C 347.7 1039.1 342.9 1036.9 339.2 1034.5 C 335.4 1032.2 332.6 1028.4 328.9 1026.8 C 325.2 1025.3 321.2 1024.7 316.9 1025.2 C 312.6 1025.8 307.2 1029 303 1030.1 C 298.9 1031.2 295.8 1032.5 291.9 1031.7 C 288 1030.9 283.4 1027.6 279.6 1025.5 C 275.8 1023.5 273 1021.2 269.2 1019.4 C 265.3 1017.7 260.6 1017.1 256.6 1015 C 252.7 1013 249.1 1009.8 245.4 1007 C 241.8 1004.3 238.8 999.9 234.9 998.3 C 231 996.6 226.3 996.9 222.1 997.1 C 217.9 997.3 213.9 999.3 209.8 999.3 C 205.7 999.4 201.5 999 197.5 997.5 C 193.6 996.1 189.9 992.8 186.1 990.7 C 182.3 988.6 178.6 987.1 174.7 985 C 170.9 982.9 166.5 980.9 163 978.1 C 159.6 975.4 157 971.6 153.8 968.7 C 150.5 965.7 147.4 962.8 143.7 960.4 C 140 958 135.3 956.5 131.6 954.2 C 127.9 952 124.4 949.7 121.4 946.7 C 118.5 943.7 116 940.1 113.8 936.4 C 111.6 932.7 109.6 928.6 108.3 924.6 C 107 920.5 106.2 916.4 106 912 C 105.8 907.6 105.9 902.6 107 898.4 C 108.1 894.3 110 890.7 112.5 887.2 C 114.9 883.8 118.3 880.8 121.7 877.9 C 125.1 875 128.9 872.1 132.8 869.8 C 136.6 867.6 140.7 865.7 144.8 864.5 C 148.8 863.4 152.6 863.6 156.9 863 C 161.3 862.4 166.6 862.2 170.8 860.8 C 174.9 859.5 178.1 856.8 182 854.9 C 185.9 853 190.1 850.8 194.2 849.5 C 198.2 848.2 202.2 848.4 206.2 847.2 C 210.3 846 214.3 844.2 218.3 842.3 C 222.4 840.4 226.6 836.8 230.6 835.7 C 234.7 834.6 238.6 835 242.8 835.9 C 247 836.8 251.5 840 255.8 841.2 C 260 842.4 264.3 843.2 268.4 843.1 C 272.6 843 276.5 841 280.6 840.5 C 284.8 840.1 289 840.2 293.3 840.3 C 297.5 840.4 301.9 842 306.1 841.1 C 310.3 840.2 314.5 837.5 318.2 835.1 C 322 832.7 324.7 828.7 328.5 826.7 C 332.2 824.7 336.6 823.2 340.8 822.9 C 345 822.6 349.4 824.7 353.7 825 C 357.9 825.3 361.8 825.1 366.2 824.8 C 370.6 824.4 375.5 822.7 379.9 822.9 C 384.3 823.1 388.4 824.9 392.6 826 C 396.8 827.1 401.2 829.4 405.2 829.5 C 409.3 829.6 412.8 828.4 416.7 826.6 C 420.5 824.9 424.4 821 428.3 818.9 C 432.2 816.9 435.8 815.6 439.9 814.3 C 444 813 448.7 812.7 452.7 811.2 C 456.7 809.8 460.2 807.5 464 805.7 C 467.9 803.9 471.6 801.7 475.8 800.4 C 479.9 799 484.5 798.9 488.8 797.7 C 493.1 796.5 497.8 795.3 501.5 793.3 C 505.3 791.4 508.4 788.9 511.5 786.1 C 514.5 783.2 517.6 779.8 520 776.2 C 522.5 772.6 524.9 768.5 526.2 764.5 C 527.6 760.5 528 756.4 528 752 C 528 747.6 527.4 742.5 526 738.4 C 524.6 734.3 522.2 730.9 519.8 727.2 C 517.4 723.5 514.6 719.5 511.7 716.2 C 508.9 712.9 506 709.7 502.5 707.3 C 499 704.9 494.7 703.4 490.6 701.9 C 486.6 700.4 482.5 699.4 478.2 698.2 C 473.9 697 469.2 694.9 464.8 694.6 C 460.4 694.4 456.1 696.3 451.8 696.6 C 447.4 697 442.5 698 438.8 696.7 C 435.1 695.5 432.9 691.7 429.4 688.9 C 426 686.2 422.2 681.9 418.2 680.3 C 414.2 678.7 409.6 679.9 405.3 679.5 C 401 679 396.4 678 392.3 677.4 C 388.1 676.9 384.5 675.1 380.4 676 C 376.3 677 371.5 681.1 367.5 683.3 C 363.5 685.4 360.1 688.9 356.2 688.9 C 352.4 688.9 348.1 685.5 344.4 683.2 C 340.8 681 338 677 334.3 675.3 C 330.6 673.5 326.1 673.7 322.1 672.7 C 318 671.7 313.9 670.9 309.9 669.4 C 305.9 667.9 302.2 664.1 298.1 663.9 C 294 663.7 289.1 666.4 285.3 668.4 C 281.5 670.4 279 674.3 275.3 675.8 C 271.5 677.3 266.8 678.3 262.9 677.6 C 258.9 676.8 255.6 672.8 251.6 671.2 C 247.6 669.5 243 668.9 238.8 667.6 C 234.6 666.2 230.3 665.5 226.5 663.3 C 222.6 661.2 219.2 656.4 215.4 654.7 C 211.6 652.9 207.8 652.5 203.7 652.9 C 199.6 653.3 195.1 656.6 190.8 657.2 C 186.5 657.9 182.1 657.8 178 656.8 C 173.9 655.7 170.2 652.9 166.2 651.1 C 162.2 649.2 157.9 648 154 645.9 C 150.1 643.8 146.1 641.2 142.9 638.5 C 139.7 635.7 137.7 632.4 134.8 629.3 C 131.9 626.1 128.5 622.9 125.7 619.5 C 123 616.1 120 612.6 118.4 608.7 C 116.7 604.8 116.1 600.3 116 596 C 115.9 591.7 116.7 587.1 117.7 582.9 C 118.7 578.7 120.1 574.5 122.1 570.8 C 124.2 567.1 127.2 563.6 130.2 560.6 C 133.3 557.6 137 555.6 140.4 552.8 C 143.8 550.1 146.8 546.4 150.4 544 C 154 541.6 157.8 539.2 161.8 538.4 C 165.9 537.5 170.5 538.9 174.7 538.9 C 179 538.8 183.2 538.3 187.4 538 C 191.7 537.6 196.1 536.4 200.4 536.7 C 204.7 537 208.9 539.8 213 539.8 C 217.2 539.8 221.4 538.6 225.1 536.8 C 228.8 534.9 231.7 530.2 235.4 528.6 C 239.1 527 243.1 527.1 247.2 527 C 251.4 526.8 256.3 528.2 260.4 527.6 C 264.6 527 268.1 524 272.1 523.6 C 276.1 523.1 280.4 523.9 284.6 524.7 C 288.7 525.5 293 528.6 297 528.4 C 301 528.2 305.2 525.8 308.5 523.3 C 311.8 520.9 314.4 517 316.9 513.5 C 319.4 510 322.4 506.4 323.6 502.5 C 324.8 498.5 325.3 493.6 324 489.8 C 322.8 486.1 319.4 481.9 315.9 480 C 312.5 478.1 307 477.2 303.4 478.5 C 299.8 479.7 296.1 483.7 294.4 487.3 C 292.7 491 292.7 496 293.2 500.1 C 293.8 504.3 295.5 508.7 297.8 512.1 C 300.2 515.6 303.5 519.1 307.2 520.9 C 310.9 522.8 315.8 523.5 320 523.2 C 324.2 522.9 328.2 519.4 332.4 519.1 C 336.5 518.8 340.7 521 344.9 521.5 C 349.2 522.1 353.6 522.3 357.9 522.4 C 362.2 522.6 366.7 521.1 370.6 522.4 C 374.4 523.7 377.3 527.6 380.8 530.1 C 384.3 532.6 387.8 536.5 391.6 537.3 C 395.4 538.1 399.8 535.9 403.8 534.8 C 407.9 533.7 411.8 531.4 416 530.7 C 420.3 529.9 425.2 531.2 429.3 530.1 C 433.3 529 436.6 526.2 440.4 524.2 C 444.2 522.1 448 518.4 451.9 517.8 C 455.9 517.2 460 519.7 464.2 520.6 C 468.3 521.4 472.7 523.1 476.9 522.9 C 481.1 522.7 485.1 520.5 489.3 519.4 C 493.4 518.3 497.9 517.6 502 516.1 C 506 514.6 510.2 513.1 513.3 510.4 C 516.5 507.7 518.6 503.6 520.8 499.9 C 523 496.2 524.5 492.1 526.4 488.2 C 528.3 484.3 530.8 480.5 532.1 476.4 C 533.4 472.4 533.8 468 534.4 463.7 C 535 459.5 535.5 455 535.8 450.8 C 536 446.5 536.2 442.3 536 438 C 535.8 433.7 535.8 429 534.7 424.9 C 533.6 420.8 531.7 416.8 529.5 413.2 C 527.2 409.6 524.6 406 521.4 403.2 C 518.3 400.4 514.2 398 510.3 396.2 C 506.5 394.4 502.6 393.8 498.5 392.6 C 494.4 391.3 490 390.1 485.9 388.7 C 481.7 387.3 477.7 385.2 473.6 384.3 C 469.4 383.3 465.1 383.7 460.9 382.9 C 456.6 382 451.8 381.2 448.1 379.3 C 444.3 377.4 441.7 373.7 438.2 371.3 C 434.8 369 431.3 366.1 427.5 365.1 C 423.7 364 419.7 365.1 415.4 365.1 C 411 365.1 405.8 365.6 401.4 365.1 C 397.1 364.6 393.1 362.4 389.2 362.2 C 385.2 362.1 381.6 363 377.7 364.4 C 373.8 365.7 369.9 369.4 365.7 370.5 C 361.6 371.7 356.6 372.3 352.6 371.5 C 348.6 370.6 345.7 367.2 341.8 365.6 C 337.8 364 333 362.6 328.9 361.9 C 324.9 361.2 321.4 362.5 317.4 361.2 C 313.4 359.9 308.5 356.5 304.9 354.3 C 301.2 352 299.4 348.9 295.6 347.8 C 291.9 346.7 286.7 346.9 282.6 347.7 C 278.4 348.5 274.8 351.7 270.7 352.6 C 266.5 353.5 262 353.4 257.7 353.3 C 253.5 353.1 249.4 351.5 245.2 351.8 C 240.9 352 236.5 354.2 232.2 354.9 C 228 355.6 223.6 356.9 219.7 356 C 215.8 355.1 212.3 351.8 208.7 349.5 C 205.2 347.1 202.2 343.8 198.5 342 C 194.8 340.2 190.6 339.9 186.5 338.9 C 182.3 337.8 177.7 337.1 173.7 335.6 C 169.8 334.1 166.5 331.5 162.5 330 C 158.6 328.5 154.3 327.6 150.2 326.7 C 146.1 325.8 142.1 325.9 138.1 324.6 C 134 323.3 129.8 321.3 126.2 318.9 C 122.6 316.4 119.5 313.3 116.5 310.1 C 113.6 307 110.7 303.6 108.7 300 C 106.6 296.3 105 292.3 104.2 288.3 C 103.4 284.3 103.6 280.2 104 276 C 104.4 271.8 105.4 267.3 106.5 263.1 C 107.7 258.9 109 254.5 111.1 250.8 C 113.3 247.2 116.2 243.7 119.5 241 C 122.8 238.3 127 236.5 130.9 234.7 C 134.8 232.9 138.9 231.5 143 230.1 C 147 228.6 151 226.9 155.1 225.8 C 159.2 224.7 163.5 224.2 167.6 223.5 C 171.7 222.9 175.7 223.4 179.6 222 C 183.6 220.6 187.7 217.7 191.1 215.1 C 194.6 212.5 196.9 208.7 200.4 206.4 C 203.9 204.2 208.3 201.9 212.3 201.7 C 216.4 201.5 220.4 203.9 224.4 205.3 C 228.5 206.6 232.5 209.2 236.8 209.9 C 241.1 210.6 245.9 210 250.1 209.7 C 254.3 209.5 257.8 208.5 262.1 208.3 C 266.3 208.2 271.6 209.4 275.9 208.7 C 280.2 208 284.4 206.3 287.8 204.3 C 291.2 202.3 293.3 199.2 296.4 196.6 C 299.5 194.1 302.8 190.1 306.6 189.1 C 310.4 188.1 315.2 189.1 319.2 190.6 C 323.3 192 327 195.9 330.8 197.8 C 334.7 199.7 338 201.6 342.2 201.9 C 346.3 202.3 351.6 200.5 355.9 199.8 C 360.2 199 363.7 198.2 367.9 197.6 C 372.1 196.9 377.3 197.3 381.3 196 C 385.4 194.6 389.1 192 392.4 189.7 C 395.8 187.4 397.9 184 401.5 182.1 C 405 180.2 409.6 178.3 413.5 178.3 C 417.5 178.3 421.2 180.8 425.3 182.1 C 429.5 183.4 434.1 185.8 438.4 186.1 C 442.7 186.3 447.2 184.9 451.1 183.5 C 455.1 182.1 458.5 179.6 462.3 177.8 C 466.1 176 470.2 174.6 474.1 172.7 C 477.9 170.8 482 168.7 485.5 166.4 C 488.9 164.1 491.6 161.5 494.8 158.7 C 498 155.9 501.5 152.6 504.8 149.7 C 508 146.8 511.5 144.4 514.2 141.2 C 516.8 138 519.4 134.2 520.7 130.3 C 522 126.5 521.8 120.1 522 118"></path>
+    <g class="vy-stops">
+      <circle cx="106" cy="912" r="6.2"></circle>
+      <circle cx="528" cy="752" r="5.6"></circle>
+      <circle cx="116" cy="596" r="6"></circle>
+      <circle cx="536" cy="438" r="5.8"></circle>
+      <circle cx="104" cy="276" r="6.3"></circle>
+    </g>
+    <path class="vy-x" d="M 507 104 L 537 131 M 536 103 L 509 132"></path>
+    <!-- The future, in cloud -->
+    <path class="vy-cloud" d="M 482.1 78.1 A 10.1 10.1 0 0 1 468.0 86.2 A 19.8 19.8 0 0 1 437.8 90.2 A 13.3 13.3 0 0 1 416.3 83.9 A 10.2 10.2 0 0 1 415.2 68.3 A 11.4 11.4 0 0 1 432.7 62.0 A 18.0 18.0 0 0 1 463.1 64.3 A 13.9 13.9 0 0 1 482.1 78.1 Z"></path>
+    <path class="vy-cloud" d="M 629.8 169.0 A 12.6 12.6 0 0 1 612.0 182.6 A 16.9 16.9 0 0 1 582.1 180.6 A 10.5 10.5 0 0 1 568.5 168.5 A 10.0 10.0 0 0 1 579.7 158.1 A 19.8 19.8 0 0 1 613.8 156.5 A 12.9 12.9 0 0 1 629.8 169.0 Z"></path>
+    <path class="vy-cloud" d="M 515.6 161.9 A 6.8 6.8 0 0 1 511.9 173.3 A 22.9 22.9 0 0 1 473.7 180.2 A 20.3 20.3 0 0 1 441.2 177.0 A 10.3 10.3 0 0 1 426.4 166.0 A 9.8 9.8 0 0 1 425.7 150.4 A 15.7 15.7 0 0 1 449.8 139.5 A 15.3 15.3 0 0 1 475.8 139.6 A 17.4 17.4 0 0 1 502.1 146.0 A 12.6 12.6 0 0 1 515.6 161.9 Z"></path>
+    <path class="vy-cloud" d="M 613.8 116.8 A 13.2 13.2 0 0 1 601.3 135.4 A 20.1 20.1 0 0 1 571.6 143.6 A 15.2 15.2 0 0 1 548.0 139.8 A 18.9 18.9 0 0 1 520.2 122.3 A 11.7 11.7 0 0 1 527.1 105.4 A 11.3 11.3 0 0 1 543.6 94.5 A 19.4 19.4 0 0 1 574.6 90.1 A 13.0 13.0 0 0 1 595.9 97.8 A 14.6 14.6 0 0 1 613.8 116.8 Z"></path>
+    <path class="vy-ripple" d="M 534 122 q 8 -4 16 0 t 16 0 M 446 166 q 7 -3 14 0 t 14 0 M 556 112 q 6 -3 12 0 M 586 172 q 6 -3 12 0"></path>
+  </g>
+  </g>
+  <rect class="vy-frame" x="10" y="-18" width="618" height="1354"></rect>
+  <rect class="vy-frame vy-frame-in" x="38" y="-12" width="582" height="1342"></rect>
+  <!-- A latitude scale of years. Each sits where the trail reaches it, so the
+       recent years stretch apart the way a chart stretches high latitudes. -->
+  <g>
+    <path class="vy-frame vy-frame-in" d="M 32 -12 V 1330"></path>
+    <rect class="vy-key" x="32" y="858.7" width="6" height="53.3"></rect>
+    <rect class="vy-key" x="32" y="752" width="6" height="53.3"></rect>
+    <rect class="vy-key" x="32" y="674" width="6" height="39"></rect>
+    <rect class="vy-key" x="32" y="596" width="6" height="39"></rect>
+    <rect class="vy-key" x="32" y="276" width="6" height="162"></rect>
+    <path class="vy-frame vy-frame-in" d="M 27 912 H 38 M 27 858.7 H 38 M 27 805.3 H 38 M 27 752 H 38 M 27 713 H 38 M 27 674 H 38 M 27 635 H 38 M 27 596 H 38 M 27 438 H 38 M 27 276 H 38"></path>
+    <text class="vy-lat" x="19.5" y="916">’17</text>
+    <text class="vy-lat" x="19.5" y="862.7">’18</text>
+    <text class="vy-lat" x="19.5" y="809.3">’19</text>
+    <text class="vy-lat" x="19.5" y="756">’20</text>
+    <text class="vy-lat" x="19.5" y="717">’21</text>
+    <text class="vy-lat" x="19.5" y="678">’22</text>
+    <text class="vy-lat" x="19.5" y="639">’23</text>
+    <text class="vy-lat" x="19.5" y="600">’24</text>
+    <text class="vy-lat" x="19.5" y="442">’25</text>
+    <text class="vy-lat" x="19.5" y="280">’26</text>
+  </g>
+  <!-- Title ribbon across the head of the sheet -->
+  <g transform="rotate(-1.6 320 0)">
+    <g filter="url(#voyage-rough)">
+      <path class="vy-paper" d="M 212 -2 L 148 -2 L 162 15 L 148 32 L 212 32 Z"></path>
+      <path class="vy-paper" d="M 428 -2 L 492 -2 L 478 15 L 492 32 L 428 32 Z"></path>
+      <path class="vy-fold" d="M 196 20 L 212 32 L 196 32 Z"></path>
+      <path class="vy-fold" d="M 444 20 L 428 32 L 444 32 Z"></path>
+      <path class="vy-paper" d="M 196 -14 Q 320 -30 444 -14 L 444 20 Q 320 4 196 20 Z"></path>
+    </g>
+    <text class="vy-ribbon-text"><textpath href="#voyage-ribbon-line" startoffset="50%" text-anchor="middle">The Voyage So Far</textpath></text>
+  </g>
+  <!-- What the sheet has been through since -->
+  <g clip-path="url(#voyage-sheet)">
+    <path class="vy-crease-shade" d="M 321 -24 L 317 1344 M 6 432 L 634 428 M 6 889 L 634 893"></path>
+    <path class="vy-crease" d="M 321 -24 L 317 1344 M 6 432 L 634 428 M 6 889 L 634 893"></path>
+    <!-- Worn through where two folds cross -->
+    <ellipse class="vy-scuff" cx="320" cy="430" rx="11" ry="8"></ellipse>
+    <path class="vy-hole" d="M 316.5 428 L 318.5 427.2 L 319.6 425.8 L 321.4 427 L 323.8 426.6 L 323.4 429.2 L 324.8 431 L 322.6 432 L 321.8 434.2 L 319.6 432.8 L 317.2 433.8 L 317.4 431.4 L 315.4 430.2 Z"></path>
+    <!-- A tide mark where the edge once sat in water -->
+    <path class="vy-tide" d="M 640 368 C 628 372 616 380 608 392 C 600 402 604 410 599 420 C 594 432 604 440 602 452 C 600 464 592 470 594 484 C 596 496 590 508 598 520 C 604 530 610 532 614 542 C 620 554 630 560 640 566 Z"></path>
+    <path class="vy-tide-in" d="M 640 384 C 626 392 614 404 612 420 C 610 438 618 452 612 470 C 608 488 606 504 614 520 C 620 532 630 542 640 548"></path>
+    <!-- The stains are roughened a cluster at a time, so the noise covers no
+         more of the sheet than they do. By the compass: a mug with a splash
+         beside it, and an ink blot, its spatter, and the thumb that found it. -->
+    <g filter="url(#voyage-rough)">
+      <circle class="vy-stain" cx="268" cy="168" r="27"></circle>
+      <path class="vy-stain vy-stain-faint" d="M 242 180 A 27 27 0 0 1 250 148"></path>
+      <g class="vy-drop">
+        <circle cx="300" cy="146" r="2.2"></circle><circle cx="307" cy="139" r="1.3"></circle><circle cx="311.5" cy="134" r="0.8"></circle><circle cx="236" cy="201" r="1.5"></circle>
+      </g>
+      <g transform="translate(194 92) scale(1.3)">
+        <g class="vy-blot" filter="url(#voyage-blob)">
+          <circle r="6.5"></circle><circle cx="5" cy="4" r="4.2"></circle><circle cx="-4.5" cy="3" r="3.4"></circle><circle cx="2.5" cy="-5" r="3"></circle>
+        </g>
+        <g class="vy-blot"><circle cx="18.9" cy="11.4" r="1.1"></circle><circle cx="18.5" cy="2.4" r="1.1"></circle><circle cx="30.2" cy="6.4" r="0.5"></circle><circle cx="24.6" cy="17.1" r="0.5"></circle><circle cx="11.2" cy="3.6" r="1.4"></circle><circle cx="10.2" cy="16.4" r="1.1"></circle><circle cx="-1.5" cy="11.9" r="1.7"></circle><circle cx="10.7" cy="-9" r="1.8"></circle><circle cx="23.5" cy="-0.8" r="0.6"></circle><circle cx="0.3" cy="11.1" r="1.5"></circle><circle cx="16.8" cy="14.2" r="0.9"></circle></g>
+      </g>
+      <path class="vy-print" transform="translate(232 128) rotate(-24)" d="M -1 3.6 A 2.6 3.9 0 0 1 -2.1 -2.3 M -1 -3.6 A 2.6 3.9 0 1 1 1 3.6 M -1.5 5.2 A 3.9 5.6 0 0 1 -3.9 -0.5 M -3.2 -3.1 A 3.9 5.6 0 1 1 1.5 5.2 M -1.9 6.8 A 5.2 7.3 0 1 1 2.1 -6.6 M 4.4 -3.9 A 5.2 7.3 0 0 1 1.9 6.8 M -2.4 8.3 A 6.4 9 0 0 1 -1.3 -8.8 M 2.3 -8.4 A 6.4 9 0 0 1 2.4 8.3 M -2.9 9.9 A 7.7 10.7 0 0 1 -3.5 -9.5 M -0.2 -10.7 A 7.7 10.7 0 0 1 2.9 9.9 M -3.3 11.5 A 8.9 12.4 0 0 1 2.2 -12 M 6.3 -8.7 A 8.9 12.4 0 0 1 3.3 11.5 M -3.8 13.1 A 10.2 14.1 0 1 1 10.1 -0 M 9.7 4 A 10.2 14.1 0 0 1 3.8 13.1 M -4.3 14.6 A 11.4 15.8 0 0 1 -11.1 3.3 M -11.1 -3.5 A 11.4 15.8 0 1 1 4.3 14.6 M -8.6 8.8 Q 0 13.8 8.6 8.8 M -10.2 11.6 Q 0 17.6 10.2 11.6 M -11.8 14.4 Q 0 21.4 11.8 14.4 M -13.4 17.2 Q 0 25.2 13.4 17.2"></path>
+    </g>
+    <!-- A glass of something red, and the drip that ran from it -->
+    <g filter="url(#voyage-rough)">
+      <circle class="vy-wine" cx="262" cy="432" r="19"></circle>
+      <path class="vy-wine-drip" d="M 270 449 C 273 455 275 461 273 466 C 271 470 266 469 267 465 C 268 460 269 455 270 449 Z"></path>
+    </g>
+    <!-- A mug set down twice by the school -->
+    <g filter="url(#voyage-rough)">
+      <circle class="vy-stain" cx="374" cy="902" r="25"></circle>
+      <path class="vy-stain vy-stain-faint" d="M 398.5 892.3 A 25 25 0 1 1 361.4 918.3"></path>
+      <path class="vy-stain vy-stain-faint" d="M 352 912 A 23 23 0 0 1 362 882"></path>
+    </g>
+    <!-- Foxing -->
+    <g class="vy-fox">
+      <circle cx="450.8" cy="489.5" r="2.1" opacity="0.55"></circle>
+      <circle cx="458.5" cy="458.9" r="1.2" opacity="0.52"></circle>
+      <circle cx="459.4" cy="477.9" r="2.2" opacity="0.74"></circle>
+      <circle cx="465" cy="481.8" r="1.1" opacity="0.40"></circle>
+      <circle cx="447.3" cy="484.4" r="2.5" opacity="0.66"></circle>
+      <circle cx="449.6" cy="466" r="1.3" opacity="0.59"></circle>
+      <circle cx="466.7" cy="487.3" r="2.4" opacity="0.89"></circle>
+      <circle cx="220.9" cy="985.2" r="2.3" opacity="0.35"></circle>
+      <circle cx="232.6" cy="997.9" r="1.2" opacity="0.57"></circle>
+      <circle cx="223" cy="991.6" r="2.3" opacity="0.67"></circle>
+      <circle cx="200.7" cy="998.3" r="1.5" opacity="0.98"></circle>
+      <circle cx="202.9" cy="1009.3" r="0.9" opacity="0.69"></circle>
+      <circle cx="222.3" cy="986.2" r="2.8" opacity="0.66"></circle>
+      <circle cx="597.7" cy="758.9" r="2.3" opacity="0.79"></circle>
+      <circle cx="610.7" cy="779.9" r="1.6" opacity="0.54"></circle>
+      <circle cx="605.2" cy="776.5" r="1.8" opacity="0.37"></circle>
+      <circle cx="601.8" cy="780.8" r="2" opacity="0.68"></circle>
+      <circle cx="597.4" cy="773.5" r="1.7" opacity="0.94"></circle>
+      <circle cx="384.9" cy="223.7" r="1.1" opacity="0.83"></circle>
+      <circle cx="380.4" cy="218" r="2.1" opacity="0.52"></circle>
+      <circle cx="396" cy="210.4" r="2.2" opacity="0.79"></circle>
+      <circle cx="387.8" cy="212.3" r="1" opacity="0.90"></circle>
+      <circle cx="390.3" cy="196.8" r="2" opacity="0.52"></circle>
+      <circle cx="147.9" cy="425.2" r="1.6" opacity="0.73"></circle>
+      <circle cx="547.4" cy="807.1" r="0.8" opacity="0.58"></circle>
+      <circle cx="529.5" cy="387.3" r="1.5" opacity="0.51"></circle>
+      <circle cx="135.4" cy="971.9" r="1.3" opacity="0.54"></circle>
+      <circle cx="457.5" cy="227.5" r="1.3" opacity="0.48"></circle>
+      <circle cx="379.5" cy="599.4" r="1" opacity="0.58"></circle>
+      <circle cx="460.2" cy="354.5" r="1" opacity="0.37"></circle>
+      <circle cx="150.5" cy="690.4" r="0.7" opacity="0.61"></circle>
+      <circle cx="184.1" cy="87.8" r="1.4" opacity="0.41"></circle>
+      <circle cx="365.9" cy="552.4" r="0.6" opacity="0.84"></circle>
+      <circle cx="301.8" cy="356.2" r="0.7" opacity="0.74"></circle>
+      <circle cx="61.6" cy="998" r="0.7" opacity="0.35"></circle>
+    </g>
+    <!-- A mosquito, met in the jungle -->
+    <g transform="translate(602 716) rotate(-24) scale(1.4)">
+      <path class="vy-blood" d="M -1 1 C -8 4 -15 6 -23 12 C -15 9.5 -8 7.5 0 4 Z"></path>
+      <path class="vy-hair" d="M -1 0 L -5 -6 L -7 -11 M 1 0 L 2 -7 L 0 -13 M 2 1 L 8 -2 L 13 0 M 1 1 L 6 5 L 8 11 M -1 1 L -4 7 L -9 9 M -1 0.5 L -8 1 L -12 -3 M 5 0 L 9 1.5"></path>
+      <path class="vy-hair" d="M -1 -1 C -4 -6 -9 -6 -9 -3 C -8 -1 -4 -1 -1 -1 Z M 0 -0.5 C 1 -6 5 -9 6 -6 C 6 -4 3 -2 0 -0.5 Z"></path>
+      <path class="vy-solid" d="M -4 1 C -4 -0.5 2 -1 4 0 C 3 1.6 -2 2.2 -4 1 Z"></path>
+      <circle class="vy-solid" cx="4.6" cy="0.2" r="1.1"></circle>
+    </g>
+    <!-- Rust where it was pinned up -->
+    <g class="vy-rust">
+      <circle cx="22" cy="-15" r="3.4"></circle>
+      <circle cx="22" cy="1333" r="3.4"></circle>
+      <circle cx="618" cy="1333" r="3.4"></circle>
+    </g>
+    <!-- Torn in from the edge -->
+    <path class="vy-tear" d="M 0 980 L 9 982 L 16 979 L 24 984 L 33 982 L 42 986 L 50 987.5 L 41 988 L 32 986 L 24 989 L 16 985.5 L 9 988 L 0 989 Z"></path>
+    <!-- Singed where the corner burnt away -->
+    <g filter="url(#voyage-singe)"><path class="vy-char-glow" d="M 538 -40 C 552 -26 560 -14 576 -8 C 592 -2 600 10 608 14 C 618 20 624 34 632 44 C 638 52 644 56 652 58"></path></g>
+    <g filter="url(#voyage-burn)"><path class="vy-char" d="M 538 -40 C 552 -26 560 -14 576 -8 C 592 -2 600 10 608 14 C 618 20 624 34 632 44 C 638 52 644 56 652 58"></path></g>
+  </g>
+  <!-- Wax seal at the foot -->
+  <g transform="translate(336 1324) rotate(9)">
+    <g filter="url(#voyage-blob)">
+      <circle class="vy-wax" r="22"></circle>
+      <circle class="vy-wax" cx="16" cy="14" r="5"></circle>
+      <circle class="vy-wax" cx="-18" cy="11" r="4"></circle>
+    </g>
+    <circle class="vy-wax-ring" r="15.5"></circle>
+    <path class="vy-wax-shine" d="M -13 -9 A 16 16 0 0 1 -4 -16"></path>
+    <text class="vy-seal-text" y="6">AC</text>
+  </g>
+  </g>
+  <!-- Tape over the tear -->
+  <path class="vy-tape" transform="translate(28 984) rotate(-5)" d="M -32 -9 L 28 -9 L 30.5 -6 L 28.5 -3 L 31 0 L 28.5 3 L 30.5 6 L 28 9 L -32 9 Z"></path>
+</svg>
+<ol class="voyage-stops" aria-label="Timeline, most recent first">
+  <li class="is-right" style="--x: 22.34%; --y: 10.72%; --r: -1.2deg"><span class="voyage-name"><span aria-hidden="true">???</span><span class="visually-hidden">What comes next</span></span><span class="voyage-when">Future</span></li>
+  <li class="is-left" style="--x: 20.16%; --y: 22.17%; --r: 1deg"><span class="voyage-name">Offworld Labs</span><span class="voyage-when"><span class="voyage-role">Full-stack engineer</span><span aria-hidden="true"> · </span>’26</span></li>
+  <li class="is-right" style="--x: 20.16%; --y: 33.91%; --r: -0.8deg"><span class="voyage-name">Message Matrix</span><span class="voyage-when"><span class="voyage-role">Backend engineer</span><span aria-hidden="true"> · </span>’25–’26</span></li>
+  <li class="is-left" style="--x: 22.03%; --y: 45.36%; --r: 1.4deg"><span class="voyage-name">Travel, teaching and odd jobs</span><span class="voyage-when"><span class="voyage-role">Adventurer</span><span aria-hidden="true"> · </span>’24–’25</span></li>
+  <li class="is-right" style="--x: 21.41%; --y: 56.67%; --r: -1.5deg"><span class="voyage-name">University of Oxford</span><span class="voyage-when"><span class="voyage-role">Student</span><span aria-hidden="true"> · </span>’20–’24</span></li>
+  <li class="is-left" style="--x: 20.47%; --y: 68.26%; --r: 0.8deg"><span class="voyage-name">Exeter Maths School</span><span class="voyage-when"><span class="voyage-role">Student</span><span aria-hidden="true"> · </span>’17–’19</span></li>
+  <li class="is-sea" style="--y: 90.43%; --r: -2deg"><span class="voyage-name">Here lay dragons</span></li>
+</ol>
+</figure>
 
 
 </main></div>
