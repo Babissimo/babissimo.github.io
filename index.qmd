@@ -2,7 +2,7 @@
 pagetitle: "Babissimo"
 page-layout: full
 toc: false
-body-classes: landing
+body-classes: landing filmed
 format:
   html:
     include-in-header:
@@ -10,6 +10,33 @@ format:
         <link rel="alternate" type="application/rss+xml" title="Babissimo" href="https://babissimo.net/blog/index.xml">
         <script src="/assets/swell.js" defer></script>
 ---
+
+```{=html}
+<div class="sea" aria-hidden="true">
+  <video autoplay muted loop playsinline disablepictureinpicture disableremoteplayback
+         poster="/assets/landing/sea-poster.webp">
+    <source src="/assets/landing/sea.mp4" type="video/mp4">
+  </video>
+</div>
+<script>
+  // Under prefers-reduced-motion the sea holds still on its first frame, which
+  // is the poster. This runs before the clip starts loading, so dropping
+  // autoplay and preload here keeps it from downloading at all.
+  (() => {
+    const video = document.querySelector(".sea video");
+    const still = matchMedia("(prefers-reduced-motion: reduce)");
+    if (still.matches) {
+      video.autoplay = false;
+      video.preload = "none";
+    }
+    still.addEventListener("change", () => {
+      if (!still.matches) return video.play().catch(() => {});
+      video.pause();
+      video.currentTime = 0;
+    });
+  })();
+</script>
+```
 
 ::: {.landing .landing-chart}
 

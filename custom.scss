@@ -466,6 +466,41 @@ body.landing {
     min-height: 2rem;
   }
 
+  // The filmed sea behind the chart, held to the viewport beneath everything.
+  // The paper wash thickens towards the foot, where the lettering sits.
+  .sea {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+
+    video { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba($paper, 0.35), rgba($paper, 0.72) 75%);
+    }
+  }
+
+  &.filmed {
+    // Navbar and footer frost over the sea rather than banding it.
+    .navbar,
+    .nav-footer {
+      background-color: rgba($paper, 0.6);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+
+      @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+        background-color: $paper;
+      }
+    }
+
+    // Muted alone drops to about 3.2:1 on the washed grass; this holds 4.5:1.
+    .tagline { color: mix($ink, $muted, 50%); }
+  }
+
   .tagline {
     display: block;
     margin-top: 1rem;
