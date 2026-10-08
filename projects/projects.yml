@@ -1,6 +1,10 @@
 # Projects listed on projects.qmd. Add an entry here to add a card.
 # `path` is the destination URL; external links are fine.
 
+- title: "Ratchet"
+  description: "FreeAgent timers from the Mac menu bar"
+  path: "https://ratchet.babissimo.net/"
+
 - title: "Therapy Search"
   description: "An unofficial, simpler front end for the UKCP therapist directory"
   path: "https://therapysearch.babissimo.net/"
