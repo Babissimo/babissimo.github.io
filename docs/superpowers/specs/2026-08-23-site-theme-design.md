@@ -28,7 +28,7 @@ in the abstract.
 | Dark mode | Keep; warm ink ground | Same temperature as the paper, so it reads as the same site at night |
 | Post layout | Single centred 640px column, no margin gutter | Essays, not documents |
 | Table of contents | Ambient right-edge rail, frosted panel on hover | Keeps the centred column intact while the section list stays reachable |
-| Landing page | Name lettered like a sea on a chart, on a slow swell | Pays off the tagline and the anchor; keeps `-issimo` from reading as the Bravissimo brand |
+| Landing page | Name lettered like a sea on a chart, on a slow swell, over a filmed sea | Pays off the tagline and the anchor; keeps `-issimo` from reading as the Bravissimo brand |
 | Blog listing | One-line index, no post count | Reads as an archive; scales to many posts |
 | Projects listing | Stacked entries | No dates or images to fill an index row |
 | About page | Portrait left, circular, split-name masthead | Least disruptive to what exists, while adopting the new type |
@@ -185,6 +185,17 @@ Sans small caps, muted tone.
 
 An empty `<div class="landing-stage">` takes up the air above the chart.
 
+Behind everything, fixed to the viewport, a looping film of the sea
+(`assets/landing/sea.mp4`: 848×480 H.264, muted, about 0.8 MB) covers the page.
+A paper wash over it thickens from 35% at the top to 72% three-quarters down,
+where the chart sits, so the ink keeps its contrast; in dark mode the wash is
+the dark paper. The tagline darkens to midway between muted and ink, which
+holds 4.5:1 on the washed grass where muted alone falls to about 3.2:1. The
+navbar and footer frost over the film rather than banding it, with the same
+solid fallback as the rail (§3). Under `prefers-reduced-motion` an inline
+script drops the autoplay and preload before the clip starts loading, so it
+never downloads and the poster frame (`sea-poster.webp`) is the still.
+
 The existing `include-in-header` RSS `<link>` in `index.qmd` is preserved.
 
 ## 5. Blog listing
@@ -339,7 +350,8 @@ Not planned now.
 | `theme-dark.theme` | new | Code highlighting, dark |
 | `_listing-blog.ejs` | new | Blog index template |
 | `_listing-projects.ejs` | new | Projects stacked-entry template |
-| `index.qmd` | edit | Landing wordmark and tagline |
+| `index.qmd` | edit | Landing chart, sea film and tagline |
+| `assets/landing/` | new | Sea film and its poster frame |
 | `about/index.qmd` | edit | Portrait-left layout |
 | `blog/posts/_metadata.yml` | edit | Remove `title-block-banner` |
 | `404.qmd` | new | Poster numeral, cartographic line |
