@@ -5,6 +5,7 @@ listing:
   sort: false
   type: default
   template: ../_listing-projects.ejs
-  fields: [title, description]
+  categories: false
+  fields: [title, description, categories]
 toc: false
 ---

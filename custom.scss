@@ -626,9 +626,9 @@ body.landing {
   &:hover { color: $oxblood; }
 }
 
-.index-cats { flex: none; }
+.index-cats, .stack-cats { flex: none; }
 
-.index-cat {
+.index-cat, .stack-cat {
   color: $oxblood;
   font-size: 0.74rem;
   letter-spacing: 0.04em;
@@ -646,10 +646,41 @@ body.landing {
 // Projects — stacked entries. No dates and no images, so the index row's left
 // column would sit empty; the description gets its own line instead.
 // ---------------------------------------------------------------------------
+.stack-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 1.1rem;
+  margin-bottom: 0.4rem;
+
+  button {
+    padding: 0.35rem 0;
+    background: none;
+    border: none;
+    border-bottom: 1px solid transparent;
+    color: $muted;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color 0.18s ease, border-color 0.18s ease;
+
+    &:hover { color: $ink; }
+    &[aria-pressed="true"] { color: $oxblood; border-bottom-color: $oxblood; }
+  }
+}
+
 .stack-row {
   padding: 1rem 0;
   border-bottom: 1px solid $rule;
 }
+
+.stack-head {
+  display: flex;
+  align-items: baseline;
+  gap: 1.1rem;
+}
+
+.stack-cats { margin-left: auto; }
 
 .stack-title {
   font-family: $serif;
