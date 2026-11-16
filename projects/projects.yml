@@ -1,6 +1,10 @@
 # Projects listed on projects.qmd. Add an entry here to add a card.
 # `path` is the destination URL; external links are fine.
 
+- title: "Timeywimey"
+  description: "Watch a video sliced through time at an angle"
+  path: "https://timeywimey.babissimo.net/"
+
 - title: "Strandbeest Simulator"
   description: "Theo Jansen's walking machines, evolved in the browser"
   path: "https://strandbeests.babissimo.net/"
