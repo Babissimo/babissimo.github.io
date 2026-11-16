@@ -1,30 +1,38 @@
 # Projects listed on projects.qmd. Add an entry here to add a card.
 # `path` is the destination URL; external links are fine.
+# `categories` are the tags the page filters by; an entry may have several.
 
 - title: "Timeywimey"
   description: "Watch a video sliced through time at an angle"
   path: "https://timeywimey.babissimo.net/"
+  categories: [Tools]
 
 - title: "Strandbeest Simulator"
   description: "Theo Jansen's walking machines, evolved in the browser"
   path: "https://strandbeests.babissimo.net/"
+  categories: [Learning]
 
 - title: "Ratchet"
   description: "FreeAgent timers from the Mac menu bar"
   path: "https://ratchet.babissimo.net/"
+  categories: [Tools]
 
 - title: "Therapy Search"
   description: "An unofficial, simpler front end for the UKCP therapist directory"
   path: "https://therapysearch.babissimo.net/"
+  categories: [Tools]
 
 - title: "Trials Trophies"
   description: "The results of some vintage car trials"
   path: "https://trialstrophies.babissimo.net/"
+  categories: [Data]
 
 - title: "Torus Chess"
   description: "Chess on a doughnut"
   path: "https://toruschess.babissimo.net/"
+  categories: [Play]
 
 - title: "World Happiness Visualisation"
   description: "An interactive visualisation of World Happiness Report."
   path: "https://worldhappiness.babissimo.net/"
+  categories: [Data]

@@ -1,5 +1,42 @@
-<div class="stack-list">
-<% for (const item of items) { %>
-<div class="stack-row"><a class="stack-title" href="<%- item.path %>"><%= item.title %><span class="stack-ext" aria-hidden="true">&#8599;</span></a><div class="stack-desc"><%= item.description %></div></div>
+<%
+const slug = (tag) => tag.toLowerCase().replace(/\s+/g, "-");
+const tags = [...new Set(items.flatMap((item) => item.categories || []))].sort();
+%>
+<div class="stack-filter" role="group" aria-label="Filter projects by tag" hidden>
+<button type="button" data-tag="" aria-pressed="true">All</button>
+<% for (const tag of tags) { %><button type="button" data-tag="<%= slug(tag) %>" aria-pressed="false"><%= tag %></button>
 <% } %>
 </div>
+<div class="stack-list">
+<% for (const item of items) { %>
+<div class="stack-row" data-tags="<%= (item.categories || []).map(slug).join(' ') %>"><div class="stack-head"><a class="stack-title" href="<%- item.path %>"><%= item.title %><span class="stack-ext" aria-hidden="true">&#8599;</span></a><span class="stack-cats"><% for (const c of (item.categories || [])) { %><span class="stack-cat"><%= c %></span><% } %></span></div><div class="stack-desc"><%= item.description %></div></div>
+<% } %>
+</div>
+<script>
+// The buttons stay hidden without script, so every card shows. The chosen tag
+// lives in the fragment (#tools) so a filtered view can be linked.
+(() => {
+  const bar = document.querySelector(".stack-filter");
+  const rows = [...document.querySelectorAll(".stack-row")];
+  const buttons = [...bar.querySelectorAll("button")];
+  const known = new Set(buttons.map((b) => b.dataset.tag));
+  const fromHash = () => {
+    const tag = location.hash.slice(1).toLowerCase();
+    return known.has(tag) ? tag : "";
+  };
+  const show = (tag) => {
+    for (const b of buttons) b.setAttribute("aria-pressed", String(b.dataset.tag === tag));
+    for (const r of rows) r.hidden = tag !== "" && !r.dataset.tags.split(" ").includes(tag);
+  };
+  for (const b of buttons) {
+    b.addEventListener("click", () => {
+      const tag = b.dataset.tag;
+      history.replaceState(null, "", tag ? "#" + tag : location.pathname + location.search);
+      show(tag);
+    });
+  }
+  addEventListener("hashchange", () => show(fromHash()));
+  show(fromHash());
+  bar.hidden = false;
+})();
+</script>
