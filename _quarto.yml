@@ -1,5 +1,7 @@
 project:
   type: website
+  pre-render:
+    - python3 tools/check-posts.py
   post-render:
     - python3 tools/clean-urls.py
     - python3 tools/unlink-blog.py

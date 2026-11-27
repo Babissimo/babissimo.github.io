@@ -16,7 +16,7 @@ The repository root opens as an Obsidian vault, and the [Obsidian Git](https://g
 
 ### Writing a post
 
-A post is a folder holding `index.md` and its images. Start it in `blog/_drafts/<slug>/`, which Quarto never builds, and fill in the front matter with **Templates: Insert template**, choosing `post`. To publish, move the folder to `blog/posts/`; it goes live at `/blog/posts/<slug>/` on the next push. With **Automatically update internal links** on (*Settings → Files and links*), Obsidian rewrites links to the post as it moves.
+A post is a folder holding a note of the same name and its images, such as `my-post/my-post.md`, so every note's name is unique in Obsidian. Keep other notes out of post folders: the build stops if one holds two. Start it in `blog/_drafts/`, which Quarto never builds, and fill in the front matter with **Templates: Insert template**, choosing `post`. To publish, move the folder to `blog/posts/`; it goes live at `/blog/posts/my-post/` on the next push. The slug is the URL, so renaming a published post means renaming both folder and note, and breaks links to it from elsewhere. With **Automatically update internal links** on (*Settings → Files and links*), Obsidian rewrites links to the post as it moves.
 
 `draft: true` in the front matter also keeps a post in `blog/posts/` off the site: Quarto renders it as an empty page and leaves it out of the listing, feed and search.
 

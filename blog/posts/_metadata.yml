@@ -6,3 +6,8 @@ freeze: true
 
 # Scopes the end-of-post anchor to posts only (see custom.scss)
 body-classes: post
+
+# A post is <slug>/<slug>.md, so Obsidian's note names stay unique; this
+# publishes it at /blog/posts/<slug>/ all the same. tools/check-posts.py fails
+# the render if two pages would share one index.html.
+output-file: index.html
