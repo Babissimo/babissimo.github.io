@@ -306,7 +306,7 @@ end
 -- Obsidian's order: beside the note, then from the vault root, then any one
 -- file whose path ends with the target. Several such files resolve to none.
 -- A link left behind by a moved folder (a draft published outside Obsidian)
--- falls back to its last two segments, `<slug>/index`.
+-- falls back to its last two segments, the post's folder and note.
 local function resolve(target)
   if not files then index_files() end
   local here = pandoc.path.directory(
@@ -356,7 +356,7 @@ local function is_live(path)
   return not ("/" .. path):find("/_", 1, true) and front_matter(path).draft ~= true
 end
 
--- A page's title, else its folder (posts are all `index`).
+-- A page's title, else its file name (its folder's, for an `index`).
 local function page_name(path)
   local title = front_matter(path).title
   if title and pandoc.utils.stringify(title) ~= "" then return pandoc.Inlines(title) end
