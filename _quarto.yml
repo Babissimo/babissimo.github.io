@@ -42,8 +42,14 @@ website:
   page-footer:
     left: "&copy; 2026 Babissimo"
     right: "Built with [Quarto](https://quarto.org)"
+# Posts are written in Obsidian (see README.md). pre-ast so the callouts it
+# builds are parsed like hand-written ones.
+filters:
+  - path: tools/obsidian.lua
+    at: pre-ast
 format:
   html:
+    from: markdown+mark
     grid:
       # 640px measure, centred. margin-width is not a real margin here (the
       # contents rail is a fixed overlay) — it counterweights Quarto's
