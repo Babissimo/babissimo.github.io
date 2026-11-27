@@ -3,3 +3,6 @@
 _site/
 .venv/
 .superpowers/
+# Obsidian keeps per-device settings and its trash here.
+.obsidian/
+.trash/
