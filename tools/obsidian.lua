@@ -6,8 +6,13 @@
 --   render rather than print the note. The source stays readable in the
 --   public repository.
 -- - `> [!type] Title` callouts become Quarto callouts.
+-- - ```mermaid fences become diagrams, drawn as Quarto draws {mermaid} cells.
+-- - `[[wikilinks]]` and `![[embeds]]` resolve as Obsidian resolves them, to a
+--   relative path that Quarto then maps to the page's URL. A link without an
+--   alias shows the page's title; one to nothing, or to a page that is not
+--   live (a draft), prints as text.
 --
--- `==highlights==` need no filter: `from: markdown+mark` in _quarto.yml.
+-- `==highlights==` and wikilink parsing come from `from:` in _quarto.yml.
 
 local MARK = "%%"
 
@@ -241,7 +246,197 @@ local function callout(quote)
   return pandoc.Div(blocks, pandoc.Attr("", { class }, attrs))
 end
 
+-- Quarto draws {mermaid} cells in TypeScript before Pandoc runs, and a .md file
+-- cannot hold one, so this emits the markup and bundled scripts it would.
+local function mermaid(block)
+  if not block.classes:includes("mermaid") or not quarto.doc.is_format("html") then
+    return nil
+  end
+  local dir = pandoc.path.join { os.getenv("QUARTO_SHARE_PATH"), "formats", "html", "mermaid" }
+  quarto.doc.add_html_dependency {
+    name = "obsidian-mermaid",
+    scripts = {
+      { path = pandoc.path.join { dir, "mermaid.min.js" } },
+      { path = pandoc.path.join { dir, "mermaid-init.js" }, afterBody = true },
+    },
+    stylesheets = { pandoc.path.join { dir, "mermaid.css" } },
+  }
+  local source = block.text:gsub("&", "&amp;"):gsub("<", "&lt;"):gsub(">", "&gt;")
+  return pandoc.RawBlock("html", '<pre class="mermaid mermaid-js">' .. source .. "</pre>")
+end
+
+-- Every file in the project, by project-relative path, built on the first
+-- wikilink. Top-level `_` directories are Quarto's own (`_site`, `_freeze`) or
+-- templates; a nested one, such as `blog/_drafts`, holds unpublished pages.
+local files
+
+local function index_files()
+  files = {}
+  local root = quarto.project.directory
+  local function walk(rel)
+    local dir = rel == "" and root or pandoc.path.join { root, rel }
+    for _, name in ipairs(pandoc.system.list_directory(dir)) do
+      local path = rel == "" and name or rel .. "/" .. name
+      if pcall(pandoc.system.list_directory, pandoc.path.join { root, path }) then
+        if not name:match("^%.") and not (rel == "" and name:match("^_")) then walk(path) end
+      else
+        files[path] = true
+      end
+    end
+  end
+  walk("")
+end
+
+-- Obsidian leaves the extension off notes.
+local SUFFIXES = { "", ".md", ".qmd" }
+
+-- `pandoc.path.normalize` keeps `..`, which relative wikilinks carry.
+local function tidy(path)
+  local parts = {}
+  for part in path:gmatch("[^/]+") do
+    if part == ".." then
+      table.remove(parts)
+    elseif part ~= "." then
+      table.insert(parts, part)
+    end
+  end
+  return table.concat(parts, "/")
+end
+
+-- Obsidian's order: beside the note, then from the vault root, then any one
+-- file whose path ends with the target. Several such files resolve to none.
+-- A link left behind by a moved folder (a draft published outside Obsidian)
+-- falls back to its last two segments, `<slug>/index`.
+local function resolve(target)
+  if not files then index_files() end
+  local here = pandoc.path.directory(
+    pandoc.path.make_relative(quarto.doc.input_file, quarto.project.directory))
+  for _, suffix in ipairs(SUFFIXES) do
+    local near = tidy(here .. "/" .. target .. suffix)
+    if files[near] then return near end
+    if files[target .. suffix] then return target .. suffix end
+  end
+  local found
+  for path in pairs(files) do
+    for _, suffix in ipairs(SUFFIXES) do
+      local tail = "/" .. target .. suffix
+      if path:sub(-#tail) == tail then
+        if found and found ~= path then return nil end
+        found = path
+      end
+    end
+  end
+  local tail = target:match("[^/]+/[^/]+$")
+  if not found and tail and tail ~= target then return resolve(tail) end
+  return found
+end
+
+local function relative(path)
+  return pandoc.path.make_relative(
+    pandoc.path.join { quarto.project.directory, path },
+    pandoc.path.directory(quarto.doc.input_file), true)
+end
+
+local function is_page(path)
+  return path:match("%.q?md$") ~= nil
+end
+
+-- A page's front matter, or an empty table.
+local function front_matter(path)
+  local file = is_page(path) and io.open(pandoc.path.join { quarto.project.directory, path })
+  if not file then return {} end
+  local front = file:read("a"):match("^%-%-%-\r?\n(.-\r?\n)%-%-%-")
+  file:close()
+  return front and pandoc.read("---\n" .. front .. "---\n", "markdown").meta or {}
+end
+
+-- Quarto publishes nothing under a `_` directory, and a `draft: true` page as
+-- an empty one, so a link to either prints as text until the page goes live.
+local function is_live(path)
+  return not ("/" .. path):find("/_", 1, true) and front_matter(path).draft ~= true
+end
+
+-- A page's title, else its folder (posts are all `index`).
+local function page_name(path)
+  local title = front_matter(path).title
+  if title and pandoc.utils.stringify(title) ~= "" then return pandoc.Inlines(title) end
+  local stem = pandoc.path.split_extension(pandoc.path.filename(path))
+  if stem == "index" then stem = pandoc.path.filename(pandoc.path.directory(path)) end
+  return pandoc.Inlines(stem)
+end
+
+local function unwiki(el)
+  el.classes = el.classes:filter(function(c) return c ~= "wikilink" end)
+end
+
+-- Split `page#Heading` into the page and an anchor for the heading. Block
+-- references (`#^id`) have no counterpart on the site.
+local function split_target(target)
+  local page, heading = target:match("^([^#]*)#?(.*)$")
+  local anchor = (heading ~= "" and not heading:match("^%^")) and "#" .. slug(heading) or ""
+  return page, heading, anchor
+end
+
+local function wikilink(link)
+  if not link.classes:includes("wikilink") then return nil end
+  unwiki(link)
+  local aliased = pandoc.utils.stringify(link.content) ~= link.target
+  local target, heading, anchor = split_target(link.target)
+  if target == "" then
+    if anchor == "" then return link.content end
+    link.target = anchor
+    if not aliased then link.content = pandoc.Inlines(heading) end
+    return link
+  end
+  local path = resolve(target)
+  if not path then return link.content end
+  if not aliased then link.content = page_name(path) end
+  if not is_live(path) then return link.content end
+  link.target = relative(path) .. anchor
+  return link
+end
+
+-- The reader makes a lone `![[image]]` a figure captioned with its label, which
+-- Obsidian never shows, so the image goes back into a paragraph of its own.
+local function unfigure(figure)
+  local only = #figure.content == 1 and figure.content[1]
+  local image = only and (only.t == "Plain" or only.t == "Para") and #only.content == 1
+    and only.content[1]
+  if image and image.t == "Image" and image.classes:includes("wikilink") then
+    return pandoc.Para { image }
+  end
+end
+
+local function embed(image)
+  if not image.classes:includes("wikilink") then return nil end
+  unwiki(image)
+  local target, _, anchor = split_target(image.src)
+  local label = pandoc.utils.stringify(image.caption)
+  -- `|200` or `|200x100` sizes the image; any other text is its alt text,
+  -- held as an attribute because Quarto makes a lone captioned image a figure.
+  local width, height = label:match("^(%d+)x?(%d*)$")
+  local path = resolve(target)
+  local text = pandoc.Inlines(width and target or label)
+  if not path then return text end
+  -- Obsidian inlines an embedded note; the site links to it instead.
+  if is_page(path) then
+    if not is_live(path) then return page_name(path) end
+    return pandoc.Link(page_name(path), relative(path) .. anchor)
+  end
+  if not is_live(path) then return text end
+  image.src = relative(path)
+  if width then
+    image.attributes.width = width .. "px"
+    if height ~= "" then image.attributes.height = height .. "px" end
+  elseif label ~= target then
+    image.attributes.alt = label
+  end
+  image.caption = {}
+  return image
+end
+
 return {
   { Pandoc = comments },
-  { BlockQuote = callout },
+  { BlockQuote = callout, CodeBlock = mermaid, Figure = unfigure },
+  { Link = wikilink, Image = embed },
 }

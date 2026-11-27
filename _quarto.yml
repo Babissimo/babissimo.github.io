@@ -49,7 +49,7 @@ filters:
     at: pre-ast
 format:
   html:
-    from: markdown+mark
+    from: markdown+mark+wikilinks_title_after_pipe
     grid:
       # 640px measure, centred. margin-width is not a real margin here (the
       # contents rail is a fixed overlay) — it counterweights Quarto's
